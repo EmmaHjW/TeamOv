@@ -21,40 +21,47 @@ namespace TeamOv
             Users.Add("Oskar", "1234");
             Users.Add("Emma", "1234");
         }
-        public static bool ValidateLogin(string name, string password)
+        public static void ValidateLogin()
         {
-            
+            var tries = 0;
+            Console.WriteLine("Welcome to TeamOv-Bank");
+            Console.WriteLine();
+            do
+            {
+                Console.WriteLine("Enter username: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter password: ");
+                string password = Console.ReadLine();
+                tries++;
+
             if (Users.ContainsKey(name) && Users.ContainsValue(password))
             {
                 Console.WriteLine("Logged in");
-                Menu(name);
-                return true;
+                    LoggedInUser(name);
+                    break;
             }
             else
             {
-                Console.Clear();
                 Console.WriteLine("Wrong username or password");
-                return false;
+                
+            }
+            } while (tries < 3);
+
+            if (tries == 3)
+            {
+                Console.WriteLine("Too many attempts, try again in 5 minutes. ");
             }
         }
-        public static void Menu(string name)
+        public static void LoggedInUser(string name)
         {
             if (name == "Admin")
             {
-                AdminMenu();
+                Menu.AdminMenu();
             }
             else
             {
-                CustomerMenu();
+                Menu.CustomerMenu();
             }
-        }
-        public static void AdminMenu()
-        {
-            Console.WriteLine("AdminMenu");
-        }
-        public static void CustomerMenu()
-        {
-            Console.WriteLine("CustomerMenu");
         }
     }
         
