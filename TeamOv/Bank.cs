@@ -19,7 +19,7 @@ namespace TeamOv
             Console.WriteLine("Enter password: ");
             string password = Console.ReadLine();
 
-            
+            LogIn.ValidateLogin(name, password);
 
             
         }
