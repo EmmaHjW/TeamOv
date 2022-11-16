@@ -16,13 +16,31 @@ namespace TeamOv
             Users.Add("Customer", "password");
             Users.Add("Customer", "password");
         }
-        public bool ValidateLogin(string name, string password)
+        public static bool ValidateLogin(string name, string password)
         {
-            return Users.Any(i => i.Key == name && i.Value == password);
-            if (Users.ContainsKey(name, password,  ))
+           //Users temp = Users.Any(i => i.Key == name && i.Value == password);
+            
+            if (Users.ContainsKey(name))
             {
-
+                return true;
             }
+            else 
+            {
+                Console.WriteLine("Wrong username");
+                return false;
+            }
+            
+            if (Users.ContainsValue(password))
+            {
+                Console.WriteLine("Du är inloggad");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Wrong password");
+                return false;
+            }
+
         }
     }
         
