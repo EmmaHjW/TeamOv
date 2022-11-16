@@ -1,4 +1,6 @@
-﻿namespace TeamOv
+﻿using System.Runtime.CompilerServices;
+
+namespace TeamOv
 {
     internal class Program
     {
@@ -6,5 +8,6 @@
         {
             Console.WriteLine("Team OV Refresh start");
         }
+        
     }
 }
