@@ -8,8 +8,7 @@ namespace TeamOv
 {
     public class Customer : User
     {
-        public Customer(string? userName, string? password, int userId, bool active, bool IsAdmin) 
-            : base(userName, password, userId, active, IsAdmin)
+        public Customer(string? userName, string? password, bool active) : base(userName, password, active)
         {
             IsAdmin = false;
         }

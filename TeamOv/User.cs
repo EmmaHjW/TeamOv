@@ -27,11 +27,11 @@ namespace TeamOv
             get { return isAdmin; }
             set { }
         }
-        public User(string? userName, string? password, int userId, bool active, bool IsAdmin)
+        public User(string? userName, string? password/*, int userId*/, bool active/*, bool IsAdmin*/)
         {
             this.UserName = userName;
             this.Password = password;
-            this.UserId = userId;
+            //this.UserId = userId;
             this.Active = active;
             this.IsAdmin = IsAdmin;
         }
