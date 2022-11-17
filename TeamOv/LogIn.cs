@@ -11,17 +11,17 @@ namespace TeamOv
     public class LogIn
     {
 
-        private static Dictionary<string, string> Users = new Dictionary<string, string>(); //Dictionary with Users
+         //Dictionary with Users
         public LogIn() //Constructor
         {
             
         }
         public static void InitiateUsers() //Adds users to Dict at run
         {
-            Users.Add("Admin", "PassWord");
-            Users.Add("Customer", "password");
-            Users.Add("Oskar", "1234");
-            Users.Add("Emma", "1234");
+            User.Users.Add("Admin", "PassWord");
+            User.Users.Add("Customer", "password");
+            User.Users.Add("Oskar", "1234");
+            User.Users.Add("Emma", "1234");
         }
         public static void ValidateLogin() //Login with validation if user exists
         {
@@ -36,7 +36,7 @@ namespace TeamOv
                 string password = Console.ReadLine();
                 tries++;
 
-                if (Users.ContainsKey(name) && Users.ContainsValue(password)) //Check if user in list
+                if (User.Users.ContainsKey(name) && User.Users.ContainsValue(password)) //Check if user in list
                 {
                     Console.WriteLine("Logged in");
                     LoggedInUser(name);

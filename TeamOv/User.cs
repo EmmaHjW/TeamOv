@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace TeamOv
 {
     public abstract class User
     {
+        public static readonly List<User> userList = new();
+
         protected bool isAdmin;
         protected string username;
         protected string password;
@@ -34,6 +37,17 @@ namespace TeamOv
         public override string ToString()
         {
             return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}";
+        }
+        public static bool UserExists(string username)
+        {
+            bool exists = userList.Exists(User=>User.UserName == username);
+            Log.Debug(
+                "User with username {username} {existing}",
+                username,
+                (exists ? "exists." : "does not exist.")
+            );
+
+            return exists;
         }
     }
 }
