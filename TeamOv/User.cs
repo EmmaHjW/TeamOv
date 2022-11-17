@@ -11,7 +11,7 @@ namespace TeamOv
      //Dictionary with Users
     public class User
     {
-        public static readonly List<User> userList = new();
+        public static List<User> userList = new();
 
         protected bool isAdmin;
         protected string username;
