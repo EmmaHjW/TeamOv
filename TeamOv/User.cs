@@ -13,6 +13,7 @@ namespace TeamOv
     {
         public static List<User> CustomerList = new();
 
+        private static int idPool;      
         protected bool isAdmin;
         protected string username;
         protected string password;
@@ -31,9 +32,10 @@ namespace TeamOv
         {
             this.UserName = userName;
             this.Password = password;
-            //this.UserId = userId;
             this.Active = active;
             this.IsAdmin = IsAdmin;
+            this.UserId = idPool++;
+
         }
         public static bool UserExists(string username)
         {
@@ -50,5 +52,8 @@ namespace TeamOv
         {
             return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}, isAdmin: {IsAdmin}";
         }
+        
+
+
     }
 }

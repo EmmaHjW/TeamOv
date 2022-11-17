@@ -94,7 +94,7 @@ namespace TeamOv
             return add;
         }
 
-        public static void CreateCustomerScreen()
+        public static void CreateCustomerScreen() //Admin can create new customer
         {
             //Console.Clear();
             Console.WriteLine("Input customer data");
@@ -122,7 +122,7 @@ namespace TeamOv
                     };
                 } while (active is null);
 
-                completed = AddUser(username, password, (bool) active); //Fix this method
+                completed = AddUser(username, password, (bool) active);
                 if (!completed)
                 {
                     Console.WriteLine("Operation failed. No user added.");
