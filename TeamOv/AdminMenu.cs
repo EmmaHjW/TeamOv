@@ -25,7 +25,7 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 grid.AddColumn();
-                Console.WriteLine("                         Welcome to VaennikATM");
+                Console.WriteLine("                         Welcome to OV.ATM");
 
                 // Add header row 
                 grid.AddRow(new Spectre.Console.Text[]{
@@ -51,7 +51,7 @@ namespace TeamOv
                 switch (customerOptions.ToLower())
                 {
                     case "p":
-                        Console.WriteLine("Print all customere method");
+                        PrintAllCustomers();
                         Console.ReadLine();
                         break;
                     case "c":
@@ -142,6 +142,26 @@ namespace TeamOv
             );
 
             return exists;
+        }
+        public static void PrintAllCustomers()
+        {
+            foreach (var i in User.userList)
+            {
+                Console.WriteLine(i);
+            }
+        }
+        //public static bool DeleteCustomer()
+        //{
+        //    Console.WriteLine("Which customer do you want to delete?: ");
+        //    string input = Console.ReadLine();
+        //    User.userList.Remove(user);
+        //    return true;
+        //}   
+        public static void DeleteCustomer(User user)
+        {
+            string input;
+            User.userList.Remove(user);
+            Console.WriteLine("User: {user} deleted.", user);
         }
     }
 }
