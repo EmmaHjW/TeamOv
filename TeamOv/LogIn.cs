@@ -16,10 +16,10 @@ namespace TeamOv
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
-            User.userList.Add(new User("Admin", "password",/* 0,*/ true/*, true*/));
-            User.userList.Add(new User("Customer", "password"/*, 1*/, true /*false*/));
-            User.userList.Add(new User("Oskar", "1234",/* 2,*/ true/*, false*/));
-            User.userList.Add(new User("Emma", "1234",/* 3,*/ true/*, false*/));
+            User.userList.Add(new Customer("Admin", "password",/* 0,*/ true/*, true*/));
+            User.userList.Add(new Customer("Customer", "password"/*, 1*/, true /*false*/));
+            User.userList.Add(new Customer("Oskar", "1234",/* 2,*/ true/*, false*/));
+            User.userList.Add(new Customer("Emma", "1234",/* 3,*/ true/*, false*/));
         }
         public static void ValidateLogin() //Login with validation if user exists
         {

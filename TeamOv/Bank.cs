@@ -16,8 +16,8 @@ namespace TeamOv
             
             LogIn.InitiateUsers();
             LogIn.ValidateLogin();
-            AdminMenu.ShowAdminScreen();
-            AdminMenu.CreateCustomerScreen();
+            //AdminMenu.ShowAdminScreen();
+            //AdminMenu.CreateCustomerScreen();
             
         }
         

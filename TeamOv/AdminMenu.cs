@@ -17,7 +17,7 @@ namespace TeamOv
             while (true)
             {
                 Console.Clear();
-                var grid = new Spectre.Console.Grid();
+                var grid = new Grid();
 
                 // Add columns 
                 grid.AddColumn();
@@ -28,7 +28,7 @@ namespace TeamOv
                 Console.WriteLine("                         Welcome to OV.ATM");
 
                 // Add header row 
-                grid.AddRow(new Spectre.Console.Text[]{
+                grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
                 new Text(" ").Centered(),
                 new Text(" ").Centered(),
@@ -150,18 +150,15 @@ namespace TeamOv
                 Console.WriteLine(i);
             }
         }
-        //public static bool DeleteCustomer()
-        //{
-        //    Console.WriteLine("Which customer do you want to delete?: ");
-        //    string input = Console.ReadLine();
-        //    User.userList.Remove(user);
-        //    return true;
-        //}   
-        public static void DeleteCustomer(User user)
+        public static void DeleteCustomer()
         {
-            string input;
-            User.userList.Remove(user);
-            Console.WriteLine("User: {user} deleted.", user);
+         
         }
+        //public static void DeleteCustomer(User customer)
+        //{
+        //    string input;
+        //    User.userList.Remove(customer);
+        //    Console.WriteLine("User: {user} deleted.", user);
+        //}
     }
 }
