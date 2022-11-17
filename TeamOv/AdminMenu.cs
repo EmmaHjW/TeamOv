@@ -79,7 +79,6 @@ namespace TeamOv
             }
             Console.ReadKey();
         }
-
         public static void CreateCustomerScreen()
         {
             Console.Clear();
@@ -108,11 +107,12 @@ namespace TeamOv
                     };
                 } while (active is null);
 
-                //completed = AddUser(username, password, (bool)active); //Fix this method
-                //if (!completed)
-                //{
-                //    Console.WriteLine("Operation failed. No user added.");
-                //}
+                
+                //completed = AddUser(username, password, userId, active, isAdmin); //Fix this method
+                if (!completed)
+                {
+                    Console.WriteLine("Operation failed. No user added.");
+                }
             } while (completed == false);
         }
         
@@ -127,5 +127,6 @@ namespace TeamOv
 
             return exists;
         }
+
     }
 }

@@ -39,7 +39,7 @@ namespace TeamOv
                     //    Console.WriteLine("Logged in");
                     //    LoggedInUser(name);
                 }
-                if (User.userList.Exists(User => User.Password == password))
+                if (User.userList.Exists(User => User.Password == password)) //Chekck dfj
                 {
                     //Do nothing
                     Console.WriteLine("Logged in");
@@ -60,7 +60,7 @@ namespace TeamOv
         }
         public static void LoggedInUser(string name) //Check if user is admin or customer
         {
-            if (name == "Admin")
+            if (name == "Admin") //fix this 
             {
                 Menu.AdminMenu();
             }
