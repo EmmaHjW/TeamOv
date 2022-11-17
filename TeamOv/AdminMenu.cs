@@ -132,5 +132,16 @@ namespace TeamOv
             }
             return add;
         }
+        public static bool UserExists(string username)
+        {
+            bool exists = User.userList.Exists(user => user.UserName == username);
+            Log.Debug(
+                "User with username {username} {existing}",
+                username,
+                (exists ? "exists." : "does not exist.")
+            );
+
+            return exists;
+        }
     }
 }
