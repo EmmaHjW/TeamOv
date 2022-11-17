@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using Spectre.Console;
+
 
 namespace TeamOv
 {
     public class Admin : User
     {
-        public  Admin(string? userName, string? password, int userId, bool active, bool IsAdmin) : base(userName, password, userId, active, IsAdmin)
+        public Admin(string? userName, string? password, int userId, bool active, bool IsAdmin) : base(userName, password, userId, active, IsAdmin)
         {
         }
         public static void ShowAdminScreen()
@@ -18,7 +18,7 @@ namespace TeamOv
             while (true)
             {
                 Console.Clear();
-                var grid = new Grid();
+                var grid = new Spectre.Console.Grid();
 
                 // Add columns 
                 grid.AddColumn();
@@ -52,7 +52,7 @@ namespace TeamOv
                 switch (customerOptions.ToLower())
                 {
                     case "p":
-                        UserService.PrintAllCustomers();
+                        Console.WriteLine("Print all customere method");
                         Console.ReadLine();
                         break;
                     case "c":
