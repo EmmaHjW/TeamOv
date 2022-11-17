@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace TeamOv
      //Dictionary with Users
     public abstract class User
     {
-        public static Dictionary<string, string> Users = new Dictionary<string, string>();
+        public static readonly List<User> userList = new();
 
         protected bool isAdmin;
         protected string username;
@@ -40,7 +41,7 @@ namespace TeamOv
         }
         public static bool UserExists(string username)
         {
-            bool exists = User.Users.ContainsKey(username);
+            bool exists = userList.Exists(User=>User.UserName == username);
             Log.Debug(
                 "User with username {username} {existing}",
                 username,

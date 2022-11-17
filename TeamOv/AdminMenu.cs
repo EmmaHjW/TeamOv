@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spectre.Console;
-using AnsiConsole = Spectre.Console.AnsiConsole;
-
-
+using Text = Spectre.Console.Text;
+using Color = Spectre.Console.Color;
+using Serilog;
 
 namespace TeamOv
 {
@@ -17,7 +17,7 @@ namespace TeamOv
             while (true)
             {
                 Console.Clear();
-                var grid = new Grid();
+                var grid = new Spectre.Console.Grid();
 
                 // Add columns 
                 grid.AddColumn();
@@ -51,7 +51,7 @@ namespace TeamOv
                 switch (customerOptions.ToLower())
                 {
                     case "p":
-                        
+                        Console.WriteLine("Print all customere method");
                         Console.ReadLine();
                         break;
                     case "c":
@@ -89,7 +89,7 @@ namespace TeamOv
             {
                 Console.Write("Input username: ");
                 var username = Console.ReadLine();
-                if (User.UserExists(username))
+                if (UserExists(username))
                 {
                     Console.WriteLine("Duplicate username!");
                     continue;
@@ -108,12 +108,29 @@ namespace TeamOv
                     };
                 } while (active is null);
 
-                completed = UserService.AddUser(username, password, (bool)active); //Fix!!
+                completed = AddUser(username, password, (bool)active);
                 if (!completed)
                 {
                     Console.WriteLine("Operation failed. No user added.");
                 }
             } while (completed == false);
+        }
+        public static bool AddUser(string username, string password, bool active)
+        {
+            bool add;
+
+            if (UserExists(username))
+            {
+                add = false;
+                Log.Information("Duplicate username {username}. No user added.", username);
+            }
+            else
+            {
+                add = true;
+                User.userList.Add(username, password);
+                Log.Information("New user with username {username} added.", username);
+            }
+            return add;
         }
     }
 }
