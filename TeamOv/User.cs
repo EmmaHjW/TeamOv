@@ -9,7 +9,7 @@ using Serilog;
 namespace TeamOv
 {
      //Dictionary with Users
-    public abstract class User
+    public class User
     {
         public static readonly List<User> userList = new();
 
@@ -27,7 +27,7 @@ namespace TeamOv
             get { return isAdmin; }
             set { }
         }
-        protected User(string? userName, string? password, int userId, bool active, bool IsAdmin)
+        public User(string? userName, string? password, int userId, bool active, bool IsAdmin)
         {
             this.UserName = userName;
             this.Password = password;
@@ -35,6 +35,9 @@ namespace TeamOv
             this.Active = active;
             this.IsAdmin = IsAdmin;
         }
+
+        
+
         public override string ToString()
         {
             return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}";
