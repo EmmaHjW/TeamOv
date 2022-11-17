@@ -23,7 +23,7 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
 
-                Console.WriteLine("                            Welcome to VaennikATM");
+                Console.WriteLine("                            Welcome to OV.ATM");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
@@ -35,12 +35,12 @@ namespace TeamOv
 
                 // Add content row 
                 grid.AddRow(new Text[]{
-            new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
-            new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
-            new Text("(W)ithdrawl", new Style(Color.Green, Color.Black)).Centered(),
-            new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
-            new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
-            });
+                new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
+                new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(W)ithdrawl", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
+                new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
+                });
 
                 AnsiConsole.Write(grid);
 
@@ -78,8 +78,16 @@ namespace TeamOv
                     default:
                         break;
                 }
-            }
-            Console.ReadKey();
+            } 
         }
+        public static void PrintAccountInfo()
+        {
+
+        }
+        public static void Depsit()
+        {
+
+        }
+
     }
 }

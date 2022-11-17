@@ -11,20 +11,20 @@ namespace TeamOv
 {
     public class Loginservice
     {
+        protected static int tries = 0;
         public Loginservice() //Constructor
         {
             
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
-            Admin.adminList.Add(new Admin("Admin", "password",/* 0,*/ true/*, true*/));
-            User.userList.Add(new Customer("Customer", "password"/*, 1*/, true /*false*/));
-            User.userList.Add(new Customer("Oskar", "1234",/* 2,*/ true/*, false*/));
-            User.userList.Add(new Customer("Emma", "1234",/* 3,*/ true/*, false*/));
+            Admin.adminList.Add(new Admin("Admin", "password",/* 0,*/ true));
+            User.CustomerList.Add(new Customer("Customer", "password"/*, 1*/, true));
+            User.CustomerList.Add(new Customer("Oskar", "1234",/* 2,*/ true));
+            User.CustomerList.Add(new Customer("Emma", "1234",/* 3,*/ true));
         }
-        public void ValidateLogin() //Login with validation if user exists
+        public static void ValidateLogin() //Login with validation if user exists
         {
-            var tries = 0;
             Console.WriteLine("Welcome to TeamOv-Bank");
             Console.WriteLine();
             do
@@ -33,9 +33,10 @@ namespace TeamOv
                 string name = Console.ReadLine();
                 Console.Write("Enter password: ");
                 string password = Console.ReadLine();
-                tries++;
+                
 
-                if (User.userList.Exists(User => User.UserName == name && User.Password == password) || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))//Check if user in list
+                if (User.CustomerList.Exists(User => User.UserName == name && User.Password == password) 
+                    || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))   //Check if username exisist in list
                 {
                     
                     Console.WriteLine("Logged in");
@@ -45,6 +46,7 @@ namespace TeamOv
                 else
                 {
                     Console.WriteLine("Wrong password or username");
+                    tries++;
                 }
             } while (tries < 3);
 
@@ -55,7 +57,7 @@ namespace TeamOv
         }
         public static void LoggedInUser(string name) //Check if user is admin or customer
         {
-            Console.Write($"Logged in as: ");
+            Console.Write($"Logged in as: " + name);
             if (name == "Admin") //fix this 
             {
                 AdminMenu.ShowAdminScreen();

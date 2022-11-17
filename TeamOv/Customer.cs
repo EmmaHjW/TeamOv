@@ -8,9 +8,13 @@ namespace TeamOv
 {
     public class Customer : User
     {
-        public Customer(string? userName, string? password, bool active) : base(userName, password, active/*, IsAdmin*/)
+        public Customer(string? userName, string? password, bool active) : base(userName, password, active)
         {
             IsAdmin = false;
+        }
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

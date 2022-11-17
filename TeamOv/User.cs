@@ -11,7 +11,7 @@ namespace TeamOv
      //Dictionary with Users
     public class User
     {
-        public static List<User> userList = new();
+        public static List<User> CustomerList = new();
 
         protected bool isAdmin;
         protected string username;
@@ -27,7 +27,7 @@ namespace TeamOv
             get { return isAdmin; }
             set { }
         }
-        public User(string? userName, string? password/*, int userId*/, bool active/*, bool IsAdmin*/)
+        public User(string? userName, string? password/*, int userId*/, bool active)
         {
             this.UserName = userName;
             this.Password = password;
@@ -35,13 +35,9 @@ namespace TeamOv
             this.Active = active;
             this.IsAdmin = IsAdmin;
         }
-        public override string ToString()
-        {
-            return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}";
-        }
         public static bool UserExists(string username)
         {
-            bool exists = userList.Exists(User=>User.UserName == username);
+            bool exists = CustomerList.Exists(User=>User.UserName == username );
             Log.Debug(
                 "User with username {username} {existing}",
                 username,
@@ -49,6 +45,10 @@ namespace TeamOv
             );
 
             return exists;
+        }
+        public override string ToString()
+        {
+            return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}, isAdmin: {IsAdmin}";
         }
     }
 }

@@ -26,7 +26,7 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 Console.WriteLine("                         Welcome to OV.ATM");
-
+                Console.WriteLine();
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
@@ -65,11 +65,11 @@ namespace TeamOv
                     case "l":
                         Console.WriteLine("You going to be logged out..");
                         Console.WriteLine("_");
-                        Thread.Sleep(300);
+                        Thread.Sleep(200);
                         Console.WriteLine("_");
-                        Thread.Sleep(300);
+                        Thread.Sleep(200);
                         Console.WriteLine("_");
-                        Thread.Sleep(300);
+                        Thread.Sleep(200);
                         Console.WriteLine("logged out complete");
                         Environment.Exit(0);
                         break;
@@ -77,9 +77,8 @@ namespace TeamOv
                         continue;
                 }
             }
-            Console.ReadKey();
         }
-        public static bool AddUser(string username, string password/*, int userId*/, bool active/*, bool IsAdmin*/)
+        public static bool AddUser(string username, string password/*, int userId*/, bool active)
         {
             bool add;
             if (UserExists(username))
@@ -90,7 +89,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.userList.Add(new Customer(username, password/*, (int) userId*/, (bool) active/*, (bool) !IsAdmin*/));
+                User.CustomerList.Add(new Customer(username, password/*, (int) userId*/, (bool) active));
             }
             return add;
         }
@@ -134,7 +133,7 @@ namespace TeamOv
         
         public static bool UserExists(string username)
         {
-            bool exists = Customer.userList.Exists(user => user.UserName == username);
+            bool exists = Customer.CustomerList.Exists(user => user.UserName == username);
             Log.Debug(
                 "User with username {username} {existing}",
                 username,
@@ -145,7 +144,7 @@ namespace TeamOv
         }
         public static void PrintAllCustomers()
         {
-            foreach (var i in User.userList)
+            foreach (var i in User.CustomerList)
             {
                 Console.WriteLine(i);
             }

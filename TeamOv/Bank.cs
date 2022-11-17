@@ -13,14 +13,8 @@ namespace TeamOv
     {
         public static void RunBank()
         {
-           
-            Loginservice loginservice = new Loginservice(); 
             Loginservice.InitiateUsers();
-            loginservice.ValidateLogin();
-            //AdminMenu.ShowAdminScreen();
-
-            //AdminMenu.CreateCustomerScreen();
-            
+            Loginservice.ValidateLogin();
         }
         
 
