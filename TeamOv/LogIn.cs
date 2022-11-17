@@ -34,7 +34,7 @@ namespace TeamOv
                 string password = Console.ReadLine();
                 tries++;
 
-                if (User.Users.ContainsKey(name) && User.Users.ContainsValue(password)) //Check if user in list
+                if (User.userList.Exists(User=>User.UserName == name)) //Check if user in list
                 {
                     Console.WriteLine("Logged in");
                     LoggedInUser(name);
