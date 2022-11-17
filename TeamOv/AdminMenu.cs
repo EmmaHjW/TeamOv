@@ -115,7 +115,24 @@ namespace TeamOv
                 //}
             } while (completed == false);
         }
-            public static bool UserExists(string username)
+        public static bool AddUser(string username, string password, bool active)
+        {
+            bool add;
+
+            if (UserExists(username))
+            {
+                add = false;
+                Log.Information("Duplicate username {username}. No user added.", username);
+            }
+            else
+            {
+                add = true;
+                User.userList.Add(username, password);
+                Log.Information("New user with username {username} added.", username);
+            }
+            return add;
+        }
+        public static bool UserExists(string username)
         {
             bool exists = User.userList.Exists(user => user.UserName == username);
             Log.Debug(
