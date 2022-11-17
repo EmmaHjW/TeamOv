@@ -8,6 +8,7 @@ namespace TeamOv
         {
             Console.WriteLine("Team OV Refresh start");
             Bank.RunBank();
+
         }
         
     }
