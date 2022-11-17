@@ -5,23 +5,25 @@ using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TeamOv
 {
     public class Loginservice
     {
+        //User currentUser;
         public Loginservice() //Constructor
         {
             
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
-            User.userList.Add(new Customer("Admin", "password",/* 0,*/ true/*, true*/));
+            Admin.adminList.Add(new Admin("Admin", "password",/* 0,*/ true/*, true*/));
             User.userList.Add(new Customer("Customer", "password"/*, 1*/, true /*false*/));
             User.userList.Add(new Customer("Oskar", "1234",/* 2,*/ true/*, false*/));
             User.userList.Add(new Customer("Emma", "1234",/* 3,*/ true/*, false*/));
         }
-        public static void ValidateLogin() //Login with validation if user exists
+        public void ValidateLogin() //Login with validation if user exists
         {
             var tries = 0;
             Console.WriteLine("Welcome to TeamOv-Bank");
@@ -34,15 +36,16 @@ namespace TeamOv
                 string password = Console.ReadLine();
                 tries++;
 
-                if (User.userList.Exists(User => User.UserName == name)) //Check if user in list
+
+                if (User.userList.Exists(User => User.UserName == name) || Admin.adminList.Exists(Admin => Admin.UserName == name))//Check if user in list
                 {
-                    //    Console.WriteLine("Logged in");
-                    //    LoggedInUser(name);
+                    
                 }
-                if (User.userList.Exists(User => User.Password == password)) //Chekck dfj
+                if (User.userList.Exists(User => User.Password == password) || Admin.adminList.Exists(Admin => Admin.Password == password)) //Chekck dfj
                 {
-                    //Do nothing
                     Console.WriteLine("Logged in");
+                    //LoggedIn();
+                     LoggedInUser(name);
                     break;
                 }
                 else
@@ -69,6 +72,17 @@ namespace TeamOv
                 Menu.CustomerMenu();
             }
         }
+        //public void LoggedIn()
+        //{
+        //    if (currentUser.IsAdmin)
+        //    {
+        //        Menu.AdminMenu();
+        //    }
+        //    else
+        //    {
+        //        Menu.CustomerMenu();
+        //    }
+        //}
     }
         
 }

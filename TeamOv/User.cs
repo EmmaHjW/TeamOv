@@ -11,7 +11,7 @@ namespace TeamOv
      //Dictionary with Users
     public class User
     {
-        public static List<Customer> userList = new();
+        public static List<User> userList = new();
 
         protected bool isAdmin;
         protected string username;
@@ -35,9 +35,6 @@ namespace TeamOv
             this.Active = active;
             this.IsAdmin = IsAdmin;
         }
-
-        
-
         public override string ToString()
         {
             return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}";
