@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamOv
 {
-    public static class Menu
+    public static class Menu //All menus here
     {
         public static void AdminMenu()
         {

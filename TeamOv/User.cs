@@ -8,6 +8,10 @@ namespace TeamOv
 {
     public abstract class User
     {
+        protected bool isAdmin;
+        protected string username;
+        protected string password;
+
         public string? UserName { get; set; }
         public string? Password { get; set; }
         public int UserId { get; set; }
@@ -15,11 +19,11 @@ namespace TeamOv
         public int Tries { get; set; }
         public bool IsAdmin
         {
-            get { return IsAdmin; }
+            get { return isAdmin; }
             set { }
         }
 
-        public User(string? userName, string? password, int userId, bool active, bool IsAdmin)
+        protected User(string? userName, string? password, int userId, bool active, bool IsAdmin)
         {
             this.UserName = userName;
             this.Password = password;

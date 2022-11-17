@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TeamOv
 {
-    internal class Admin
+    public class Admin : User
     {
+        public Admin(string? userName, string? password, int userId, bool active, bool IsAdmin) : base(userName, password, userId, active, IsAdmin)
+        {
+        }
     }
 }
