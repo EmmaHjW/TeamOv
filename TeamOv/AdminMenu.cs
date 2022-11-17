@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spectre.Console;
 using AnsiConsole = Spectre.Console.AnsiConsole;
-using static System.Net.Mime.MediaTypeNames;
+
 
 
 namespace TeamOv
@@ -29,7 +28,7 @@ namespace TeamOv
                 Console.WriteLine("                         Welcome to VaennikATM");
 
                 // Add header row 
-                grid.AddRow(new Text[]{
+                grid.AddRow(new Spectre.Console.Text[]{
                 new Text(" ").LeftAligned(),
                 new Text(" ").Centered(),
                 new Text(" ").Centered(),
@@ -52,7 +51,7 @@ namespace TeamOv
                 switch (customerOptions.ToLower())
                 {
                     case "p":
-                        UserService.PrintAllCustomers();
+                        
                         Console.ReadLine();
                         break;
                     case "c":
@@ -90,7 +89,7 @@ namespace TeamOv
             {
                 Console.Write("Input username: ");
                 var username = Console.ReadLine();
-                if (UserService.UserExists(username))
+                if (User.UserExists(username))
                 {
                     Console.WriteLine("Duplicate username!");
                     continue;
@@ -109,7 +108,7 @@ namespace TeamOv
                     };
                 } while (active is null);
 
-                completed = UserService.AddUser(username, password, (bool)active);
+                completed = UserService.AddUser(username, password, (bool)active); //Fix!!
                 if (!completed)
                 {
                     Console.WriteLine("Operation failed. No user added.");

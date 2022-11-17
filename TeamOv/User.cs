@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Serilog;
+ 
 namespace TeamOv
 {
+     //Dictionary with Users
     public abstract class User
     {
+        public static Dictionary<string, string> Users = new Dictionary<string, string>();
+
         protected bool isAdmin;
         protected string username;
         protected string password;
@@ -22,7 +26,6 @@ namespace TeamOv
             get { return isAdmin; }
             set { }
         }
-
         protected User(string? userName, string? password, int userId, bool active, bool IsAdmin)
         {
             this.UserName = userName;
@@ -34,6 +37,17 @@ namespace TeamOv
         public override string ToString()
         {
             return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}";
+        }
+        public static bool UserExists(string username)
+        {
+            bool exists = User.Users.ContainsKey(username);
+            Log.Debug(
+                "User with username {username} {existing}",
+                username,
+                (exists ? "exists." : "does not exist.")
+            );
+
+            return exists;
         }
     }
 }
