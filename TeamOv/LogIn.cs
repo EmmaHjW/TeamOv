@@ -14,7 +14,7 @@ namespace TeamOv
         {
             
         }
-        public static void InitiateUsers() //Adds users to Dict at run
+        public static void InitiateUsers() //Adds users to userList at run
         {
             User.userList.Add(new User("Admin", "password", 0, true, true));
             User.userList.Add(new User("Customer", "password", 1, true, false));

@@ -127,10 +127,21 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.userList.Add(username, password);
+                User.userList.Add(new User(username, password, userId, active, IsAdmin);
                 Log.Information("New user with username {username} added.", username);
             }
             return add;
+        }
+        public static bool UserExists(string username)
+        {
+            bool exists = User.userList.Exists(user => user.UserName == username);
+            Log.Debug(
+                "User with username {username} {existing}",
+                username,
+                (exists ? "exists." : "does not exist.")
+            );
+
+            return exists;
         }
     }
 }
