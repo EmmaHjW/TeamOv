@@ -14,8 +14,8 @@ namespace TeamOv
         public static void RunBank()
         {
             
-            LogIn.InitiateUsers();
-            LogIn.ValidateLogin();
+            Loginservice.InitiateUsers();
+            Loginservice.ValidateLogin();
             AdminMenu.ShowAdminScreen();
 
             AdminMenu.CreateCustomerScreen();

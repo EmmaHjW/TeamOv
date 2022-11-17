@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace TeamOv
 {
-    public class LogIn
+    public class Loginservice
     {
-        public LogIn() //Constructor
+        public Loginservice() //Constructor
         {
             
         }
