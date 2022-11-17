@@ -11,7 +11,6 @@ namespace TeamOv
 {
     public class Loginservice
     {
-        //User currentUser;
         public Loginservice() //Constructor
         {
             
@@ -36,24 +35,17 @@ namespace TeamOv
                 string password = Console.ReadLine();
                 tries++;
 
-
-                if (User.userList.Exists(User => User.UserName == name) || Admin.adminList.Exists(Admin => Admin.UserName == name))//Check if user in list
+                if (User.userList.Exists(User => User.UserName == name && User.Password == password) || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))//Check if user in list
                 {
                     
-                }
-                if (User.userList.Exists(User => User.Password == password) || Admin.adminList.Exists(Admin => Admin.Password == password)) //Chekck dfj
-                {
                     Console.WriteLine("Logged in");
-                    //LoggedIn();
-                     LoggedInUser(name);
+                    LoggedInUser(name);
                     break;
                 }
                 else
                 {
                     Console.WriteLine("Wrong password or username");
-                    
                 }
-
             } while (tries < 3);
 
             if (tries == 3)
@@ -63,6 +55,7 @@ namespace TeamOv
         }
         public static void LoggedInUser(string name) //Check if user is admin or customer
         {
+            Console.Write($"Logged in as: ");
             if (name == "Admin") //fix this 
             {
                 AdminMenu.ShowAdminScreen();
@@ -72,17 +65,6 @@ namespace TeamOv
                 CustomerMenu.ShowCustomerScreen();
             }
         }
-        //public void LoggedIn()
-        //{
-        //    if (currentUser.IsAdmin)
-        //    {
-        //        Menu.AdminMenu();
-        //    }
-        //    else
-        //    {
-        //        Menu.CustomerMenu();
-        //    }
-        //}
     }
         
 }
