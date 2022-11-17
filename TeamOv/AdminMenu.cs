@@ -79,6 +79,21 @@ namespace TeamOv
             }
             Console.ReadKey();
         }
+        public static bool AddUser(string username, string password/*, int userId*/, bool active/*, bool IsAdmin*/)
+        {
+            bool add;
+            if (UserExists(username))
+            {
+                add = false;
+                Log.Information("Duplicate username {username}. No user added.", username);
+            }
+            else
+            {
+                add = true;
+                User.userList.Add(new Customer(username, password/*, (int) userId*/, (bool) active/*, (bool) !IsAdmin*/));
+            }
+            return add;
+        }
 
         public static void CreateCustomerScreen()
         {
@@ -108,12 +123,13 @@ namespace TeamOv
                     };
                 } while (active is null);
 
-                //completed = AddUser(username, password, (bool)active); //Fix this method
-                //if (!completed)
-                //{
-                //    Console.WriteLine("Operation failed. No user added.");
-                //}
+                completed = AddUser(username, password, (bool) active); //Fix this method
+                if (!completed)
+                {
+                    Console.WriteLine("Operation failed. No user added.");
+                }
             } while (completed == false);
+            
         }
         
         public static bool UserExists(string username)

@@ -11,7 +11,7 @@ namespace TeamOv
 {
     public class Admin : User
     {
-        public Admin(string? userName, string? password, int userId, bool active, bool IsAdmin) : base(userName, password, userId, active, IsAdmin)
+        public Admin(string? userName, string? password/*, int userId*/, bool active/*, bool IsAdmin*/) : base(userName, password/*, userId*/, active/*, IsAdmin*/)
         {
         }
         
