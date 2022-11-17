@@ -9,7 +9,6 @@ namespace TeamOv
     public class BankAccount
     {
         public string AccountNumber { get; init; }
-        public string AccountType { get; set; }
         public decimal Money { get; set; }
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
@@ -24,12 +23,10 @@ namespace TeamOv
             Customer owner,
             bool active = false,
             decimal money = 0m,
-            Currency currency = Currency.SEK,
-            string accountType = ""
+            Currency currency = Currency.SEK
         )
         {
             AccountNumber = accountNumber;
-            AccountType = accountType;
             Money = money;
             InterestRate = interestRate;
             AccountName = accountName;
@@ -50,7 +47,7 @@ namespace TeamOv
 
         public override string ToString()
         {
-            return $"{nameof(AccountNumber)}: {AccountNumber}, {nameof(AccountType)}: {AccountType}, {nameof(Money)}: {Money}, {nameof(Active)}: {Active}, {nameof(InterestRate)}: {InterestRate}, {nameof(AccountName)}: {AccountName}, {nameof(Currency)}: {Currency}, {nameof(Owner.NumericId)}: {Owner.NumericId}";
+            return $"{nameof(AccountNumber)}: {AccountNumber},{nameof(Money)}: {Money}, {nameof(Active)}: {Active}, {nameof(InterestRate)}: {InterestRate}, {nameof(AccountName)}: {AccountName}, {nameof(Currency)}: {Currency}, {nameof(Owner.UserId)}: {Owner.UserId}";
         }
     }
 }
