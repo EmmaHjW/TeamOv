@@ -65,11 +65,11 @@ namespace TeamOv
         {
             if (name == "Admin") //fix this 
             {
-                Menu.AdminMenu();
+                AdminMenu.ShowAdminScreen();
             }
             else
             {
-                Menu.CustomerMenu();
+                CustomerMenu.ShowCustomerScreen();
             }
         }
         //public void LoggedIn()

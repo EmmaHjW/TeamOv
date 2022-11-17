@@ -97,7 +97,7 @@ namespace TeamOv
 
         public static void CreateCustomerScreen()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Input customer data");
             bool completed = false;
             do
