@@ -34,17 +34,23 @@ namespace TeamOv
                 string password = Console.ReadLine();
                 tries++;
 
-                if (User.userList.Exists(User=>User.UserName == name)) //Check if user in list
+                if (User.userList.Exists(User => User.UserName == name)) //Check if user in list
                 {
+                    //    Console.WriteLine("Logged in");
+                    //    LoggedInUser(name);
+                }
+                if (User.userList.Exists(User => User.Password == password))
+                {
+                    //Do nothing
                     Console.WriteLine("Logged in");
-                    LoggedInUser(name);
                     break;
                 }
-            else
-            {
-                Console.WriteLine("Wrong username or password");
-                
-            }
+                else
+                {
+                    Console.WriteLine("Wrong password or username");
+                    
+                }
+
             } while (tries < 3);
 
             if (tries == 3)

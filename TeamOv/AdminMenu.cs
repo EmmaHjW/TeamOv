@@ -108,11 +108,11 @@ namespace TeamOv
                     };
                 } while (active is null);
 
-                completed = AddUser(username, password, (bool)active); //Fix this method
-                if (!completed)
-                {
-                    Console.WriteLine("Operation failed. No user added.");
-                }
+                //completed = AddUser(username, password, (bool)active); //Fix this method
+                //if (!completed)
+                //{
+                //    Console.WriteLine("Operation failed. No user added.");
+                //}
             } while (completed == false);
         }
             public static bool UserExists(string username)
