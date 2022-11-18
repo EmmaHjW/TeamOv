@@ -58,7 +58,7 @@ namespace TeamOv
         }
         public static void LoggedInUser(string name) //Check if user is admin or customer
         {
-            Console.Write($"Logged in as: " + name);
+            //Console.Write($"Logged in as: " + name);
             if (name == "Admin") //fix this 
             {
                 AdminMenu.ShowAdminScreen();
