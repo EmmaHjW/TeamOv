@@ -57,9 +57,6 @@ namespace TeamOv
         }
         public void LoggedInUser(string name) //Check if user is admin or customer
         {
-             //name = CurrentUser;
-            //Console.WriteLine($"Du är nu inloggad som {CurrentUser.UserName}");
-            //Console.Write($"Logged in as: " + name);
             if (name == "Admin") //fix this 
             {
                 AdminMenu.ShowAdminScreen(name);
