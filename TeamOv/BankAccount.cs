@@ -47,17 +47,17 @@ namespace TeamOv
 
         public void Deposit(decimal balance)
         {
-            Money += balance;
+            Amount += balance;
         }
 
         public void Withdraw(decimal balance)
         {
-            Money -= balance;
+            Amount -= balance;
         }
 
         public override string ToString()
         {
-            return $"{nameof(AccountNumber)}: {AccountNumber},{nameof(Money)}: {Money}, {nameof(Active)}: {Active}, {nameof(InterestRate)}: {InterestRate}, {nameof(AccountName)}: {AccountName}, {nameof(Currency)}: {Currency}, {nameof(Owner.UserId)}: {Owner.UserId}";
+            return $"{nameof(AccountNumber)}: {AccountNumber},{nameof(Amount)}: {Amount}, {nameof(Active)}: {Active}, {nameof(InterestRate)}: {InterestRate}, {nameof(AccountName)}: {AccountName}, {nameof(Currency)}: {Currency}, {nameof(Owner.UserId)}: {Owner.UserId}";
         }
     }
 }
