@@ -44,11 +44,6 @@ namespace TeamOv
             this.Active = active;
             this.Currency = currency;  
         }
-
-        public BankAccount()
-        {
-        }
-
         //public static void InitiateBankAccount() //Adds users to userList at run
         //{
         //    bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));

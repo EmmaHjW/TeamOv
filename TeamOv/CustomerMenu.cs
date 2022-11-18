@@ -50,7 +50,6 @@ namespace TeamOv
                 AnsiConsole.Write(grid);
 
                 string customerOptions = Console.ReadLine();
-                BankAccount bankAccount = new BankAccount();
                 switch (customerOptions.ToLower())
                 {
                     case "a":
@@ -62,7 +61,7 @@ namespace TeamOv
                         AddBankAccount();
                         break;
                     case "d": //Deposit
-                        Console.WriteLine("Deposit coming");
+                        Console.WriteLine("Deposit coming");    
                         break;
                     case "w": //Withdrawl
                         Console.WriteLine("Withdrawl all money");
