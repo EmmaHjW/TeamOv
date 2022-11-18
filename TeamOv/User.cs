@@ -23,7 +23,7 @@ namespace TeamOv
         public int UserId { get; set; }
         public bool Active { get; set; }
         public int Tries { get; set; }
-        public User(string? userName, string? password, bool active)
+        public User(string? userName, string? password, bool active, bool isAdmin)
         {
             this.UserName = userName;
             this.Password = password;

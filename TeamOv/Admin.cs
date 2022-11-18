@@ -14,12 +14,10 @@ namespace TeamOv
     {
         public static List<Admin> adminList = new();
 
-        public Admin(string? userName, string? password, bool active) 
-            : base(userName, password, active)
+        public Admin(string? userName, string? password, bool active, bool isAdmin) 
+            : base(userName, password, active, isAdmin)
         {
-            IsAdmin = true;
         }
-        public bool IsAdmin { get; set; }
         public override string ToString()
         {
             return base.ToString();

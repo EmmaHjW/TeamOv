@@ -12,7 +12,7 @@ namespace TeamOv
 {
     public static class AdminMenu
     {
-        public static void ShowAdminScreen()
+        public static void ShowAdminScreen(string currentUser)
         {
             while (true)
             {
@@ -26,7 +26,7 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 Console.WriteLine("                         Welcome to OV.ATM");
-                Console.WriteLine();
+                Console.WriteLine($"Logged in as: {currentUser}");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
@@ -89,7 +89,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.CustomerList.Add(new Customer(username, password, (bool) active));
+                User.CustomerList.Add(new Customer(username, password, (bool) active, false));
             }
             return add;
         }
@@ -144,9 +144,9 @@ namespace TeamOv
         }
         public static void PrintAllCustomers()
         {
-            foreach (var i in User.CustomerList)
+            foreach (var customers in User.CustomerList)
             {
-                Console.WriteLine(i);
+                Console.WriteLine(customers);
             }
         }
         public static void DeleteCustomer()

@@ -32,23 +32,25 @@ namespace TeamOv
             decimal balance = 0,
             Currency currency = Currency.SEK,
             bool active = false
-            
-            
         )
         {
-            AccountId = accountId;
-            AccountNumber = CustomerMenu.GenerateBankAccountNumber(); ;
-            AccountName = accountName;
-            Balance = balance;
+            this.AccountId = accountId;
+            this.AccountNumber = CustomerMenu.GenerateBankAccountNumber(); ;
+            this.AccountName = accountName;
+            this.Balance = balance;
             //Amount = amount;
             //InterestRate = interestRate;
-            Active = active;
-            Currency = currency;
-            
-            
+            this.Active = active;
+            this.Currency = currency;  
         }
+
+        public BankAccount()
+        {
+        }
+
         public static void InitiateBankAccount() //Adds users to userList at run
         {
+            bankAccounts.Add(new BankAccount() { });
             bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));

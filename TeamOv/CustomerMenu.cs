@@ -9,7 +9,7 @@ namespace TeamOv
 {
     public class CustomerMenu
     {
-        public static void ShowCustomerScreen()
+        public static void ShowCustomerScreen(string currentUser)
         {
             while (true)
             {
@@ -24,6 +24,7 @@ namespace TeamOv
                 grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
+                Console.WriteLine($"Logged in as: {currentUser}");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
@@ -110,14 +111,14 @@ namespace TeamOv
             return bankaccount.Trim('-');
         }
 
-        public static void PrintAccountInfo()
+        public static void PrintAccountInfo() //Somthing wrong!Fix!
         {
             BankAccount.bankAccounts.FindAll(account => account.AccountId == "O");
             foreach (var account in BankAccount.bankAccounts)
             {
                 Console.WriteLine(account);
             }
-        }
+       }
         public static void Depsit()
         {
             
