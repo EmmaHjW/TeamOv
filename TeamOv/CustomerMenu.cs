@@ -112,7 +112,7 @@ namespace TeamOv
 
         public static void PrintAccountInfo()
         {
-            BankAccount.bankAccounts.FindAll(i=>i.AccountId == 0);
+            BankAccount.bankAccounts.FindAll(i=>i.);
             foreach (var item in BankAccount.bankAccounts)
             {
                 Console.WriteLine(item);
