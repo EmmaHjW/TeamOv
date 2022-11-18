@@ -8,8 +8,14 @@ namespace TeamOv
 {
     public class BankAccount
     {
+        public static List<BankAccount> bankAccounts = new();
+        public List<BankAccount> BankAccounts
+        {
+            get { return bankAccounts; }
+            set { bankAccounts = value; }
+        }
         public string AccountNumber { get; init; }
-        public decimal Money { get; set; }
+        public decimal Amount { get; set; }
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
         public string AccountName { get; set; }
@@ -22,27 +28,31 @@ namespace TeamOv
             string accountName,
             //Customer owner,
             bool active = false,
-            decimal money = 0m,
+            decimal amount = 0,
             Currency currency = Currency.SEK
         )
         {
             AccountNumber = accountNumber;
-            Money = money;
+            Amount = amount;
             //InterestRate = interestRate;
             AccountName = accountName;
             Active = active;
             Currency = currency;
             //Owner = owner;
         }
-
-        public void Deposit(decimal amount)
+        public static void InitiateUsers() //Adds users to userList at run
         {
-            Money += amount;
+            bankAccounts.Add(new BankAccount("1", "Salary", true, 20000, Currency.SEK));
         }
 
-        public void Withdraw(decimal amount)
+        public void Deposit(decimal balance)
         {
-            Money -= amount;
+            Money += balance;
+        }
+
+        public void Withdraw(decimal balance)
+        {
+            Money -= balance;
         }
 
         public override string ToString()
