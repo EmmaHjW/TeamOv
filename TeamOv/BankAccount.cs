@@ -9,11 +9,7 @@ namespace TeamOv
     public class BankAccount
     {
         public static List<BankAccount> bankAccounts = new();
-        public List<BankAccount> BankAccounts
-        {
-            get { return bankAccounts; }
-            set { bankAccounts = value; }
-        }
+
         public string AccountNumber { get; init; }
         public decimal Amount { get; set; }
         public bool Active { get; set; }
@@ -21,12 +17,11 @@ namespace TeamOv
         public string AccountName { get; set; }
         public Currency Currency { get; set; }
         public Customer Owner { get; set; } // TODO should it be possible to change owner to correct an error or to switch other owner?
-
         public BankAccount(
             string accountNumber,
             //decimal interestRate,
             string accountName,
-            //Customer owner,
+           // Customer owner,
             bool active = false,
             decimal amount = 0,
             Currency currency = Currency.SEK
@@ -39,6 +34,11 @@ namespace TeamOv
             Active = active;
             Currency = currency;
             //Owner = owner;
+        }
+        public List<BankAccount> BankAccounts
+        {
+            get { return bankAccounts; }
+            set { bankAccounts = value; }
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
