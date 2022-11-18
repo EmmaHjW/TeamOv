@@ -113,11 +113,12 @@ namespace TeamOv
 
         public static void PrintAccountInfo() //Somthing wrong!Fix!
         {
-            //BankAccount.bankAccounts.FindAll(account => account.AccountId == "O");
-            //foreach (var account in BankAccount.bankAccounts)
-            //{
-            //    Console.WriteLine(account);
-            //}
+            BankAccount.bankAccounts.FindAll(account => account.AccountId == "O");
+            foreach (var account in BankAccount.bankAccounts)
+            {
+                Console.WriteLine(account);
+            }
+
             foreach (var account in BankAccount.bankAccounts)
             {
                 Console.WriteLine(account.AccountId == "O");
