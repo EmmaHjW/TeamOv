@@ -50,7 +50,6 @@ namespace TeamOv
 
         public static void InitiateBankAccount() //Adds users to userList at run
         {
-            bankAccounts.Add(new BankAccount() { });
             bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
