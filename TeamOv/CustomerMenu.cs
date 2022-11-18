@@ -80,8 +80,43 @@ namespace TeamOv
                 }
             } 
         }
+        public static void AddBankAccount()
+        {
+            //for (int i = 0; i < 5; i++)
+            //{
+            // bankAccounts.Add(new Bank());
+
+            //}
+            Console.Write("Please enter a name to your new account: ");
+            string name = Console.ReadLine();
+            string accountNumber = GenerateBankAccountNumber();
+            Bank.bankAccounts.Add(new BankAccount(accountNumber, "Salary", true, 100, Currency.SEK));
+            Console.WriteLine("");
+            PrintAccountInfo();
+
+        }
+        public static string GenerateBankAccountNumber()
+        {
+            Random random = new Random();
+            string bankaccount = "";
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    bankaccount = bankaccount + random.Next(0, 10).ToString();
+                }
+                bankaccount = bankaccount + "-";
+            }
+            return bankaccount.Trim('-');
+        }
+
         public static void PrintAccountInfo()
         {
+            Console.WriteLine("Print accounts");
+            foreach (var accounts in Bank.bankAccounts)
+            {
+                Console.WriteLine(accounts);
+            }
 
         }
         public static void Depsit()

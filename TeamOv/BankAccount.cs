@@ -18,9 +18,9 @@ namespace TeamOv
 
         public BankAccount(
             string accountNumber,
-            decimal interestRate,
+            //decimal interestRate,
             string accountName,
-            Customer owner,
+            //Customer owner,
             bool active = false,
             decimal money = 0m,
             Currency currency = Currency.SEK
@@ -28,11 +28,11 @@ namespace TeamOv
         {
             AccountNumber = accountNumber;
             Money = money;
-            InterestRate = interestRate;
+            //InterestRate = interestRate;
             AccountName = accountName;
             Active = active;
             Currency = currency;
-            Owner = owner;
+            //Owner = owner;
         }
 
         public void Deposit(decimal amount)
