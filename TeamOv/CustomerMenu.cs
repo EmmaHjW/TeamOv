@@ -9,6 +9,7 @@ namespace TeamOv
 {
     public class CustomerMenu
     {
+        
         public static void ShowCustomerScreen(string loggedInCustomer)
         {
             while (true)
@@ -49,22 +50,21 @@ namespace TeamOv
                 AnsiConsole.Write(grid);
 
                 string customerOptions = Console.ReadLine();
-
+                BankAccount bankAccount = new BankAccount();
                 switch (customerOptions.ToLower())
                 {
                     case "a":
                         Console.WriteLine("Accounts");
                         PrintAccountInfo();
                         break;
-                    case "o":
+                    case "o": //Create account
                         Console.WriteLine("Create account");
                         AddBankAccount();
                         break;
-                    case "d":
-                        Deposit();
-                        Console.ReadLine();
+                    case "d": //Deposit
+                        Console.WriteLine("Deposit coming");
                         break;
-                    case "w":
+                    case "w": //Withdrawl
                         Console.WriteLine("Withdrawl all money");
                         Console.ReadLine();
                         break;
@@ -103,24 +103,8 @@ namespace TeamOv
             Console.ReadLine();
 
         }
-        public static string GenerateBankAccountNumber()
-        {
-            Random random = new Random();
-            string bankaccount = "";
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    bankaccount = bankaccount + random.Next(0, 10).ToString();
-                }
-                bankaccount = bankaccount + "-";
-            }
-            return bankaccount.Trim('-');
-        }
-
         public static void PrintAccountInfo() //Somthing wrong!Fix!
-        {
-            
+        {  
             if (BankAccount.bankAccounts.Count <1)
             {
                 Console.WriteLine("No accounts found, talk to a bank employee to open one.");
@@ -141,16 +125,24 @@ namespace TeamOv
             //    Console.WriteLine(account.AccountId == "O");
             //}
        }
-        public static void Deposit()
-        {
-            if (BankAccount.bankAccounts.Count <1)
-            {
-                Console.WriteLine("No accounts found to deposit money into");
-            }
-        }
         public static void DeleteAccount()
         {
+            Console.WriteLine("");
             
+        }
+        public static string GenerateBankAccountNumber()
+        {
+            Random random = new Random();
+            string bankaccount = "";
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    bankaccount = bankaccount + random.Next(0, 10).ToString();
+                }
+                bankaccount = bankaccount + "-";
+            }
+            return bankaccount.Trim('-');
         }
     }
 }
