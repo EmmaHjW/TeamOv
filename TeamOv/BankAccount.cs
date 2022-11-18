@@ -14,7 +14,8 @@ namespace TeamOv
         //    get { return bankAccounts; }
         //    set { bankAccounts = value; }
         //}
-        public string AccountId { get; set; }        
+       // private static int accountIdPool;
+        public int AccountId { get; set; }        
         public string AccountNumber { get; init; }
         public decimal Amount { get; set; }
         public decimal Balance { get; set; }
@@ -25,7 +26,7 @@ namespace TeamOv
 
 
         public BankAccount(
-            string accountId,
+            //string accountId,
             string accountNumber,
             //decimal interestRate,
             string accountName,
@@ -34,7 +35,7 @@ namespace TeamOv
             bool active = false
         )
         {
-            this.AccountId = accountId;
+           // this.AccountId = accountIdPool++;
             this.AccountNumber = CustomerMenu.GenerateBankAccountNumber(); ;
             this.AccountName = accountName;
             this.Balance = balance;
@@ -48,18 +49,18 @@ namespace TeamOv
         {
         }
 
-        public static void InitiateBankAccount() //Adds users to userList at run
-        {
-            bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
-        }
+        //public static void InitiateBankAccount() //Adds users to userList at run
+        //{
+        //    bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
+        //    bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
+        //}
 
         public void Deposit(decimal balance)
         {

@@ -10,7 +10,6 @@ namespace TeamOv
      //Dictionary with Users
     public class User
     {
-        public User logInUser;
         public static List<User> CustomerList = new();
 
         private static int idPool;      

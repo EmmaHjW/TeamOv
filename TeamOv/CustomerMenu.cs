@@ -22,12 +22,14 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 grid.AddColumn();
+                grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
                 Console.WriteLine($"Logged in as: {currentUser}");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
+                new Text(" ").Centered(),
                 new Text(" ").Centered(),
                 new Text(" ").Centered(),
                 new Text(" ").RightAligned(),
@@ -37,6 +39,7 @@ namespace TeamOv
                 // Add content row 
                 grid.AddRow(new Text[]{
                 new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
+                new Text("(O)pen account", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(W)ithdrawl", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
@@ -50,8 +53,12 @@ namespace TeamOv
                 switch (customerOptions.ToLower())
                 {
                     case "a":
-                        Console.WriteLine("Print account info here");
-                        Console.ReadLine();
+                        Console.WriteLine("Accounts");
+                        PrintAccountInfo();
+                        break;
+                    case "o":
+                        Console.WriteLine("Create account");
+                        AddBankAccount();
                         break;
                     case "d":
                         Console.WriteLine("Deposit on its way");
@@ -85,15 +92,15 @@ namespace TeamOv
         {
             //for (int i = 0; i < 5; i++)
             //{
-            // bankAccounts.Add(new Bank());
+            //    bankAccounts.Add(new Bank());
 
             //}
-            //Console.Write("Please enter a name to your new account: ");
-            //string name = Console.ReadLine();
-            //string accountNumber = GenerateBankAccountNumber();
-            //Bank.bankAccounts.Add(new BankAccount(accountNumber, "Salary", true, 100, Currency.SEK));
-            //Console.WriteLine("");
-            //PrintAccountInfo();
+            Console.Write("Please enter a name to your new account: ");
+            string name = Console.ReadLine();
+            string accountNumber = GenerateBankAccountNumber();
+            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, name, 0, Currency.SEK));
+            Console.WriteLine($"{name} account {accountNumber} created");
+            Console.ReadLine();
 
         }
         public static string GenerateBankAccountNumber()
@@ -113,21 +120,29 @@ namespace TeamOv
 
         public static void PrintAccountInfo() //Somthing wrong!Fix!
         {
-            BankAccount.bankAccounts.FindAll(account => account.AccountId == "O");
-            foreach (var account in BankAccount.bankAccounts)
+            foreach (var accounts in BankAccount.bankAccounts)
             {
-                Console.WriteLine(account);
+                Console.WriteLine(accounts);
             }
+            Console.ReadLine();
+            //BankAccount.bankAccounts.FindAll(account => account.AccountId == "O");
+            //foreach (var account in BankAccount.bankAccounts)
+            //{
+            //    Console.WriteLine(account);
+            //}
 
-            foreach (var account in BankAccount.bankAccounts)
-            {
-                Console.WriteLine(account.AccountId == "O");
-            }
+            //foreach (var account in BankAccount.bankAccounts)
+            //{
+            //    Console.WriteLine(account.AccountId == "O");
+            //}
        }
         public static void Depsit()
         {
             
         }
+        public static void DeleteAccount()
+        {
 
+        }
     }
 }

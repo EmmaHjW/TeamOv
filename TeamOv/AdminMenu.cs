@@ -152,6 +152,7 @@ namespace TeamOv
         public static void DeleteCustomer()
         {
          
+         
         }
         //public static void DeleteCustomer(User customer)
         //{
