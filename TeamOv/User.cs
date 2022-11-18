@@ -23,12 +23,7 @@ namespace TeamOv
         public int UserId { get; set; }
         public bool Active { get; set; }
         public int Tries { get; set; }
-        public bool IsAdmin
-        {
-            get { return isAdmin; }
-            set { }
-        }
-        public User(string? userName, string? password/*, int userId*/, bool active)
+        public User(string? userName, string? password, bool active)
         {
             this.UserName = userName;
             this.Password = password;
@@ -37,7 +32,12 @@ namespace TeamOv
             this.UserId = idPool++;
 
         }
-        public static bool UserExists(string username)
+        public bool IsAdmin
+        {
+            get { return isAdmin; }
+            set { }
+        }
+        public static bool UserExists(string username) //Checks so not dublicate new customer
         {
             bool exists = CustomerList.Exists(User=>User.UserName == username );
             Log.Debug(

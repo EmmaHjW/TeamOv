@@ -78,7 +78,7 @@ namespace TeamOv
                 }
             }
         }
-        public static bool AddUser(string username, string password/*, int userId*/, bool active)
+        public static bool AddUser(string username, string password, bool active) //Add new customer to bank
         {
             bool add;
             if (UserExists(username))
@@ -89,7 +89,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.CustomerList.Add(new Customer(username, password/*, (int) userId*/, (bool) active));
+                User.CustomerList.Add(new Customer(username, password, (bool) active));
             }
             return add;
         }

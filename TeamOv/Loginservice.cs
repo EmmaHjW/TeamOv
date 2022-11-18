@@ -11,6 +11,7 @@ namespace TeamOv
 {
     public class Loginservice
     {
+        User CurrentUser;
         protected static int tries = 0;
         public Loginservice() //Constructor
         {

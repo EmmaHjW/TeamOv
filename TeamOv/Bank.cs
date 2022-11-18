@@ -11,13 +11,17 @@ namespace TeamOv
 {
     public class Bank
     {
-        public static List<Bank> bankAccounts= new();
+        public static List<BankAccount> bankAccounts= new();
         public static void RunBank()
         {
             Loginservice.InitiateUsers();
             Loginservice.ValidateLogin();
         }
-        
+        public List<BankAccount> BankAccounts
+        {
+            get { return bankAccounts; }
+            set { bankAccounts = value; }
+        }
 
     }
 }
