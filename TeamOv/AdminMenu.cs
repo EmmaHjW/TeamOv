@@ -89,7 +89,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.CustomerList.Add(new Customer(username, password, (bool) active, false));
+                User.CustomerList.Add(new Customer(username, password, (bool) active));
             }
             return add;
         }

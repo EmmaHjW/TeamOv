@@ -9,7 +9,8 @@ namespace TeamOv
     public class Customer : User
     {
 
-        public Customer(string? userName, string? password, bool active, bool isAdmin) : base(userName, password, active, isAdmin)
+        public Customer(string? userName, string? password, bool active) 
+            : base(userName, password, active)
         {
         }
         public override string ToString()

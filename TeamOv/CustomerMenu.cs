@@ -9,7 +9,7 @@ namespace TeamOv
 {
     public class CustomerMenu
     {
-        public static void ShowCustomerScreen(string currentUser)
+        public static void ShowCustomerScreen(string loggedInCustomer)
         {
             while (true)
             {
@@ -25,7 +25,7 @@ namespace TeamOv
                 grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
-                Console.WriteLine($"Logged in as: {currentUser}");
+                Console.WriteLine($"Logged in as: {loggedInCustomer}");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
@@ -61,7 +61,7 @@ namespace TeamOv
                         AddBankAccount();
                         break;
                     case "d":
-                        Console.WriteLine("Deposit on its way");
+                        Deposit();
                         Console.ReadLine();
                         break;
                     case "w":
@@ -96,7 +96,7 @@ namespace TeamOv
 
             //}
             Console.Write("Please enter a name to your new account: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine(); 
             string accountNumber = GenerateBankAccountNumber();
             BankAccount.bankAccounts.Add(new BankAccount(accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
@@ -120,6 +120,11 @@ namespace TeamOv
 
         public static void PrintAccountInfo() //Somthing wrong!Fix!
         {
+            
+            if (BankAccount.bankAccounts.Count <1)
+            {
+                Console.WriteLine("No accounts found, talk to a bank employee to open one.");
+            }
             foreach (var accounts in BankAccount.bankAccounts)
             {
                 Console.WriteLine(accounts);
@@ -136,13 +141,16 @@ namespace TeamOv
             //    Console.WriteLine(account.AccountId == "O");
             //}
        }
-        public static void Depsit()
+        public static void Deposit()
         {
-            
+            if (BankAccount.bankAccounts.Count <1)
+            {
+                Console.WriteLine("No accounts found to deposit money into");
+            }
         }
         public static void DeleteAccount()
         {
-
+            
         }
     }
 }
