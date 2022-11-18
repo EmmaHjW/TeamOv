@@ -11,12 +11,7 @@ namespace TeamOv
 {
     public class Bank
     {
-        public static List<BankAccount> bankAccounts= new();
-        public List<BankAccount> BankAccounts
-        {
-            get { return bankAccounts; }
-            set { bankAccounts = value; }
-        }
+        
         public static void RunBank()
         {
             Loginservice.InitiateUsers();
