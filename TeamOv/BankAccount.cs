@@ -9,36 +9,39 @@ namespace TeamOv
     public class BankAccount
     {
         public static List<BankAccount> bankAccounts = new();
-        public List<BankAccount> BankAccounts
-        {
-            get { return bankAccounts; }
-            set { bankAccounts = value; }
-        }
-        public int AccountId { get; set; }
+        //public List<BankAccount> BankAccounts
+        //{
+        //    get { return bankAccounts; }
+        //    set { bankAccounts = value; }
+        //}
+        public string AccountId { get; set; }        
         public string AccountNumber { get; init; }
         public decimal Amount { get; set; }
+        public decimal Balance { get; set; }
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
         public string AccountName { get; set; }
         public Currency Currency { get; set; }
-        
+
 
         public BankAccount(
-            int accountId,
+            string accountId,
             string accountNumber,
             //decimal interestRate,
             string accountName,
-            bool active = false,
-            decimal amount = 0,
-            Currency currency = Currency.SEK
+            decimal balance = 0,
+            Currency currency = Currency.SEK,
+            bool active = false
+            
             
         )
         {
             AccountId = accountId;
-            AccountNumber = accountNumber;
-            Amount = amount;
-            //InterestRate = interestRate;
+            AccountNumber = CustomerMenu.GenerateBankAccountNumber(); ;
             AccountName = accountName;
+            Balance = balance;
+            //Amount = amount;
+            //InterestRate = interestRate;
             Active = active;
             Currency = currency;
             
@@ -46,15 +49,15 @@ namespace TeamOv
         }
         public static void InitiateBankAccount() //Adds users to userList at run
         {
-            bankAccounts.Add(new BankAccount(0, "1", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(0, "2", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(0, "3", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(1, "3", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(1, "3", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(1, "3", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(2, "3", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(2, "3", "Salary", true, 0, Currency.SEK));
-            bankAccounts.Add(new BankAccount(2, "3", "Salary", true, 0, Currency.SEK));
+            bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("C", "1", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("O", "2", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("E", "3", "Salary", 20000, Currency.SEK, true));
         }
 
         public void Deposit(decimal balance)
@@ -69,7 +72,7 @@ namespace TeamOv
 
         public override string ToString()
         {
-            return $"{nameof(AccountNumber)}: {AccountNumber},{nameof(Amount)}: {Amount}, {nameof(Active)}: {Active}, {nameof(InterestRate)}: {InterestRate}, {nameof(AccountName)}: {AccountName}, {nameof(Currency)}: {Currency}";
+            return $"AccountID {(AccountId)}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
         }
     }
 }
