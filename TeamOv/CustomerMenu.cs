@@ -87,12 +87,12 @@ namespace TeamOv
             // bankAccounts.Add(new Bank());
 
             //}
-            Console.Write("Please enter a name to your new account: ");
-            string name = Console.ReadLine();
-            string accountNumber = GenerateBankAccountNumber();
-            Bank.bankAccounts.Add(new BankAccount(accountNumber, "Salary", true, 100, Currency.SEK));
-            Console.WriteLine("");
-            PrintAccountInfo();
+            //Console.Write("Please enter a name to your new account: ");
+            //string name = Console.ReadLine();
+            //string accountNumber = GenerateBankAccountNumber();
+            //Bank.bankAccounts.Add(new BankAccount(accountNumber, "Salary", true, 100, Currency.SEK));
+            //Console.WriteLine("");
+            //PrintAccountInfo();
 
         }
         public static string GenerateBankAccountNumber()
@@ -112,12 +112,11 @@ namespace TeamOv
 
         public static void PrintAccountInfo()
         {
-            Console.WriteLine("Print accounts");
-            foreach (var accounts in Bank.bankAccounts)
+            BankAccount.bankAccounts.FindAll(i=>i.AccountId == 0);
+            foreach (var item in BankAccount.bankAccounts)
             {
-                Console.WriteLine(accounts);
+                Console.WriteLine(item);
             }
-
         }
         public static void Depsit()
         {
