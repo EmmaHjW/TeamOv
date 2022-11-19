@@ -9,16 +9,18 @@ namespace TeamOv
     public class BankAccount
     {
         public static List<BankAccount> bankAccounts = new();
+        private decimal balance;
+
         //public List<BankAccount> BankAccounts
         //{
         //    get { return bankAccounts; }
         //    set { bankAccounts = value; }
         //}
-       // private static int accountIdPool;
-        public int AccountId { get; set; }        
+        // private static int accountIdPool;
+        public int AccountId { get; set; }
         public string AccountNumber { get; init; }
         public decimal Amount { get; set; }
-        public decimal Balance { get; set; }
+        public decimal Balance { get => Balance; set => Balance = value; }
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
         public string AccountName { get; set; }
@@ -30,19 +32,19 @@ namespace TeamOv
             string accountNumber,
             //decimal interestRate,
             string accountName,
-            decimal balance = 0,
+            decimal balance,
             Currency currency = Currency.SEK,
             bool active = false
         )
         {
-           // this.AccountId = accountIdPool++;
+            // this.AccountId = accountIdPool++;
             this.AccountNumber = CustomerMenu.GenerateBankAccountNumber(); ;
             this.AccountName = accountName;
-            this.Balance = balance;
+            this.Balance = Balance;
             this.Amount = Amount;
             //InterestRate = interestRate;
             this.Active = active;
-            this.Currency = currency;  
+            this.Currency = currency;
         }
         //public static void InitiateBankAccount() //Adds users to userList at run
         //{
@@ -56,12 +58,14 @@ namespace TeamOv
         //    bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
         //    bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
         //}
-        public void Deposit(decimal balance)
+        public void Deposit(decimal Balance)
         {
             if (bankAccounts.Count < 1)
             {
                 Console.WriteLine("No accounts found to deposit money into");
             }
+            
+
             Amount += Balance;
         }
         public void setBalance(decimal Balance)
@@ -72,7 +76,7 @@ namespace TeamOv
         public void Withdraw(decimal balance)
         {
             Amount -= balance;
-            
+
         }
         public override string ToString()
         {
@@ -82,7 +86,7 @@ namespace TeamOv
         {
             Console.WriteLine($"Account balance: {Balance}.{Currency.SEK}");
         }
-      
+
     }
 }
 
