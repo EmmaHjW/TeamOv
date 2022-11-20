@@ -96,52 +96,36 @@ namespace TeamOv
             //}
             Console.Write("Please enter a name to your new account: ");
             string name = Console.ReadLine(); 
-            string accountNumber = GenerateBankAccountNumber();
+            string accountNumber = BankAccount.GenerateBankAccountNumber();
             BankAccount.bankAccounts.Add(new BankAccount(accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
 
         }
         public static void PrintAccountInfo() //Somthing wrong!Fix!
-        {  
-            if (BankAccount.bankAccounts.Count <1)
-            {
-                Console.WriteLine("No accounts found, talk to a bank employee to open one.");
-            }
+        {
+            //if (BankAccount.bankAccounts.Count <0)
+            //{
+            //    Console.WriteLine("No accounts found, talk to a bank employee to open one.");
+            //}
+
             foreach (var accounts in BankAccount.bankAccounts)
             {
                 Console.WriteLine(accounts);
             }
             Console.ReadLine();
-            //BankAccount.bankAccounts.FindAll(account => account.AccountId == "O");
+            //Console.ReadLine();
+            //BankAccount.bankAccounts.FindAll(account => account.AccountName == "one");
             //foreach (var account in BankAccount.bankAccounts)
             //{
             //    Console.WriteLine(account);
             //}
-
-            //foreach (var account in BankAccount.bankAccounts)
-            //{
-            //    Console.WriteLine(account.AccountId == "O");
-            //}
-       }
+        }
         public static void DeleteAccount()
         {
             Console.WriteLine("");
             
         }
-        public static string GenerateBankAccountNumber()
-        {
-            Random random = new Random();
-            string bankaccount = "";
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    bankaccount = bankaccount + random.Next(0, 10).ToString();
-                }
-                bankaccount = bankaccount + "-";
-            }
-            return bankaccount.Trim('-');
-        }
+       
     }
 }

@@ -20,7 +20,7 @@ namespace TeamOv
         public int AccountId { get; set; }
         public string AccountNumber { get; init; }
         public decimal Amount { get; set; }
-        public decimal Balance { get => Balance; set => Balance = value; }
+        public decimal Balance { get; set; }
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
         public string AccountName { get; set; }
@@ -28,7 +28,7 @@ namespace TeamOv
 
 
         public BankAccount(
-            //string accountId,
+            //int accountId,
             string accountNumber,
             //decimal interestRate,
             string accountName,
@@ -37,8 +37,8 @@ namespace TeamOv
             bool active = false
         )
         {
-            // this.AccountId = accountIdPool++;
-            this.AccountNumber = CustomerMenu.GenerateBankAccountNumber(); ;
+            //this.AccountId = accountId;
+            this.AccountNumber = GenerateBankAccountNumber(); ;
             this.AccountName = accountName;
             this.Balance = Balance;
             this.Amount = Amount;
@@ -48,15 +48,16 @@ namespace TeamOv
         }
         public static void InitiateBankAccount() //Adds users to userList at run
         {
-            bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
+
+            bankAccounts.Add(new BankAccount("", "one", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "one", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "one", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "three", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
         }
         public void Deposit(decimal Balance)
         {
@@ -99,7 +100,20 @@ namespace TeamOv
         {
             Console.WriteLine($"Account balance: {Balance}.{Currency.SEK}");
         }
-
+        public static string GenerateBankAccountNumber()
+        {
+            Random random = new Random();
+            string bankaccount = "";
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    bankaccount = bankaccount + random.Next(0, 10).ToString();
+                }
+                bankaccount = bankaccount + "-";
+            }
+            return bankaccount.Trim('-');
+        }
     }
 }
 
