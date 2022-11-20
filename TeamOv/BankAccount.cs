@@ -8,7 +8,7 @@ namespace TeamOv
 {
     public class BankAccount
     {
-        public static List<BankAccount> bankAccounts = new();
+        public static List<BankAccount> bankAccounts = new List<BankAccount>();
         private decimal balance;
 
         //public List<BankAccount> BankAccounts
@@ -46,27 +46,40 @@ namespace TeamOv
             this.Active = active;
             this.Currency = currency;
         }
-        //public static void InitiateBankAccount() //Adds users to userList at run
-        //{
-        //    bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
-        //    bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
-        //}
+        public static void InitiateBankAccount() //Adds users to userList at run
+        {
+            bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("C", "1", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("O", "2", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("E", "3", 20000, Currency.SEK, true));
+        }
         public void Deposit(decimal Balance)
         {
             if (bankAccounts.Count < 1)
             {
                 Console.WriteLine("No accounts found to deposit money into");
             }
-            
+            //Console.WriteLine("Enter amount to deposit: ");
+            //decimal Amount = decimal.Parse(Console.ReadLine());
+            //if (Amount <= 0)
+            //{
+            //    Console.WriteLine("Amount cant be less then 1");
 
-            Amount += Balance;
+            //}
+            //else
+            //{
+            //    Balance += Amount;
+            //   //Amount += Balance;
+            //    bankAccounts.Add(Balance);
+            //}
+
+
+            
         }
         public void setBalance(decimal Balance)
         {
