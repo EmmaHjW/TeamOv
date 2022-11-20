@@ -109,17 +109,17 @@ namespace TeamOv
             //    Console.WriteLine("No accounts found, talk to a bank employee to open one.");
             //}
 
+            //foreach (var accounts in BankAccount.bankAccounts)
+            //{
+            //    Console.WriteLine(accounts);
+            //}
+            BankAccount.bankAccounts.FindAll(accounts => accounts.AccountName == "one");
+
             foreach (var accounts in BankAccount.bankAccounts)
             {
                 Console.WriteLine(accounts);
             }
             Console.ReadLine();
-            //Console.ReadLine();
-            //BankAccount.bankAccounts.FindAll(account => account.AccountName == "one");
-            //foreach (var account in BankAccount.bankAccounts)
-            //{
-            //    Console.WriteLine(account);
-            //}
         }
         public static void DeleteAccount()
         {
