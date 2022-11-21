@@ -11,7 +11,7 @@ namespace TeamOv
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
         private decimal balance;
 
-        //public List<BankAccount> BankAccounts
+        //public List<BankAccount> BankAccounts//?
         //{
         //    get { return bankAccounts; }
         //    set { bankAccounts = value; }
@@ -28,9 +28,9 @@ namespace TeamOv
 
 
         public BankAccount(
-            //int accountId,
+            //int accountId, //?
             string accountNumber,
-            //decimal interestRate,
+            //decimal interestRate,//?
             string accountName,
             decimal balance,
             Currency currency = Currency.SEK,
@@ -77,10 +77,7 @@ namespace TeamOv
             //    Balance += Amount;
             //   //Amount += Balance;
             //    bankAccounts.Add(Balance);
-            //}
-
-
-            
+            //}  
         }
         public void setBalance(decimal Balance) //? 
         {
