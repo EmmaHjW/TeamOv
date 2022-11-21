@@ -121,11 +121,11 @@ namespace TeamOv
             }
             Console.ReadLine();
         }
-        public static void DeleteAccount()
-        {
-            Console.WriteLine("");
+        //public static void DeleteAccount()
+        //{
+        //    Console.WriteLine("");
             
-        }
+        //}
        
     }
 }

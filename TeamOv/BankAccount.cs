@@ -55,7 +55,7 @@ namespace TeamOv
             bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "three", 20000, Currency.SEK, true));
+            bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
             bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
         }
@@ -82,7 +82,7 @@ namespace TeamOv
 
             
         }
-        public void setBalance(decimal Balance)
+        public void setBalance(decimal Balance) //? 
         {
             Amount += Balance;
         }
