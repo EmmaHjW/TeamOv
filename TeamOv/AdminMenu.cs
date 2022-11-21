@@ -156,11 +156,5 @@ namespace TeamOv
             Console.WriteLine("Customer: {input} deleted.", customer);
          
         }
-        //public static void DeleteCustomer(User customer)
-        //{
-        //    string input;
-        //    User.userList.Remove(customer);
-        //    Console.WriteLine("User: {user} deleted.", user);
-        //}
     }
 }

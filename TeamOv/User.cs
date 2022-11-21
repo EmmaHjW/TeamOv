@@ -7,7 +7,7 @@ using System.Threading.Tasks;
  
 namespace TeamOv
 {
-     //Dictionary with Users
+     
     public class User
     {
         public static List<User> CustomerList = new();
