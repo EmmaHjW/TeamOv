@@ -8,18 +8,17 @@ namespace TeamOv
 {
     public class BankAccount
     {
+        
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
-        private decimal balance;
 
-        //public List<BankAccount> BankAccounts//?
-        //{
-        //    get { return bankAccounts; }
-        //    set { bankAccounts = value; }
-        //}
-        // private static int accountIdPool;
+        public List<BankAccount> BankAccounts//?
+        {
+            get { return bankAccounts; }
+            set { bankAccounts = value; }
+        }
+        private static int accountIdPool = 000;
         public int AccountId { get; set; }
         public string AccountNumber { get; init; }
-        public decimal Amount { get; set; }
         public decimal Balance { get; set; }
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
@@ -32,66 +31,79 @@ namespace TeamOv
             string accountNumber,
             //decimal interestRate,//?
             string accountName,
-            decimal balance,
+            decimal balance = 0m,
             Currency currency = Currency.SEK,
             bool active = false
         )
         {
-            //this.AccountId = accountId;
+            //this.AccountId = accountIdPool++;
             this.AccountNumber = GenerateBankAccountNumber(); ;
             this.AccountName = accountName;
-            this.Balance = Balance;
-            this.Amount = Amount;
+            this.Balance = balance;
             //InterestRate = interestRate;
             this.Active = active;
             this.Currency = currency;
         }
-        public static void InitiateBankAccount() //Adds users to userList at run
-        {
 
-            bankAccounts.Add(new BankAccount("", "one", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "one", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "one", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "two", 20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
-            bankAccounts.Add(new BankAccount("", "three",20000, Currency.SEK, true));
+        public BankAccount()
+        {
         }
-        public void Deposit(decimal Balance)
+
+        public void InitiateBankAccount() //Adds users to userList at run
+        {
+            BankAccount bankAccount1 = new BankAccount() { AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = Currency.USD, Active = true };
+            BankAccount bankAccount2 = new BankAccount() { AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 15000, Currency = Currency.SEK, Active = false };
+            BankAccount bankAccount3 = new BankAccount() { AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 45600, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount4 = new BankAccount() { AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 45600, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount5 = new BankAccount() { AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 45600, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount6 = new BankAccount() { AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 45600, Currency = Currency.GBP, Active = true };
+
+            bankAccounts.Add(bankAccount1);
+            bankAccounts.Add(bankAccount2);
+            bankAccounts.Add(bankAccount3);
+            bankAccounts.Add(bankAccount4);
+            bankAccounts.Add(bankAccount5);
+            bankAccounts.Add(bankAccount6);
+
+            //bankAccounts.Add(new BankAccount(001, "", "one", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(001, "", "one", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(001, "", "one", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(002, "", "two", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(002, "", "two", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(002, "", "two", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(003, "", "three", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(003, "", "three", 20000, Currency.SEK, true));
+            //bankAccounts.Add(new BankAccount(003, "", "three", 20000, Currency.SEK, true));
+        }
+        public void Deposit(decimal amount)
         {
             if (bankAccounts.Count < 1)
             {
                 Console.WriteLine("No accounts found to deposit money into");
             }
-            //Console.WriteLine("Enter amount to deposit: ");
-            //decimal Amount = decimal.Parse(Console.ReadLine());
-            //if (Amount <= 0)
-            //{
-            //    Console.WriteLine("Amount cant be less then 1");
+            Console.WriteLine("Enter amount to deposit: ");
+            decimal Amount = decimal.Parse(Console.ReadLine());
+            if (Amount <= 0)
+            {
+                Console.WriteLine("Amount cant be less then 1");
 
-            //}
-            //else
-            //{
-            //    Balance += Amount;
-            //   //Amount += Balance;
-            //    bankAccounts.Add(Balance);
-            //}  
+            }
+            else
+            {
+                Balance += Amount;
+                //Amount += Balance;
+                bankAccounts.Add(this);
+            }
         }
-        public void setBalance(decimal Balance) //? 
+        public void setBalance(decimal amount) //? 
         {
-            Amount += Balance;
+            Balance += amount;
         }
 
-        public void Withdraw(decimal balance)
+        public void Withdraw(decimal amount)
         {
-            Amount -= balance;
+            Balance -= amount;
 
-        }
-        public override string ToString()
-        {
-            return $"AccountID {(AccountId)}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
         }
         public void CheckBalance()
         {
@@ -110,6 +122,10 @@ namespace TeamOv
                 bankaccount = bankaccount + "-";
             }
             return bankaccount.Trim('-');
+        }
+        public override string ToString()
+        {
+            return $"AccountID {(AccountId)}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
         }
     }
 }

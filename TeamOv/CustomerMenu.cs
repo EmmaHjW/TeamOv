@@ -95,7 +95,7 @@ namespace TeamOv
 
             //}
             Console.Write("Please enter a name to your new account: ");
-            string name = Console.ReadLine(); 
+            string name = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             BankAccount.bankAccounts.Add(new BankAccount(accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
@@ -108,24 +108,20 @@ namespace TeamOv
             //{
             //    Console.WriteLine("No accounts found, talk to a bank employee to open one.");
             //}
+            //Console.WriteLine(BankAccount.bankAccounts.Find(a => a.AccountId == 2)); //WORKS for one account
+            List<BankAccount>AccountId = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountId == 2); //WORKS YIIPPPEEE!!!
 
-            //foreach (var accounts in BankAccount.bankAccounts)
-            //{
-            //    Console.WriteLine(accounts);
-            //}
-            BankAccount.bankAccounts.FindAll(accounts => accounts.AccountName == "one");
-
-            foreach (var accounts in BankAccount.bankAccounts)
+            foreach (var id in AccountId)
             {
-                Console.WriteLine(accounts);
+                Console.WriteLine(id);
             }
             Console.ReadLine();
         }
-        //public static void DeleteAccount()
-        //{
-        //    Console.WriteLine("");
-            
-        //}
-       
+        public static void DeleteAccount()
+        {
+            Console.WriteLine("Enter accountID to close");
+
+        }
+
     }
 }

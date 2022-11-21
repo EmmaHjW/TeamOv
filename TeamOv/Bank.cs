@@ -14,8 +14,9 @@ namespace TeamOv
         
         public static void RunBank()
         {
-            //BankAccount.InitiateBankAccount();
+            BankAccount bankAccount = new BankAccount();
             Loginservice loginservice= new Loginservice();
+            bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
             CustomerMenu.PrintAccountInfo();
