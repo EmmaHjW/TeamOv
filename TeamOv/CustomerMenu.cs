@@ -71,8 +71,10 @@ namespace TeamOv
                     case "t": //Transfer
                         Transfer transfer = new Transfer();
                         Console.WriteLine("Transfer money");
+                        Console.WriteLine();
                         transfer.TransferAmount(loggedInCustomer);
-                        Console.ReadLine();
+                        Console.WriteLine();
+                        //Console.ReadLine();
                         break;
                     case "c":
                         Console.WriteLine("Currency changed from SEK to USD");
@@ -125,7 +127,7 @@ namespace TeamOv
             {
                 Console.WriteLine(own);
             }
-            Console.ReadLine();
+            Console.WriteLine();
         }
         
         

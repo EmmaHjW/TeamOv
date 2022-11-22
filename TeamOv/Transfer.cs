@@ -47,40 +47,31 @@ namespace TeamOv
             int fromAccount = int.Parse(Console.ReadLine());
             Console.WriteLine("Transfer to: ");
             int toAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine();
-            GetAccount(fromAccount, toAccount);
+            //GetAccount(fromAccount, toAccount);
             Console.WriteLine("Please enter amount: ");
             decimal amount = decimal.Parse(Console.ReadLine());
 
-            if (amount <= 0)
-            {
-                Console.WriteLine("transfer amount must be positive");
-            }
-            else if (amount == 0)
-            {
-                Console.WriteLine("invalid transfer amount");
-            }
-            else (amount > Balance)
-            {
-                Console.WriteLine("The amount is to high, choose a lower amount please");
-            }
-           
-            //fromAccount = TransferAmount();
-            //toAccount = TransferAmount(toAccount);
-
-            //if (fromAccount.balance < TransferAmount)
+            //if (amount <= 0)
             //{
-            //    Console.WriteLine("insufficient funds");
+            //    Console.WriteLine("Transfer amount must be positive");
             //}
+            //else if (amount == 0)
+            //{
+            //    Console.WriteLine("Invalid transfer amount");
+            //}
+            var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
+            var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+            FromAccount.Balance -= amount;
+            ToAccount.Balance += amount;
 
-            //fromAccount.Transfer(-1 * transferAmount, toAccount);
-            //toAccount.Transfer(transferAmount, fromAccount);
-
+            Console.WriteLine($"You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
+            Console.WriteLine($"You have: {ToAccount.Balance} left on your {ToAccount.AccountName}");
+            Console.ReadLine();
         }
-        public void GetAccount(int FromAccountId, int ToAccountId)
-        {
-            bankAccounts.Find(a => a.AccountId == FromAccountId);
-            bankAccounts.Find(a => a.AccountId == ToAccountId);
-        }
+        //public void GetAccount(int FromAccountId, int ToAccountId)
+        //{
+        //    bankAccounts.Find(a => a.AccountId == FromAccountId);
+        //    bankAccounts.Find(a => a.AccountId == ToAccountId);
+        //}
     }
 }
