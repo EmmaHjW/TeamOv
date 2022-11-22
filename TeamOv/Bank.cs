@@ -19,7 +19,7 @@ namespace TeamOv
             bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
-            CustomerMenu.PrintAccountInfo();
+            //CustomerMenu.PrintAccountInfo(Owner);
             
             
             

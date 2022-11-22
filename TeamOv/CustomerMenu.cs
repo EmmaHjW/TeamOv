@@ -54,11 +54,11 @@ namespace TeamOv
                 {
                     case "a":
                         Console.WriteLine("Accounts");
-                        PrintAccountInfo();
+                        PrintAccountInfo(loggedInCustomer);
                         break;
                     case "o": //Create account
                         Console.WriteLine("Create account");
-                        AddBankAccount();
+                        AddBankAccount(loggedInCustomer);
                         break;
                     case "d": //Deposit
                         Console.WriteLine("Deposit coming");    
@@ -87,7 +87,7 @@ namespace TeamOv
                 }
             } 
         }
-        public static void AddBankAccount()
+        public static void AddBankAccount(string loggedInCustomer)
         {
             //for (int i = 0; i < 5; i++)
             //{
@@ -97,35 +97,36 @@ namespace TeamOv
             Console.Write("Please enter a name to your new account: ");
             string name = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
+            string owner = loggedInCustomer;
 
-            BankAccount.bankAccounts.Add(new BankAccount(001, accountNumber, name, 0, Currency.SEK));
+            BankAccount.bankAccounts.Add(new BankAccount(owner, 001, accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
 
         }
-        public static void PrintAccountInfo() //Somthing wrong!Fix!
+        public static void PrintAccountInfo(string loggedInCustomer) //Somthing wrong!Fix!
         {
             if (BankAccount.bankAccounts.Count < 0)
             {
                 Console.WriteLine("No accounts found, talk to a bank employee to open one.");
             }
             //Console.WriteLine(BankAccount.bankAccounts.Find(a => a.AccountId == 2)); //WORKS for one account
-            List<BankAccount>AccountId = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountId == 0); //WORKS YIIPPPEEE!!!
+            List<BankAccount>Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
 
-            foreach (var id in AccountId)
+            foreach (var own in Owner)
             {
-                Console.WriteLine(id);
+                Console.WriteLine(own);
             }
             Console.ReadLine();
         }
-        public static void DeleteAccount()
-        {
-            PrintAccountInfo();
-            Console.Write("Enter accountID to close: ");
-            string input = Console.ReadLine();
+        //public static void DeleteAccount()
+        //{
+        //    PrintAccountInfo();
+        //    Console.Write("Enter accountID to close: ");
+        //    string input = Console.ReadLine();
 
             
-        }
+        //}
 
     }
 }

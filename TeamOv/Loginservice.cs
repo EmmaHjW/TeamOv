@@ -26,10 +26,6 @@ namespace TeamOv
 
             User.customerList.Add(customer1);
             User.customerList.Add(customer2);
-
-            //User.customerList.Add(new Customer("Customer", "password", true));
-            //User.customerList.Add(new Customer("Oskar", "1234",true));
-            //User.customerList.Add(new Customer("Emma", "1234", true));
         }
         public void ValidateLogin() //Login with validation if user exists
         {

@@ -8,6 +8,8 @@ namespace TeamOv
 {
     public class Customer : User
     {
+        private List<BankAccount> bankAccounts = new List<BankAccount>();
+        
         public Customer(string? userName, string? password, bool active) 
             : base(userName, password, active)
         {
