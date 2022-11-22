@@ -97,19 +97,20 @@ namespace TeamOv
             Console.Write("Please enter a name to your new account: ");
             string name = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
-            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, name, 0, Currency.SEK));
+
+            BankAccount.bankAccounts.Add(new BankAccount(001, accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
 
         }
         public static void PrintAccountInfo() //Somthing wrong!Fix!
         {
-            //if (BankAccount.bankAccounts.Count <0)
-            //{
-            //    Console.WriteLine("No accounts found, talk to a bank employee to open one.");
-            //}
+            if (BankAccount.bankAccounts.Count < 0)
+            {
+                Console.WriteLine("No accounts found, talk to a bank employee to open one.");
+            }
             //Console.WriteLine(BankAccount.bankAccounts.Find(a => a.AccountId == 2)); //WORKS for one account
-            List<BankAccount>AccountId = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountId == 2); //WORKS YIIPPPEEE!!!
+            List<BankAccount>AccountId = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountId == 0); //WORKS YIIPPPEEE!!!
 
             foreach (var id in AccountId)
             {
@@ -119,8 +120,11 @@ namespace TeamOv
         }
         public static void DeleteAccount()
         {
-            Console.WriteLine("Enter accountID to close");
+            PrintAccountInfo();
+            Console.Write("Enter accountID to close: ");
+            string input = Console.ReadLine();
 
+            
         }
 
     }

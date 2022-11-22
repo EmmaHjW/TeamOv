@@ -60,6 +60,7 @@ namespace TeamOv
                         break;
                     case "d":
                         Console.WriteLine("Delete customer");
+                        DeleteCustomer();
                         Console.ReadLine();
                         break;
                     case "l":
@@ -89,7 +90,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.CustomerList.Add(new Customer(username, password, (bool) active));
+                User.customerList.Add(new Customer(username, password, (bool) active));
             }
             return add;
         }
@@ -133,7 +134,7 @@ namespace TeamOv
         
         public static bool UserExists(string username)
         {
-            bool exists = Customer.CustomerList.Exists(user => user.UserName == username);
+            bool exists = Customer.customerList.Exists(user => user.UserName == username);
             Log.Debug(
                 "User with username {username} {existing}",
                 username,
@@ -144,17 +145,24 @@ namespace TeamOv
         }
         public static void PrintAllCustomers()
         {
-            foreach (var customers in User.CustomerList)
+            foreach (var customers in User.customerList)
             {
                 Console.WriteLine(customers);
             }
         }
-        public static void DeleteCustomer(User customer)
+        public static void DeleteCustomer()
         {
-            string input = Console.ReadLine();
-            User.CustomerList.Remove(customer);
-            Console.WriteLine("Customer: {input} deleted.", customer);
-         
+            Console.WriteLine("Delete customer here");
+
+            //Console.WriteLine("Enter customer to delete: ");
+            //string input = Console.ReadLine();
+            //if (!string.IsNullOrEmpty(input))
+            //{
+            //    User.customerList.Remove(input);
+            //}
+            
+
+            //Console.WriteLine("Customer: {input} deleted.", customerToRemove);
         }
     }
 }

@@ -8,7 +8,6 @@ namespace TeamOv
 {
     public class Customer : User
     {
-
         public Customer(string? userName, string? password, bool active) 
             : base(userName, password, active)
         {

@@ -10,7 +10,7 @@ namespace TeamOv
      
     public class User
     {
-        public static List<User> CustomerList = new();
+        public static List<User> customerList = new();
 
         private static int idPool;      
         protected bool isAdmin;
@@ -21,21 +21,26 @@ namespace TeamOv
         public string? Password { get; set; }
         public int UserId { get; init; }
         public bool Active { get; set; }
-        public int Tries { get; set; }
+        //public int Tries { get; set; }
         public bool IsAdmin { get; init; }
-        public User(string? userName, string? password, bool active)
+        protected User(string? userName, string? password, bool active)
         {
+            this.UserId = idPool++;
             this.UserName = userName;
             this.Password = password;
             this.Active = active;
             this.IsAdmin = IsAdmin;
-            this.UserId = idPool++;
+            
 
         }
-           
+
+        public User()
+        {
+        }
+
         public static bool UserExists(string username) //Checks so not dublicate new customer
         {
-            bool exists = CustomerList.Exists(User=>User.UserName == username );
+            bool exists = customerList.Exists(User=>User.UserName == username );
             Log.Debug(
                 "User with username {username} {existing}",
                 username,
