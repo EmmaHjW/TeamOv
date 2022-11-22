@@ -11,12 +11,13 @@ namespace TeamOv
         
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
 
-        public List<BankAccount> BankAccounts//?
+        public List<BankAccount> BankAccounts
         {
             get { return bankAccounts; }
             set { bankAccounts = value; }
         }
         private static int accountIdPool;
+        public string Owner { get; set; }
         public int AccountId { get; set; }
         public string AccountNumber { get; init; }
         public decimal Balance { get; set; }
@@ -27,7 +28,8 @@ namespace TeamOv
 
 
         public BankAccount(
-            int accountId, //?
+            string owner, 
+            int accountId, 
             string accountNumber,
             //decimal interestRate,//?
             string accountName,
@@ -36,6 +38,7 @@ namespace TeamOv
             bool active = false
         )
         {
+            this.Owner = owner;
             this.AccountId = accountIdPool++;
             this.AccountNumber = GenerateBankAccountNumber(); ;
             this.AccountName = accountName;
@@ -51,12 +54,12 @@ namespace TeamOv
 
         public void InitiateBankAccount() //Adds account to users at program run
         {
-            BankAccount bankAccount1 = new BankAccount() { AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = Currency.USD, Active = true };
-            BankAccount bankAccount2 = new BankAccount() { AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 15000, Currency = Currency.SEK, Active = false };
-            BankAccount bankAccount3 = new BankAccount() { AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 45600, Currency = Currency.GBP, Active = true };
-            BankAccount bankAccount4 = new BankAccount() { AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance =30000, Currency = Currency.GBP, Active = true };
-            BankAccount bankAccount5 = new BankAccount() { AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 50000, Currency = Currency.GBP, Active = true };
-            BankAccount bankAccount6 = new BankAccount() { AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 5000, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount1 = new BankAccount() { Owner = "Oskar", AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = Currency.USD, Active = true };
+            BankAccount bankAccount2 = new BankAccount() { Owner = "Oskar", AccountId = 1, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 15000, Currency = Currency.SEK, Active = false };
+            BankAccount bankAccount3 = new BankAccount() { Owner = "Oskar", AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 45600, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount4 = new BankAccount() { Owner = "Emma", AccountId = 3, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance =30000, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount5 = new BankAccount() { Owner = "Emma", AccountId = 4, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 50000, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount6 = new BankAccount() { Owner = "Emma", AccountId = 5, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 5000, Currency = Currency.GBP, Active = true };
 
             bankAccounts.Add(bankAccount1);
             bankAccounts.Add(bankAccount2);
@@ -65,40 +68,7 @@ namespace TeamOv
             bankAccounts.Add(bankAccount5);
             bankAccounts.Add(bankAccount6);
         }
-        public void Deposit(decimal amount)
-        {
-            if (bankAccounts.Count < 1)
-            {
-                Console.WriteLine("No accounts found to deposit money into");
-            }
-            Console.WriteLine("Enter amount to deposit: ");
-            decimal Amount = decimal.Parse(Console.ReadLine());
-            if (Amount <= 0)
-            {
-                Console.WriteLine("Amount cant be less then 1");
-
-            }
-            else
-            {
-                Balance += Amount;
-                //Amount += Balance;
-                bankAccounts.Add(this);
-            }
-        }
-        public void setBalance(decimal amount) //? 
-        {
-            Balance += amount;
-        }
-
-        public void Withdraw(decimal amount)
-        {
-            Balance -= amount;
-
-        }
-        public void CheckBalance()
-        {
-            Console.WriteLine($"Account balance: {Balance}.{Currency.SEK}");
-        }
+        
         public static string GenerateBankAccountNumber()
         {
             Random random = new Random();
