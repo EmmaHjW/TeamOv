@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -42,50 +43,35 @@ namespace TeamOv
         public void TransferAmount(string loggedInCustomer)
         {
             CustomerMenu.PrintAccountInfo(loggedInCustomer);
-            
             Console.WriteLine("Enter accountID to transfer from: ");
             int fromAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter accountID to transfer to: ");
+            Console.WriteLine("Transfer to: ");
             int toAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter amount to transfer: ");
+            //GetAccount(fromAccount, toAccount);
+            Console.WriteLine("Please enter amount: ");
             decimal amount = decimal.Parse(Console.ReadLine());
 
-         
+            //if (amount <= 0)
+            //{
+            //    Console.WriteLine("Transfer amount must be positive");
+            //}
+            //else if (amount == 0)
+            //{
+            //    Console.WriteLine("Invalid transfer amount");
+            //}
+            var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
+            var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+            FromAccount.Balance -= amount;
+            ToAccount.Balance += amount;
 
-            bankAccounts.Find(i => i.AccountId == fromAccount);
-            bankAccounts.Find(i => i.AccountId == toAccount);
-
-          
-
+            Console.WriteLine($"You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
+            Console.WriteLine($"You have: {ToAccount.Balance} left on your {ToAccount.AccountName}");
+            Console.ReadLine();
         }
-        public void GetAccount()
-        {
-
-        }
-
-        //public bool TransferFunds(int fromAccountId, int toAccountId, decimal transferAmount)
+        //public void GetAccount(int FromAccountId, int ToAccountId)
         //{
-        //    if (transferAmount <= 0)
-        //    {
-        //        throw new ApplicationException("transfer amount must be positive");
-        //    }
-        //    else if (transferAmount == 0)
-        //    {
-        //        throw new ApplicationException("invalid transfer amount");
-        //    }
-
-        //    BankAccount fromAccount = GetAccount(fromAccountId);
-        //    BankAccount toAccount = GetAccount(toAccountId);
-
-        //    if (fromAccount.balance < transferAmount)
-        //    {
-        //        throw new ApplicationException("insufficient funds");
-        //    }
-
-        //    fromAccount.Transfer(-1 * transferAmount, toAccountId);
-        //    toAccount.Transfer(transferAmount, fromAccountId);
-
-        //    return true;
+        //    bankAccounts.Find(a => a.AccountId == FromAccountId);
+        //    bankAccounts.Find(a => a.AccountId == ToAccountId);
         //}
     }
 }

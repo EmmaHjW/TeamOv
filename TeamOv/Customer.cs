@@ -18,5 +18,10 @@ namespace TeamOv
         {
             return base.ToString();
         }
+        //public List<BankAccount> bankAccounts
+        //{
+        //    get { return bankAccounts; }
+        //    set { bankAccounts = value; }
+        //}
     }
 }

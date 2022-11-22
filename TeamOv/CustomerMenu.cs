@@ -23,6 +23,7 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 grid.AddColumn();
+                grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
                 Console.WriteLine($"Logged in as: {loggedInCustomer}");
@@ -67,10 +68,13 @@ namespace TeamOv
                         Console.WriteLine("Withdrawl all money");
                         Console.ReadLine();
                         break;
-                    case "t": //transfer
-                        Console.WriteLine("Transfer");
-
-                        Console.ReadLine();
+                    case "t": //Transfer
+                        Transfer transfer = new Transfer();
+                        Console.WriteLine("Transfer money");
+                        Console.WriteLine();
+                        transfer.TransferAmount(loggedInCustomer);
+                        Console.WriteLine();
+                        //Console.ReadLine();
                         break;
                     case "c":
                         Console.WriteLine("Currency changed from SEK to USD");
@@ -123,8 +127,10 @@ namespace TeamOv
             {
                 Console.WriteLine(own);
             }
-            Console.ReadLine();
+            Console.WriteLine();
         }
+        
+        
         //public static void DeleteAccount()
         //{
         //    PrintAccountInfo();
