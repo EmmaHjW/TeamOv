@@ -35,7 +35,7 @@ namespace TeamOv
             {
                 Console.Write("Enter username: ");
                 string name = Console.ReadLine();
-                Console.Write("Enter password: ");
+                Console.Write("Enter password: ");  
                 string password = Console.ReadLine();
                 string currentUser = name;
                 if (User.customerList.Exists(User => User.UserName == name && User.Password == password)

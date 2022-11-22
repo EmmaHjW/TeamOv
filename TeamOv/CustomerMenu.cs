@@ -75,7 +75,6 @@ namespace TeamOv
                         Console.WriteLine();
                         transfer.TransferAmount(loggedInCustomer);
                         Console.WriteLine();
-                        //Console.ReadLine();
                         break;
                     case "c":
                         BankAccount bankAccount= new BankAccount();
