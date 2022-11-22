@@ -19,6 +19,7 @@ namespace TeamOv
             bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
+            bankAccount.ChangeCurrency();
         }
         
 

@@ -78,7 +78,9 @@ namespace TeamOv
                         //Console.ReadLine();
                         break;
                     case "c":
+                        BankAccount bankAccount= new BankAccount();
                         Console.WriteLine("Currency changed from SEK to USD");
+                        bankAccount.ChangeCurrency();
                         Console.ReadLine();
                         break;
                     case "l":
@@ -99,11 +101,6 @@ namespace TeamOv
         }
         public static void AddBankAccount(string loggedInCustomer)
         {
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    bankAccounts.Add(new Bank());
-
-            //}
             Console.Write("Please enter a name to your new account: ");
             string name = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
@@ -112,16 +109,13 @@ namespace TeamOv
             BankAccount.bankAccounts.Add(new BankAccount(owner, 001, accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
-
         }
         public static void PrintAccountInfo(string loggedInCustomer) //Somthing wrong!Fix!
-        {
-           
+        {  
             if (BankAccount.bankAccounts.Count < 0)
             {
                 Console.WriteLine("No accounts found, talk to a bank employee to open one.");
             }
-            //Console.WriteLine(BankAccount.bankAccounts.Find(a => a.AccountId == 2)); //WORKS for one account
             List<BankAccount>Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
 
             foreach (var own in Owner)
@@ -130,16 +124,5 @@ namespace TeamOv
             }
             Console.WriteLine();
         }
-        
-        
-        //public static void DeleteAccount()
-        //{
-        //    PrintAccountInfo();
-        //    Console.Write("Enter accountID to close: ");
-        //    string input = Console.ReadLine();
-
-            
-        //}
-
     }
 }

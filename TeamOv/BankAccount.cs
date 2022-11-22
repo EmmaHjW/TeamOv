@@ -81,6 +81,25 @@ namespace TeamOv
         {
             return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
         }
+
+        public void ChangeCurrency()
+        {
+            foreach (Currency Currency in Enum.GetValues<Currency>())
+            {
+                Console.WriteLine(Currency);
+            }
+            Console.WriteLine("Choose currency from list: ");
+            int toCurrency = int.Parse(Console.ReadLine());
+            Console.WriteLine("Choose account: ");
+            int ToAccountId = int.Parse(Console.ReadLine());
+
+            var ToCurrency = bankAccounts.Find(a => a.AccountId == ToAccountId);
+            ToCurrency.Currency = TeamOv.Currency;
+
+
+            Console.WriteLine($"Currency changed to {ToCurrency.Currency}");
+            Console.ReadLine();
+        }
     }
 }
 
