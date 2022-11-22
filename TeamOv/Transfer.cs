@@ -39,6 +39,33 @@ namespace TeamOv
             Console.WriteLine($"Account balance: {Balance}.{Currency.SEK}");
         }
 
+        public void TransferAmount(string loggedInCustomer)
+        {
+            CustomerMenu.PrintAccountInfo(loggedInCustomer);
+            
+            Console.WriteLine("Enter accountID to transfer from: ");
+            int fromAccount = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter accountID to transfer to: ");
+            int toAccount = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter amount to transfer: ");
+            decimal amount = decimal.Parse(Console.ReadLine());
+
+            if (Balance < amount)
+            {
+                Console.WriteLine("Not enought money on account");
+            }
+
+            bankAccounts.Find(i => i.AccountId == fromAccount);
+            bankAccounts.Find(i => i.AccountId == toAccount);
+
+          
+
+        }
+        public void GetAccount()
+        {
+
+        }
+
         //public bool TransferFunds(int fromAccountId, int toAccountId, decimal transferAmount)
         //{
         //    if (transferAmount <= 0)

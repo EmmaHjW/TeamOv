@@ -42,6 +42,7 @@ namespace TeamOv
                 new Text("(O)pen account", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(W)ithdrawl", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(T)ransfer", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
                 });
@@ -64,6 +65,11 @@ namespace TeamOv
                         break;
                     case "w": //Withdrawl
                         Console.WriteLine("Withdrawl all money");
+                        Console.ReadLine();
+                        break;
+                    case "t": //transfer
+                        Console.WriteLine("Transfer");
+
                         Console.ReadLine();
                         break;
                     case "c":
