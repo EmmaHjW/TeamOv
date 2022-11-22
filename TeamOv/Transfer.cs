@@ -64,8 +64,8 @@ namespace TeamOv
             FromAccount.Balance -= amount;
             ToAccount.Balance += amount;
 
-            Console.WriteLine($"You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
-            Console.WriteLine($"You have: {ToAccount.Balance} left on your {ToAccount.AccountName}");
+            Console.WriteLine($"You have: {FromAccount.Balance}{Currency.SEK} left on your {FromAccount.AccountName}");
+            Console.WriteLine($"You have: {ToAccount.Balance}{Currency.SEK} left on your {ToAccount.AccountName}");
             Console.ReadLine();
         }
         //public void GetAccount(int FromAccountId, int ToAccountId)

@@ -56,6 +56,7 @@ namespace TeamOv
                     case "a":
                         Console.WriteLine("Accounts");
                         PrintAccountInfo(loggedInCustomer);
+                        Console.ReadLine();
                         break;
                     case "o": //Create account
                         Console.WriteLine("Create account");
