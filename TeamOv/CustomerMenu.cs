@@ -97,6 +97,7 @@ namespace TeamOv
             string name = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
+
             BankAccount.bankAccounts.Add(new BankAccount(owner, 001, accountNumber, name, 0, Currency.SEK));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
@@ -110,13 +111,11 @@ namespace TeamOv
                 Console.WriteLine("No accounts found, talk to a bank employee to open one.");
             }
             //Console.WriteLine(BankAccount.bankAccounts.Find(a => a.AccountId == 2)); //WORKS for one account
-            //List<BankAccount>AccountId = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountId == 0); //WORKS YIIPPPEEE!!!
+            List<BankAccount>Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
 
-            List<BankAccount>AccountId = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
-
-            foreach (var id in AccountId)
+            foreach (var own in Owner)
             {
-                Console.WriteLine(id);
+                Console.WriteLine(own);
             }
             Console.ReadLine();
         }
