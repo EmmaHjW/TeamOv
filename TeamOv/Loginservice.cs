@@ -19,17 +19,12 @@ namespace TeamOv
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
-
             Admin.adminList.Add(new Admin("Admin", "password", true));
             User customer1 = new User() { UserName = "Oskar", Password = "1234", Active = true, UserId = 0};
             User customer2 = new User() { UserName = "Emma", Password = "1234", Active = true, UserId = 1 };
 
             User.customerList.Add(customer1);
             User.customerList.Add(customer2);
-
-            //User.customerList.Add(new Customer("Customer", "password", true));
-            //User.customerList.Add(new Customer("Oskar", "1234",true));
-            //User.customerList.Add(new Customer("Emma", "1234", true));
         }
         public void ValidateLogin() //Login with validation if user exists
         {

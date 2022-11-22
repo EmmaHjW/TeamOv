@@ -10,12 +10,6 @@ namespace TeamOv
     {
         
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
-
-        public List<BankAccount> BankAccounts
-        {
-            get { return bankAccounts; }
-            set { bankAccounts = value; }
-        }
         private static int accountIdPool;
         public string Owner { get; set; }
         public int AccountId { get; set; }
@@ -85,7 +79,7 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"AccountID {(AccountId)}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
+            return $"AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
         }
     }
 }
