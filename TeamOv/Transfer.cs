@@ -50,10 +50,7 @@ namespace TeamOv
             Console.WriteLine("Enter amount to transfer: ");
             decimal amount = decimal.Parse(Console.ReadLine());
 
-            if (Balance < amount)
-            {
-                Console.WriteLine("Not enought money on account");
-            }
+         
 
             bankAccounts.Find(i => i.AccountId == fromAccount);
             bankAccounts.Find(i => i.AccountId == toAccount);
