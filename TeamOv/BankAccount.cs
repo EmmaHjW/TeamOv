@@ -8,7 +8,7 @@ namespace TeamOv
 {
     public class BankAccount
     {
-        
+          
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
         private static int accountIdPool;
         public string Owner { get; set; }
@@ -94,7 +94,7 @@ namespace TeamOv
             int ToAccountId = int.Parse(Console.ReadLine());
 
             var ToCurrency = bankAccounts.Find(a => a.AccountId == ToAccountId);
-            //ToCurrency.Currency = TeamOv.Currency;
+            ToCurrency.Currency = ;
 
 
             Console.WriteLine($"Currency changed to {ToCurrency.Currency}");

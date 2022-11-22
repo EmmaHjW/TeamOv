@@ -66,7 +66,7 @@ namespace TeamOv
                         Console.WriteLine("Deposit coming");    
                         break;
                     case "w": //Withdrawl
-                        Console.WriteLine("Withdrawl all money");
+                        Console.WriteLine("Withdrawl amount");
                         Console.ReadLine();
                         break;
                     case "t": //Transfer
