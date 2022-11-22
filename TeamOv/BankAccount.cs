@@ -94,7 +94,7 @@ namespace TeamOv
             int ToAccountId = int.Parse(Console.ReadLine());
 
             var ToCurrency = bankAccounts.Find(a => a.AccountId == ToAccountId);
-            ToCurrency.Currency = TeamOv.Currency;
+            //ToCurrency.Currency = TeamOv.Currency;
 
 
             Console.WriteLine($"Currency changed to {ToCurrency.Currency}");
