@@ -153,6 +153,10 @@ namespace TeamOv
         }
         public void ThirdPartTransfer(string loggedInCustomer)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Accounts available for third party transfer.");
+            Console.WriteLine(new string('_', 92));
+            Console.ResetColor();
             string input = "Y";
             while (input == "Y" || input == "y")
             {
@@ -161,7 +165,7 @@ namespace TeamOv
                 {
                     Console.WriteLine($"Owner: {owner.Owner} Account ID: {owner.AccountId} Account number: {owner.AccountNumber} Account name: {owner.AccountName}");
                 }
-                Console.WriteLine();
+                Console.WriteLine(new string('_', 92));
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Enter accountID to transfer from: ");
                 int fromAccount = int.Parse(Console.ReadLine());
@@ -213,17 +217,17 @@ namespace TeamOv
         }
         public void TransferMenu(string loggedInCustomer)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("(O)wn accounts | (T)hird party transfer ");
+            Console.ResetColor();
             string inputTransfer = Console.ReadLine();
 
             if (inputTransfer.ToLower() == "o")
             {
-                Console.WriteLine();
                 TransferAmount(loggedInCustomer);
             }
             if (inputTransfer.ToLower() == "t")
             {
-                Console.WriteLine();
                 ThirdPartTransfer(loggedInCustomer);
             }
         }

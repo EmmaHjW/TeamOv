@@ -73,7 +73,6 @@ namespace TeamOv
 
                         break;
                     case "t": //Transfer
-                        Console.WriteLine();
                         transfer.TransferMenu(loggedInCustomer);
                         break;
                     case "c":        
