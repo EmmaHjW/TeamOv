@@ -63,7 +63,7 @@ namespace TeamOv
         }
         public void LoggedInUser(string currentUser) //Check if user is admin or customer
         {
-            if (currentUser == "Admin") //fix this name == "Admin"
+            if (currentUser == "Admin")
             {
                 AdminMenu.ShowAdminScreen(currentUser);
             }

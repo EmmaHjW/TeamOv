@@ -70,14 +70,11 @@ namespace TeamOv
                     case "w": //Withdrawl
                         Console.WriteLine("Make a withdraw");
                         transfer.Withdraw(loggedInCustomer);
-                        Console.ReadLine();
+
                         break;
                     case "t": //Transfer
-                        Console.WriteLine("Transfer money");
                         Console.WriteLine();
-                        //transfer.TransferAmount(loggedInCustomer);
-                        transfer.ThirdPartTransfer(loggedInCustomer);
-                        Console.WriteLine();
+                        transfer.TransferMenu(loggedInCustomer);
                         break;
                     case "c":        
                         Console.WriteLine("Currency changed from SEK to USD");
@@ -124,6 +121,6 @@ namespace TeamOv
                 Console.WriteLine(own);
             }
             Console.WriteLine();
-        }
+        } 
     }
 }

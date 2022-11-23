@@ -19,31 +19,31 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
-            if (bankAccounts.Count < 1)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No accounts found to deposit money into");
-                Console.ResetColor();
-            }
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Enter account to deposit to");
-            int toAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter amount to deposit: ");
-            decimal amount = decimal.Parse(Console.ReadLine());
-            if (amount <= 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Withdraw amount must be positive");
-                Console.ResetColor();
-            }
-            else
-            {
-                var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
-                ToAccount.Balance += amount;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
-                Console.ResetColor();
-            }
+                if (bankAccounts.Count < 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("No accounts found to deposit money into");
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Enter account to deposit to");
+                int toAccount = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter amount to deposit: ");
+                decimal amount = decimal.Parse(Console.ReadLine());
+                if (amount <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Withdraw amount must be positive");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+                    ToAccount.Balance += amount;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
+                    Console.ResetColor();
+                }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Do you want to try again? Y/N?");
@@ -59,7 +59,8 @@ namespace TeamOv
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.WriteLine();
                 if (bankAccounts.Count < 1)
-                {   Console.ForegroundColor= ConsoleColor.Red;
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No accounts found to withdraw money from");
                     Console.ResetColor();
                 }
@@ -84,7 +85,6 @@ namespace TeamOv
                 }
                 else
                 {
-                    
                     FromAccount.Balance -= amount;
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Balance after withdraw: {FromAccount.Balance}");
@@ -97,11 +97,6 @@ namespace TeamOv
                 input = Console.ReadLine();
             }
         }
-        public void CheckBalance()
-        {
-            Console.WriteLine($"Account balance: {Balance}.SEK{Currency}");
-        }
-
         public void TransferAmount(string loggedInCustomer)
         {
             string input = "Y";
@@ -161,7 +156,7 @@ namespace TeamOv
             string input = "Y";
             while (input == "Y" || input == "y")
             {
-                List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountName == "Salary account");
+                List<BankAccount> Owner = bankAccounts.FindAll(bankAccounts => bankAccounts.AccountName == "Salary account");
                 foreach (var owner in Owner)
                 {
                     Console.WriteLine($"Owner: {owner.Owner} Account ID: {owner.AccountId} Account number: {owner.AccountNumber} Account name: {owner.AccountName}");
@@ -173,12 +168,11 @@ namespace TeamOv
                 Console.Write("Enter accountID to transfer to: ");
                 int toAccount = int.Parse(Console.ReadLine());
                 Console.Write("Enter amount to transfer: ");
-                
 
                 var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
                 var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
-                decimal amount;
 
+                decimal amount;
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)
@@ -209,12 +203,28 @@ namespace TeamOv
                         Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
                         Console.ResetColor();
                     }
-                    Console.ResetColor();
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Do you want to try again? Y/N?");
-                    input = Console.ReadLine();
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Do you want to try again? Y/N?");
+                input = Console.ReadLine();
                 }
+            }
+        }
+        public void TransferMenu(string loggedInCustomer)
+        {
+            Console.WriteLine("(O)wn accounts | (T)hird party transfer ");
+            string inputTransfer = Console.ReadLine();
+
+            if (inputTransfer.ToLower() == "o")
+            {
+                Console.WriteLine();
+                TransferAmount(loggedInCustomer);
+            }
+            if (inputTransfer.ToLower() == "t")
+            {
+                Console.WriteLine();
+                ThirdPartTransfer(loggedInCustomer);
             }
         }
     }
