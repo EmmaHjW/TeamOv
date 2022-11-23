@@ -15,26 +15,41 @@ namespace TeamOv
 
         public void Deposit(string loggedInCustomer)
         {
-            CustomerMenu.PrintAccountInfo(loggedInCustomer);
+            string input = "Y";
+            while (input == "Y" || input == "y")
+            {
+                CustomerMenu.PrintAccountInfo(loggedInCustomer);
             if (bankAccounts.Count < 1)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No accounts found to deposit money into");
+                Console.ResetColor();
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter account to deposit to");
             int toAccount = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter amount to deposit: ");
             decimal amount = decimal.Parse(Console.ReadLine());
             if (amount <= 0)
             {
-                Console.WriteLine("Amount cant be less then 1");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Withdraw amount must be positive");
+                Console.ResetColor();
             }
             else
             {
                 var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
                 ToAccount.Balance += amount;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
+                Console.ResetColor();
             }
-            Console.ReadLine();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Do you want to try again? Y/N?");
+                Console.ResetColor();
+                input = Console.ReadLine();
+            }
         }
         public void Withdraw(string loggedInCustomer)
         {
@@ -42,29 +57,45 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
-            if (bankAccounts.Count < 1)
-            {
-                Console.WriteLine("No accounts found to withdraw money from");
-            }
-            Console.WriteLine("Enter account to withdraw from");
-            int toAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter amount to withdraw: ");
-            decimal amount = decimal.Parse(Console.ReadLine());
-            if (amount <= 0)
-            {
-                Console.WriteLine("Amount cant be less then 1");
-            }
-            else
-            {
-                var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
-                ToAccount.Balance -= amount;
-                Console.WriteLine($"Balance after withdraw: {ToAccount.Balance}");
-            }
-            }
-            Console.WriteLine();
-            Console.WriteLine("Do you want to try again? Y/N?");
-            input = Console.ReadLine();
+                Console.WriteLine();
+                if (bankAccounts.Count < 1)
+                {   Console.ForegroundColor= ConsoleColor.Red;
+                    Console.WriteLine("No accounts found to withdraw money from");
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Enter account to withdraw from");
+                int fromAccount = int.Parse(Console.ReadLine());
+                Console.Write("Enter amount to withdraw: ");
+                var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
 
+                decimal amount = decimal.Parse(Console.ReadLine());
+                if (amount <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Withdraw amount must be positive");
+                    Console.ResetColor();
+                }
+                else if (amount > FromAccount.Balance)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid transfer amount");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    
+                    FromAccount.Balance -= amount;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"Balance after withdraw: {FromAccount.Balance}");
+                    Console.ResetColor();
+                }
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Do you want to try again? Y/N?");
+                Console.ResetColor();
+                input = Console.ReadLine();
+            }
         }
         public void CheckBalance()
         {
@@ -77,6 +108,7 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter accountID to transfer from: ");
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.WriteLine("Transfer to: ");
@@ -111,13 +143,16 @@ namespace TeamOv
                     {
                         FromAccount.Balance -= amount;
                         ToAccount.Balance += amount;
-
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
                         Console.WriteLine($"You have: {ToAccount.Balance}{Currency = "SEK"} left on your {ToAccount.AccountName}");
+                        Console.ResetColor();
                     }
                 }
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Do you want to try again? Y/N?");
+                Console.ResetColor();
                 input = Console.ReadLine();
             }
         }
