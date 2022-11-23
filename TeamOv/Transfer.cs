@@ -55,40 +55,49 @@ namespace TeamOv
                 int toAccount = int.Parse(Console.ReadLine());
                 //GetAccount(fromAccount, toAccount);
                 Console.WriteLine("Please enter amount: ");
-                decimal amount = decimal.Parse(Console.ReadLine());
-
+                //decimal amount = decimal.Parse(Console.ReadLine());
                 var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+                decimal amount;
+                while (decimal.TryParse(Console.ReadLine(), out amount))
+                {
+                    if (amount <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Transfer amount must be positive");
+                        Console.ResetColor();
+                    }
+                    else if (amount == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid transfer amount");
+                        Console.ResetColor();
+                    }
+                    else if (amount > FromAccount.Balance)
+                    {
+                        Console.WriteLine("Not enought money on account");
+                    }
+                    else
+                    {
+                        FromAccount.Balance -= amount;
+                        ToAccount.Balance += amount;
 
-                if (amount <= 0)
-                {
-                    Console.ForegroundColor= ConsoleColor.Red;
-                    Console.WriteLine("Transfer amount must be positive");
-                    Console.ResetColor();
-                }
-                else if (amount == 0)
-                {
-                    Console.ForegroundColor= ConsoleColor.Red;
-                    Console.WriteLine("Invalid transfer amount");
-                    Console.ResetColor();
-                }
-                else if(amount > FromAccount.Balance)
-                {
-                    Console.WriteLine("Not enought money on account");
-                }
-                
-                
-                FromAccount.Balance -= amount;
-                ToAccount.Balance += amount;
+                        Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
+                        Console.WriteLine($"You have: {ToAccount.Balance}{Currency = "SEK"} left on your {ToAccount.AccountName}");
+                    }
 
-                Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
-                Console.WriteLine($"You have: {ToAccount.Balance}{Currency = "SEK"} left on your {ToAccount.AccountName}");
+
+
+
+
+                }
                 Console.WriteLine();
                 Console.WriteLine("Do you want to try again? Y/N?");
                 input = Console.ReadLine();
 
+
             }
-    }   }
+    }   }   
         //public void GetAccount(int FromAccountId, int ToAccountId)
         //{
         //    bankAccounts.Find(a => a.AccountId == FromAccountId);
