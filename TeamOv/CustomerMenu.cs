@@ -49,6 +49,7 @@ namespace TeamOv
                 });
                 AnsiConsole.Write(grid);
 
+                Currency currency = new Currency();
                 Transfer transfer = new Transfer();
                 BankAccount bankAccount = new BankAccount();
                 string customerOptions = Console.ReadLine();
@@ -76,8 +77,8 @@ namespace TeamOv
                         transfer.TransferMenu(loggedInCustomer);
                         break;
                     case "c":        
-                        Console.WriteLine("Currency changed from SEK to USD");
-                        //bankAccount.ChangeCurrency();
+                        Console.WriteLine("Change Currency");
+                        currency.CurrencyConverter(loggedInCustomer);
                         Console.ReadLine();
                         break;
                     case "l":
