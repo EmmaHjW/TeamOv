@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
+using System.Security;
 
 namespace TeamOv
 {
@@ -19,6 +20,7 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             Currencies.Add("GBP", 12.61f);
         }
+        
         public void CurrencyConverter(string loggedInCustomer)
         {
             DifferentCurrency();
@@ -29,22 +31,10 @@ namespace TeamOv
 
             foreach (var key in Currencies)
             {
-                Console.WriteLine("Key: {0}", key);
+                Console.WriteLine("Currencies: {0}", key);
             }
 
-            //Currencies.ToList().ForEach(x => Console.WriteLine(x.Key));
-
-
-            //foreach (KeyValuePair<string, float> entry in Currencies)
-            //{
-            //    Console.WriteLine(entry.Key);
-            //    Console.WriteLine(entry.Value);
-            //}
-            //if (Currencies.ContainsValue("USD") || ("EUR") || ("SEK") || ("GBP"))
-            //{
-            //    return true;
-            //}
-            Console.WriteLine($"Choose which currency: " );
+            Console.WriteLine($"Choose which currency: ");
             string toCurrency = Console.ReadLine();
             Console.WriteLine($"Changed to: {toCurrency}");
 
