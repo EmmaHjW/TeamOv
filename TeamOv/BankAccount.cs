@@ -21,6 +21,7 @@ namespace TeamOv
         public string AccountName { get; set; }
         //public Currency Currency { get; set; }
         public string Currency { get; set; }
+        public string AccountType { get; set; }
 
         public BankAccount(
             string owner,
