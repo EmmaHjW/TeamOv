@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
+using System.Security;
 
 namespace TeamOv
 {
@@ -19,20 +20,23 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             Currencies.Add("GBP", 12.61f);
         }
-
-
+        
         public void CurrencyConverter(string loggedInCustomer)
         {
+            
             CustomerMenu.PrintAccountInfo(loggedInCustomer);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter accountID for the account you want to change currency: ");
             int fromAccount = int.Parse(Console.ReadLine());
 
-            if (Currencies.ContainsValue("USD") || ("EUR") || ("SEK") || ("GBP"))
-            {
-                return true;
-            }
             Console.WriteLine($"Choose which currency: " );
+
+            Dictionary<string, float>.KeyCollection keys = Currencies.Keys;
+            foreach (string key in keys)
+            {
+                Console.WriteLine("Currencies: {0}", keys);
+            }
+
             string toCurrency = Console.ReadLine();
             Console.WriteLine($"Changed to: {toCurrency}");
 
