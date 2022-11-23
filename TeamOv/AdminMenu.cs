@@ -7,6 +7,7 @@ using Spectre.Console;
 using Text = Spectre.Console.Text;
 using Color = Spectre.Console.Color;
 using Serilog;
+using System.Reflection.Metadata;
 
 namespace TeamOv
 {
@@ -26,7 +27,7 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 Console.WriteLine("                         Welcome to OV.ATM");
-                Console.WriteLine($"Logged in as: {currentUser}");
+                Console.WriteLine($"Logged in as: {currentUser}\n{DateTime.Now}");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),
@@ -128,6 +129,10 @@ namespace TeamOv
                 {
                     Console.WriteLine("Operation failed. No user added.");
                 }
+                else
+                {
+                    Console.WriteLine($"Customer {username} created");
+                }
             } while (completed == false);
             
         }
@@ -150,19 +155,25 @@ namespace TeamOv
                 Console.WriteLine(customers);
             }
         }
-        public static void DeleteCustomer()
+        public static void DeleteCustomer() //Removes customer
         {
-            Console.WriteLine("Delete customer here");
+            if (User.customerList.Count == 0)
+            {
+                Console.WriteLine("No customer to delete!");
+            }
+            else
+            {
+                PrintAllCustomers();
+                Console.WriteLine("Enter customer accountID to delete: ");
+                var toDelete = int.Parse(Console.ReadLine());
+                var ToDelete = User.customerList.Find(i => i.UserId == toDelete);
 
-            //Console.WriteLine("Enter customer to delete: ");
-            //string input = Console.ReadLine();
-            //if (!string.IsNullOrEmpty(input))
-            //{
-            //    User.customerList.Remove(input);
-            //}
-            
+                User.customerList.Remove(ToDelete);
+                Console.WriteLine($"Customer: {ToDelete} deleted.", ToDelete);
+            }
+                
 
-            //Console.WriteLine("Customer: {input} deleted.", customerToRemove);
+                  
         }
     }
 }

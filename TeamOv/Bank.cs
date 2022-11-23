@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace TeamOv
 {
@@ -16,12 +17,13 @@ namespace TeamOv
         {
             BankAccount bankAccount = new BankAccount();
             Loginservice loginservice= new Loginservice();
+
             bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
-            //bankAccount.ChangeCurrency();
+            
         }
-        
+
 
     }
 }

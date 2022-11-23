@@ -42,7 +42,7 @@ namespace TeamOv
                 new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
                 new Text("(O)pen account", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(W)ithdrawl", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(T)ransfer", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
@@ -64,17 +64,19 @@ namespace TeamOv
                         AddBankAccount(loggedInCustomer);
                         break;
                     case "d": //Deposit
-                        Console.WriteLine("Deposit coming");
+                        Console.WriteLine("Make a deposit");
                         transfer.Deposit(loggedInCustomer);
                         break;
                     case "w": //Withdrawl
-                        Console.WriteLine("Withdrawl amount");
+                        Console.WriteLine("Make a withdraw");
+                        transfer.Withdraw(loggedInCustomer);
                         Console.ReadLine();
                         break;
                     case "t": //Transfer
                         Console.WriteLine("Transfer money");
                         Console.WriteLine();
-                        transfer.TransferAmount(loggedInCustomer);
+                        //transfer.TransferAmount(loggedInCustomer);
+                        transfer.ThirdPartTransfer(loggedInCustomer);
                         Console.WriteLine();
                         break;
                     case "c":        
@@ -105,7 +107,7 @@ namespace TeamOv
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
 
-            BankAccount.bankAccounts.Add(new BankAccount(owner, 001, accountNumber, name, 0, true, "SEK"));
+            BankAccount.bankAccounts.Add(new BankAccount(owner, accountNumber, name, 0, true, "SEK"));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
         }
