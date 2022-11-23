@@ -30,9 +30,7 @@ namespace TeamOv
             }
             else
             {
-                var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
-                ToAccount.Balance += amount;
-                Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
+               
             }
             Console.ReadLine();
         }
