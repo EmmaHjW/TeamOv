@@ -21,7 +21,6 @@ namespace TeamOv
         public string? Password { get; set; }
         public int UserId { get; init; }
         public bool Active { get; set; }
-        //public int Tries { get; set; }
         public bool IsAdmin { get; init; }
         protected User(string? userName, string? password, bool active)
         {
