@@ -76,7 +76,9 @@ namespace TeamOv
                     }
                     else if (amount > FromAccount.Balance)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Not enought money on account");
+                        Console.ResetColor();
                     }
                     else
                     {

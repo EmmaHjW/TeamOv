@@ -26,7 +26,7 @@ namespace TeamOv
                 grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
-                Console.WriteLine($"Logged in as: {loggedInCustomer}");
+                Console.WriteLine($"Logged in as: {loggedInCustomer} \n{DateTime.Now}");
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text(" ").LeftAligned(),

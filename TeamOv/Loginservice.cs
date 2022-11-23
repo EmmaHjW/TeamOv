@@ -6,6 +6,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.VisualBasic;
 
 namespace TeamOv
 {
@@ -30,6 +31,9 @@ namespace TeamOv
         {
             Loginservice loginservice= new Loginservice();
             Console.WriteLine("Welcome to TeamOv-Bank");
+            Console.ForegroundColor= ConsoleColor.DarkGray;
+            Console.WriteLine(DateTime.Now);
+            Console.ResetColor();
             Console.WriteLine();
             do
             {
