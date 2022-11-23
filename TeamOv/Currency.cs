@@ -23,20 +23,18 @@ namespace TeamOv
         
         public void CurrencyConverter(string loggedInCustomer)
         {
-            
+            DifferentCurrency();
             CustomerMenu.PrintAccountInfo(loggedInCustomer);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter accountID for the account you want to change currency: ");
             int fromAccount = int.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Choose which currency: " );
-
-            Dictionary<string, float>.KeyCollection keys = Currencies.Keys;
-            foreach (string key in keys)
+            foreach (var key in Currencies)
             {
-                Console.WriteLine("Currencies: {0}", keys);
+                Console.WriteLine("Currencies: {0}", key);
             }
 
+            Console.WriteLine($"Choose which currency: ");
             string toCurrency = Console.ReadLine();
             Console.WriteLine($"Changed to: {toCurrency}");
 
