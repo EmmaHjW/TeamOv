@@ -47,9 +47,10 @@ namespace TeamOv
                 new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
                 });
-
                 AnsiConsole.Write(grid);
 
+                Transfer transfer = new Transfer();
+                BankAccount bankAccount = new BankAccount();
                 string customerOptions = Console.ReadLine();
                 switch (customerOptions.ToLower())
                 {
@@ -63,21 +64,20 @@ namespace TeamOv
                         AddBankAccount(loggedInCustomer);
                         break;
                     case "d": //Deposit
-                        Console.WriteLine("Deposit coming");    
+                        Console.WriteLine("Deposit coming");
+                        transfer.Deposit(loggedInCustomer);
                         break;
                     case "w": //Withdrawl
                         Console.WriteLine("Withdrawl amount");
                         Console.ReadLine();
                         break;
                     case "t": //Transfer
-                        Transfer transfer = new Transfer();
                         Console.WriteLine("Transfer money");
                         Console.WriteLine();
                         transfer.TransferAmount(loggedInCustomer);
                         Console.WriteLine();
                         break;
-                    case "c":
-                        BankAccount bankAccount= new BankAccount();
+                    case "c":        
                         Console.WriteLine("Currency changed from SEK to USD");
                         //bankAccount.ChangeCurrency();
                         Console.ReadLine();

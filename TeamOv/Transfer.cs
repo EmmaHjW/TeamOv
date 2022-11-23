@@ -13,24 +13,28 @@ namespace TeamOv
     public class Transfer : BankAccount
     {
 
-        public void Deposit(decimal amount)
+        public void Deposit(string loggedInCustomer)
         {
+            CustomerMenu.PrintAccountInfo(loggedInCustomer);
             if (bankAccounts.Count < 1)
             {
                 Console.WriteLine("No accounts found to deposit money into");
             }
+            Console.WriteLine("Enter account to deposit to");
+            int toAccount = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter amount to deposit: ");
-            decimal Amount = decimal.Parse(Console.ReadLine());
-            if (Amount <= 0)
+            decimal amount = decimal.Parse(Console.ReadLine());
+            if (amount <= 0)
             {
                 Console.WriteLine("Amount cant be less then 1");
             }
             else
             {
-                Balance += Amount;
-                //Amount += Balance;
-                bankAccounts.Add(this);
+                var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+                ToAccount.Balance += amount;
+                Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
             }
+            Console.ReadLine();
         }
         public void Withdraw(decimal amount)
         {
@@ -47,19 +51,18 @@ namespace TeamOv
             string input = "Y";
             while (input == "Y" || input == "y")
             {
-
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.WriteLine("Enter accountID to transfer from: ");
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.WriteLine("Transfer to: ");
                 int toAccount = int.Parse(Console.ReadLine());
-                //GetAccount(fromAccount, toAccount);
                 Console.WriteLine("Please enter amount: ");
-                //decimal amount = decimal.Parse(Console.ReadLine());
+
                 var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+
                 decimal amount;
-                while (decimal.TryParse(Console.ReadLine(), out amount))
+                while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)
                     {
@@ -85,17 +88,10 @@ namespace TeamOv
                         Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
                         Console.WriteLine($"You have: {ToAccount.Balance}{Currency = "SEK"} left on your {ToAccount.AccountName}");
                     }
-
-
-
-
-
                 }
                 Console.WriteLine();
                 Console.WriteLine("Do you want to try again? Y/N?");
                 input = Console.ReadLine();
-
-
             }
     }   }   
         //public void GetAccount(int FromAccountId, int ToAccountId)
