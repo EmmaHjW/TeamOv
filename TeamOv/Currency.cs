@@ -99,27 +99,27 @@ namespace TeamOv
             
         }
 
-        public void TringOutSomething()
-        {
-            string fromCurrency = "EUR";
-            string toCurrency = "USD";
-            int amount = 1;
+        //public void TringOutSomething()
+        //{
+        //    string fromCurrency = "EUR";
+        //    string toCurrency = "USD";
+        //    int amount = 1;
 
-            string[] availableCurrency = CurrencyConverter.GetCurrencyTags();
+        //    string[] availableCurrency = CurrencyConverter.GetCurrencyTags();
 
-            Console.WriteLine("Available Currencies");
-            Console.WriteLine(string.Join(",", availableCurrency));
-            Console.WriteLine("\n");
+        //    Console.WriteLine("Available Currencies");
+        //    Console.WriteLine(string.Join(",", availableCurrency));
+        //    Console.WriteLine("\n");
 
-            Console.WriteLine("Insert Currency you want to convert TO");
+        //    Console.WriteLine("Insert Currency you want to convert TO");
       
-            toCurrency = Console.ReadLine();
-            Console.WriteLine("\n");
+        //    toCurrency = Console.ReadLine();
+        //    Console.WriteLine("\n");
 
-            float exchangeRate = CurrencyConverter.GetExchangeRate(fromCurrency, toCurrency, amount);
-            Console.WriteLine("FROM " + amount + " " + fromCurrency.ToUpper() + " TO " + toCurrency.ToUpper() + " = " + exchangeRate);
+        //    float exchangeRate = CurrencyConverter.GetExchangeRate(fromCurrency, toCurrency, amount);
+        //    Console.WriteLine("FROM " + amount + " " + fromCurrency.ToUpper() + " TO " + toCurrency.ToUpper() + " = " + exchangeRate);
 
-            Console.ReadLine();
-        }
+        //    Console.ReadLine();
+        //}
     }
 }

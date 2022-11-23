@@ -39,7 +39,7 @@ namespace TeamOv
         }
         public void CheckBalance()
         {
-            Console.WriteLine($"Account balance: {Balance}.{Currency.SEK}");
+            Console.WriteLine($"Account balance: {Balance}.SEK{Currency}");
         }
 
         public void TransferAmount(string loggedInCustomer)
@@ -81,8 +81,8 @@ namespace TeamOv
                 FromAccount.Balance -= amount;
                 ToAccount.Balance += amount;
 
-                Console.WriteLine($"You have: {FromAccount.Balance}{Currency.SEK} left on your {FromAccount.AccountName}");
-                Console.WriteLine($"You have: {ToAccount.Balance}{Currency.SEK} left on your {ToAccount.AccountName}");
+                Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
+                Console.WriteLine($"You have: {ToAccount.Balance}{Currency = "SEK"} left on your {ToAccount.AccountName}");
                 Console.WriteLine();
                 Console.WriteLine("Do you want to try again? Y/N?");
                 input = Console.ReadLine();

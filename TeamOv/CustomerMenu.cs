@@ -79,7 +79,7 @@ namespace TeamOv
                     case "c":
                         BankAccount bankAccount= new BankAccount();
                         Console.WriteLine("Currency changed from SEK to USD");
-                        bankAccount.ChangeCurrency();
+                        //bankAccount.ChangeCurrency();
                         Console.ReadLine();
                         break;
                     case "l":
@@ -105,7 +105,7 @@ namespace TeamOv
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
 
-            BankAccount.bankAccounts.Add(new BankAccount(owner, 001, accountNumber, name, 0, Currency.SEK));
+            BankAccount.bankAccounts.Add(new BankAccount(owner, 001, accountNumber, name, 0, true, "SEK"));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
         }

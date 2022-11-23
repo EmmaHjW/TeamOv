@@ -18,18 +18,19 @@ namespace TeamOv
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
         public string AccountName { get; set; }
-        public Currency Currency { get; set; }
-
+        //public Currency Currency { get; set; }
+        public string Currency { get; set; }
 
         public BankAccount(
-            string owner, 
-            int accountId, 
+            string owner,
+            int accountId,
             string accountNumber,
             //decimal interestRate,//?
             string accountName,
-            decimal balance = 0m,
-            Currency currency = Currency.SEK,
-            bool active = false
+            decimal balance = 0,
+            //Currency currency = Currency.SEK,
+            bool active = false,
+            string currency = "SEK"
         )
         {
             this.Owner = owner;
@@ -40,6 +41,7 @@ namespace TeamOv
             //InterestRate = interestRate;
             this.Active = active;
             this.Currency = currency;
+            //this.Currency = currency;
         }
 
         public BankAccount() //constructor
@@ -48,12 +50,12 @@ namespace TeamOv
 
         public void InitiateBankAccount() //Adds account to users at program run
         {
-            BankAccount bankAccount1 = new BankAccount() { Owner = "Oskar", AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = Currency.USD, Active = true };
-            BankAccount bankAccount2 = new BankAccount() { Owner = "Oskar", AccountId = 1, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 15000, Currency = Currency.SEK, Active = false };
-            BankAccount bankAccount3 = new BankAccount() { Owner = "Oskar", AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 45600, Currency = Currency.GBP, Active = true };
-            BankAccount bankAccount4 = new BankAccount() { Owner = "Emma", AccountId = 3, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance =30000, Currency = Currency.GBP, Active = true };
-            BankAccount bankAccount5 = new BankAccount() { Owner = "Emma", AccountId = 4, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 50000, Currency = Currency.GBP, Active = true };
-            BankAccount bankAccount6 = new BankAccount() { Owner = "Emma", AccountId = 5, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 5000, Currency = Currency.GBP, Active = true };
+            BankAccount bankAccount1 = new BankAccount() { Owner = "Oskar", AccountId = 0, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = "SEK", Active = true };
+            BankAccount bankAccount2 = new BankAccount() { Owner = "Oskar", AccountId = 1, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 15000, Currency = "SEK", Active = false };
+            BankAccount bankAccount3 = new BankAccount() { Owner = "Oskar", AccountId = 2, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 45600, Currency = "SEK", Active = true };
+            BankAccount bankAccount4 = new BankAccount() { Owner = "Emma", AccountId = 3, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance =30000, Currency = "SEK", Active = true };
+            BankAccount bankAccount5 = new BankAccount() { Owner = "Emma", AccountId = 4, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 50000, Currency = "SEK", Active = true };
+            BankAccount bankAccount6 = new BankAccount() { Owner = "Emma", AccountId = 5, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 5000, Currency = "SEK", Active = true };
 
             bankAccounts.Add(bankAccount1);
             bankAccounts.Add(bankAccount2);
@@ -79,27 +81,27 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency.SEK} ";
+            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency = "SEK"} ";
         }
 
-        public void ChangeCurrency()
-        {
-            foreach (Currency Currency in Enum.GetValues<Currency>())
-            {
-                Console.WriteLine(Currency);
-            }
-            Console.WriteLine("Choose currency from list: ");
-            int toCurrency = int.Parse(Console.ReadLine());
-            Console.WriteLine("Choose account: ");
-            int ToAccountId = int.Parse(Console.ReadLine());
+        //public void ChangeCurrency()
+        //{
+        //    foreach (Currency Currency in Enum.GetValues<Currency>())
+        //    {
+        //        Console.WriteLine(Currency);
+        //    }
+        //    Console.WriteLine("Choose currency from list: ");
+        //    int toCurrency = int.Parse(Console.ReadLine());
+        //    Console.WriteLine("Choose account: ");
+        //    int ToAccountId = int.Parse(Console.ReadLine());
 
-            var ToCurrency = bankAccounts.Find(a => a.AccountId == ToAccountId);
-            ToCurrency.Currency = ;
+        //    var ToCurrency = bankAccounts.Find(a => a.AccountId == ToAccountId);
+        //    //ToCurrency.Currency = ;
 
 
-            Console.WriteLine($"Currency changed to {ToCurrency.Currency}");
-            Console.ReadLine();
-        }
+        //    Console.WriteLine($"Currency changed to {ToCurrency.Currency}");
+        //    Console.ReadLine();
+        //}
     }
 }
 
