@@ -8,7 +8,7 @@ using System.ComponentModel.Design;
 
 namespace TeamOv
 {
-    public class Currency
+    public  class Currency
     {
         
     }
