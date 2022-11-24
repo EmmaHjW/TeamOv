@@ -10,7 +10,7 @@ namespace TeamOv
     {
         public static List<string> transactionslist = new List<string>();
 
-        public Transactionservice()
+        public Transactionservice(string accountOwner)
         {
             
         }
@@ -23,9 +23,6 @@ namespace TeamOv
             }
         }
        
-        //public void TransactionHistory(string description)
-        //{
-
-        //}
+        //$"Amount deposit{amount} {DateTime.Now} {loggedInCustomer}"
     }
 }

@@ -42,21 +42,6 @@ namespace TeamOv
             var ToCurrency = BankAccount.bankAccounts.Find(a => a.Currency == toCurrency);
 
             
-
-
-            //Console.WriteLine("Available Currencies");
-            //Console.WriteLine(string.Join(",", availableCurrency));
-            //Console.WriteLine("\n");
-
-            //Console.WriteLine("Insert Currency you want to convert TO");
-
-            //toCurrency = Console.ReadLine();
-            //Console.WriteLine("\n");
-
-            //float exchangeRate = CurrencyConverter.GetExchangeRate(fromCurrency, toCurrency, amount);
-            //Console.WriteLine("FROM " + amount + " " + fromCurrency.ToUpper() + " TO " + toCurrency.ToUpper() + " = " + exchangeRate);
-
-            //Console.ReadLine();
         }
     }
 }

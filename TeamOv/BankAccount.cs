@@ -25,12 +25,9 @@ namespace TeamOv
 
         public BankAccount(
             string owner,
-            //int accountId,
             string accountNumber,
-            //decimal interestRate,//?
             string accountName,
             decimal balance = 0,
-            //Currency currency = Currency.SEK,
             bool active = false,
             string currency = ""
         )
@@ -40,7 +37,6 @@ namespace TeamOv
             this.AccountNumber = GenerateBankAccountNumber(); ;
             this.AccountName = accountName;
             this.Balance = balance;
-            //InterestRate = interestRate;
             this.Active = active;
             this.Currency = currency;
         }
@@ -59,11 +55,11 @@ namespace TeamOv
             BankAccount bankAccount6 = new BankAccount() { Owner = "Emma", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 5000, Currency = "SEK", Active = true };
 
             bankAccounts.Add(bankAccount1);
-            bankAccounts.Add(bankAccount2);
-            bankAccounts.Add(bankAccount3);
-            bankAccounts.Add(bankAccount4);
-            bankAccounts.Add(bankAccount5);
-            bankAccounts.Add(bankAccount6);
+            //bankAccounts.Add(bankAccount2);
+            //bankAccounts.Add(bankAccount3);
+            //bankAccounts.Add(bankAccount4);
+            //bankAccounts.Add(bankAccount5);
+            //bankAccounts.Add(bankAccount6);
         }
         
         public static string GenerateBankAccountNumber()
@@ -82,7 +78,7 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency = "SEK"} ";
+            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency = ""} ";
         }
 
         //public void ChangeCurrency()

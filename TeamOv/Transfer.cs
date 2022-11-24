@@ -43,9 +43,9 @@ namespace TeamOv
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
                     Console.ResetColor();
-                    Transactionservice.transactionslist.Add($"Amount deposit{amount} {DateTime.Now} {loggedInCustomer}");
+                    string accountOwner = loggedInCustomer;
+                    Transactionservice.transactionslist.Add($"Amount: {amount}{0:C} deposit succesfull to AccountId: {AccountId} Account owner: {accountOwner}");
                     Console.WriteLine();
-                    Transactionservice.PrintTransactionHistory();
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;

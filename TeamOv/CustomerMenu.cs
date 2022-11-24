@@ -24,12 +24,13 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 grid.AddColumn();
+                grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
                 Console.WriteLine($"Logged in as: {loggedInCustomer} \n{DateTime.Now}");
                 // Add header row 
                 grid.AddRow(new Text[]{
-                new Text(" ").LeftAligned(),
+                new Text("bbbb ").LeftAligned(),
                 new Text(" ").Centered(),
                 new Text(" ").Centered(),
                 new Text(" ").Centered(),
@@ -45,6 +46,7 @@ namespace TeamOv
                 new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(T)ransfer", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
+                new Text("(H)istory account transactions", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
                 });
                 AnsiConsole.Write(grid);
@@ -79,6 +81,11 @@ namespace TeamOv
                     case "c":        
                         Console.WriteLine("Change Currency");
                         currency.CurrencyConverter(loggedInCustomer);
+                        Console.ReadLine();
+                        break;
+                    case "h":        
+                        Console.WriteLine("Transaction history");
+                        Transactionservice.PrintTransactionHistory();
                         Console.ReadLine();
                         break;
                     case "l":
