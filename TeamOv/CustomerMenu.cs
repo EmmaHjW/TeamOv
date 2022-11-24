@@ -42,7 +42,7 @@ namespace TeamOv
                 });
                 AnsiConsole.Write(grid);
 
-                Currency currency = new Currency();
+                Currencyservice currency = new Currencyservice();
                 Transfer transfer = new Transfer();
                 BankAccount bankAccount = new BankAccount();
                 string customerOptions = Console.ReadLine();
