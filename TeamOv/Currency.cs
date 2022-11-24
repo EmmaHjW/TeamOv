@@ -40,13 +40,12 @@ namespace TeamOv
         }
 
         string EnterCurrency(string message)
-        {
-            
+        {  
             
             while (true)
             {
                 Console.WriteLine(message);
-                string CurrencyFrom = Console.ReadLine().ToUpperInvariant();
+                var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
                 if (Currency.Lenght == 3)
                 {
                     return CurrencyFrom;
