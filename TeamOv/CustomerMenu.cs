@@ -42,7 +42,7 @@ namespace TeamOv
                 });
                 AnsiConsole.Write(grid);
 
-                Currency currency = new Currency();
+                CurrencyService currency = new CurrencyService();
                 Transfer transfer = new Transfer();
                 BankAccount bankAccount = new BankAccount();
                 string customerOptions = Console.ReadLine();
@@ -71,7 +71,11 @@ namespace TeamOv
                         break;
                     case "c":        
                         Console.WriteLine("Change Currency");
-                        //currency.CurrencyConverter(loggedInCustomer);
+<<<<<<< HEAD
+                        
+=======
+                        
+>>>>>>> Here you go Oskar :)
                         Console.ReadLine();
                         break;
                     case "h":        

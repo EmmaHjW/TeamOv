@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TeamOv
 {
-    public class Transfer : BankAccount
+    public class Transfer
     {
 
         public void Deposit(string loggedInCustomer)
@@ -19,7 +19,7 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
-                if (bankAccounts.Count < 1)
+                if (BankAccount.bankAccounts.Count < 1)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No accounts found to deposit money into");
@@ -38,7 +38,7 @@ namespace TeamOv
                 }
                 else
                 {
-                    var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+                    var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
                     ToAccount.Balance += amount;
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
@@ -61,7 +61,7 @@ namespace TeamOv
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.WriteLine();
-                if (bankAccounts.Count < 1)
+                if (BankAccount.bankAccounts.Count < 1)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No accounts found to withdraw money from");
@@ -71,7 +71,7 @@ namespace TeamOv
                 Console.WriteLine("Enter account to withdraw from");
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.Write("Enter amount to withdraw: ");
-                var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
+                var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
 
                 decimal amount = decimal.Parse(Console.ReadLine());
                 if (amount <= 0)
@@ -106,6 +106,7 @@ namespace TeamOv
             string input = "Y";
             while (input == "Y" || input == "y")
             {
+
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter accountID to transfer from: ");
@@ -114,13 +115,14 @@ namespace TeamOv
                 int toAccount = int.Parse(Console.ReadLine());
                 Console.WriteLine("Please enter amount: ");
 
-                var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
-                var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
-                var currentCurrency = fromAccount;
+                var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
+                var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
+                var currentCurrency = FromAccount.Currency;
                 var currentCurrencySec = toAccount;
 
-                Currency.CurrencyConverter(currentCurrency, currentCurrencySec);
                 decimal amount;
+                CurrencyService currency = new CurrencyService();
+                currency.CurrencyConverter("SEK", "SEK", 10.0);
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)
@@ -167,7 +169,7 @@ namespace TeamOv
             string input = "Y";
             while (input == "Y" || input == "y")
             {
-                List<BankAccount> Owner = bankAccounts.FindAll(bankAccounts => bankAccounts.AccountName == "Salary account");
+                List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountName == "Salary account");
                 foreach (var owner in Owner)
                 {
                     Console.WriteLine($"Owner: {owner.Owner} Account ID: {owner.AccountId} Account number: {owner.AccountNumber} Account name: {owner.AccountName}");
@@ -180,8 +182,8 @@ namespace TeamOv
                 int toAccount = int.Parse(Console.ReadLine());
                 Console.Write("Enter amount to transfer: ");
 
-                var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
-                var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
+                var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
+                var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
 
                 decimal amount;
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer

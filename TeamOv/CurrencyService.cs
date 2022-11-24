@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 
 namespace TeamOv
 {
-    public class Currency
+    public class CurrencyService
     {
         Dictionary<string, float> Currencies = new Dictionary<string, float>();
         
@@ -21,8 +21,8 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             
         }
-        
-       
+
+
         //decimal EnterDecimal(string message, bool zeroAllowed)
         //{
         //    while (true)
@@ -47,36 +47,11 @@ namespace TeamOv
         //    //    }
         //    //}
 
-        //    string CurrencyFrom;//= EnterCurrency("Enter From currency: ");
-        //    string CurrencyTo = EnterCurrency("Enter To currency: ");
-        //    decimal rate = EnterDecimal($"Enter exchange rate to {CurrencyTo}", false);
-        //    decimal amountFrom = EnterDecimal($"Enter the amount of {CurrencyFrom} to convert", true);
-        //    decimal amountTo = amountFrom * rate;
-        //    Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
+        //    
         //}
-        
-        public double CurrencyConverter(string Currency1, string Currency2, double Amount)
-        {
-            DifferentCurrency();
-            //CurrencyConverter(Currency1, Currency2, Amount);    
-            double Dollar;
-            double DollarRate = 10.58;
-            double Krona;
-            double KronaRate = 10.9653;
-            double Euro;
-            double EuroRate = 10.89;
-          
-
-
-            if (Currency1 == "SEK" && Currency2 == "SEK")
-            {
-                return KronaRate * KronaRate;
-            }
-        }
-
         //string EnterCurrency(string message)
         //{  
-            
+
         //    while (true)
         //    {
         //        Console.WriteLine(message);
@@ -94,54 +69,58 @@ namespace TeamOv
         //    decimal amountTo = amountFrom * rate;
         //    Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
         //}
-        
+
         //public void CurrencyConverter(string Currency1, string Currency2, decimal Amount)
         //{
         //    DifferentCurrency();
+
+
+        public double CurrencyConverter(string Currency1, string Currency2, double Amount)
+        {
+            DifferentCurrency();
             
-
-
-
-        //    if (Currency1 == "SEK" && Currency2 == "SEK")
-        //    {
-                
-        //    }
-        //    else if (Currency1 == "USD" && Currency2 == "USD")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "EUR" && Currency2 == "EUR")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "USD" && Currency2 == "SEK")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "SEK" && Currency2 == "USD")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "EUR" && Currency2 == "SEK")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "SEK" && Currency2 == "EUR")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "EUR" && Currency2 == "USD")
-        //    {
-
-        //    }
-        //    else if (Currency1 == "USD" && Currency2 == "EUR")
-        //    {
-
-        //    }
-
-
-
-
+            double DollarRate = 10.58;
+            double KronaRate = 10.9653; 
+            double EuroRate = 10.89;
+            
+            if (Currency1 == "SEK" && Currency2 == "SEK")
+            {
+                return Amount;
+            }
+            else if (Currency1 == "USD" && Currency2 == "USD")
+            {
+                return Amount;
+            }
+            else if (Currency1 == "EUR" && Currency2 == "EUR")
+            {
+                return Amount;
+            }
+            else if (Currency1 == "USD" && Currency2 == "SEK")
+            {
+                return DollarRate * Amount;
+            }
+            else if (Currency1 == "SEK" && Currency2 == "USD")
+            {
+                return KronaRate / Amount;
+            }
+            else if (Currency1 == "EUR" && Currency2 == "SEK")
+            {
+                return EuroRate * Amount;
+            }
+            else if (Currency1 == "SEK" && Currency2 == "EUR")
+            {
+                return KronaRate / Amount;
+            }
+            else if (Currency1 == "EUR" && Currency2 == "USD")
+            {
+                return EuroRate * Amount;
+            }
+            else if (Currency1 == "USD" && Currency2 == "EUR")
+            {
+                return DollarRate / Amount;
+            }
+            return Amount;
+        }
             
         
     }
