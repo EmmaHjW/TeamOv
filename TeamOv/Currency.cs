@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
 using System.Security;
+using System.Security.Cryptography;
 
 namespace TeamOv
 {
@@ -20,14 +21,14 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             Currencies.Add("GBP", 12.61f);
         }
-        double Dollar;
-        float DollarRate = 10.58f;
-        double Pund;
-        float PundRate = 12.61f;
-        double Krona;
-        float KronaRate = 10.9653f;
-        double Euro;
-        float EuroRate = 10.89f;
+        //double Dollar;
+        //float DollarRate = 10.58f;
+        //double Pund;
+        //float PundRate = 12.61f;
+        //double Krona;
+        //float KronaRate = 10.9653f;
+        //double Euro;
+        //float EuroRate = 10.89f;
 
         
         public void CurrencyConverter(string loggedInCustomer)

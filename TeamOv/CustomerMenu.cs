@@ -77,7 +77,7 @@ namespace TeamOv
                         break;
                     case "c":        
                         Console.WriteLine("Change Currency");
-                        currency.CurrencyConverter(loggedInCustomer);
+                        //currency.CurrencyConverter(loggedInCustomer);
                         Console.ReadLine();
                         break;
                     case "h":        
