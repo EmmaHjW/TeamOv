@@ -39,26 +39,26 @@ namespace TeamOv
             }
         }
 
-        string EnterCurrency(string message)
-        {  
+        //string EnterCurrency(string message)
+        //{  
             
-            while (true)
-            {
-                Console.WriteLine(message);
-                var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
-                if (Currency.Lenght == 3)
-                {
-                    return CurrencyFrom;
-                }
-            }
+        //    while (true)
+        //    {
+        //        Console.WriteLine(message);
+        //        var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
+        //        if (Currency.Lenght == 3)
+        //        {
+        //            return CurrencyFrom;
+        //        }
+        //    }
 
-            string CurrencyFrom = EnterCurrency("Enter From currency: ");
-            string CurrencyTo = EnterCurrency("Enter To currency: ");
-            decimal rate = EnterDecimal($"Enter exchange rate from {CurrencyFrom} to {CurrencyTo}", false);
-            decimal amountFrom = EnterDecimal($"Enter the amount of {CurrencyFrom} to convert", true);
-            decimal amountTo = amountFrom * rate;
-            Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
-        }
+        //    string CurrencyFrom = EnterCurrency("Enter From currency: ");
+        //    string CurrencyTo = EnterCurrency("Enter To currency: ");
+        //    decimal rate = EnterDecimal($"Enter exchange rate from {CurrencyFrom} to {CurrencyTo}", false);
+        //    decimal amountFrom = EnterDecimal($"Enter the amount of {CurrencyFrom} to convert", true);
+        //    decimal amountTo = amountFrom * rate;
+        //    Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
+        //}
         
         //public void CurrencyConverter(string Currency1, string Currency2, decimal Amount)
         //{
@@ -108,6 +108,6 @@ namespace TeamOv
 
 
             
-        }
+        
     }
 }
