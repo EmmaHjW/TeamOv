@@ -20,6 +20,15 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             Currencies.Add("GBP", 12.61f);
         }
+        double Dollar;
+        float DollarRate = 10.58f;
+        double Pund;
+        float PundRate = 12.61f;
+        double Krona;
+        float KronaRate = 10.9653f;
+        double Euro;
+        float EuroRate = 10.89f;
+
         
         public void CurrencyConverter(string loggedInCustomer)
         {
@@ -27,7 +36,7 @@ namespace TeamOv
             CustomerMenu.PrintAccountInfo(loggedInCustomer);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter accountID for the account you want to change currency: ");
-            int fromAccount = int.Parse(Console.ReadLine());
+            int toAccount = int.Parse(Console.ReadLine());
 
             foreach (var key in Currencies)
             {
@@ -38,7 +47,7 @@ namespace TeamOv
             string toCurrency = Console.ReadLine();
             Console.WriteLine($"Changed to: {toCurrency}");
 
-            var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
+            var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
             var ToCurrency = BankAccount.bankAccounts.Find(a => a.Currency == toCurrency);
 
             
@@ -50,13 +59,6 @@ namespace TeamOv
 
             //Console.WriteLine("Insert Currency you want to convert TO");
 
-            //toCurrency = Console.ReadLine();
-            //Console.WriteLine("\n");
-
-            //float exchangeRate = CurrencyConverter.GetExchangeRate(fromCurrency, toCurrency, amount);
-            //Console.WriteLine("FROM " + amount + " " + fromCurrency.ToUpper() + " TO " + toCurrency.ToUpper() + " = " + exchangeRate);
-
-            //Console.ReadLine();
         }
     }
 }
