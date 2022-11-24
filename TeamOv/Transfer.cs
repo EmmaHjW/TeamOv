@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -115,12 +116,10 @@ namespace TeamOv
 
                 var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
-                var currentCurrency = fromAccount;
-                var currentCurrencySec = toAccount;
-                decimal amount;
 
-                Currencyservice currency = new Currencyservice();
-                currency.CurrencyConverter("SEK", "USD", 10);
+                
+
+                decimal amount;
                 Console.WriteLine(FromAccount.Currency);
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
