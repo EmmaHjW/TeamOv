@@ -102,6 +102,7 @@ namespace TeamOv
         }
         public void TransferAmount(string loggedInCustomer)
         {
+
             string input = "Y";
             while (input == "Y" || input == "y")
             {
@@ -118,7 +119,7 @@ namespace TeamOv
                 var currentCurrency = fromAccount;
                 var currentCurrencySec = toAccount;
 
-
+                Currency.CurrencyConverter(currentCurrency, currentCurrencySec);
                 decimal amount;
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {

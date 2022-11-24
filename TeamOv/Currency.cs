@@ -21,21 +21,56 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             
         }
-        //double Dollar;
-        //float DollarRate = 10.58f;
-        //double Krona;
-        //float KronaRate = 10.9653f;
-        //double Euro;
-        //float EuroRate = 10.89f;
+        
        
-        decimal EnterDecimal(string message, bool zeroAllowed)
+        //decimal EnterDecimal(string message, bool zeroAllowed)
+        //{
+        //    while (true)
+        //    {
+        //        Console.WriteLine(message);
+        //        if (decimal.TryParse(Console.ReadLine(), out decimal value))
+        //            if (zeroAllowed || value != 0m)
+        //                return value; 
+        //    }
+        //}
+
+        //string EnterCurrency(string message)
+        //{
+
+        //    //while (true)
+        //    //{
+        //    //    Console.WriteLine(message);
+        //    //    var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
+        //    //    if (Currency.Lenght == 3)
+        //    //    {
+        //    //        return CurrencyFrom;
+        //    //    }
+        //    //}
+
+        //    string CurrencyFrom;//= EnterCurrency("Enter From currency: ");
+        //    string CurrencyTo = EnterCurrency("Enter To currency: ");
+        //    decimal rate = EnterDecimal($"Enter exchange rate to {CurrencyTo}", false);
+        //    decimal amountFrom = EnterDecimal($"Enter the amount of {CurrencyFrom} to convert", true);
+        //    decimal amountTo = amountFrom * rate;
+        //    Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
+        //}
+        
+        public double CurrencyConverter(string Currency1, string Currency2, double Amount)
         {
-            while (true)
+            DifferentCurrency();
+            //CurrencyConverter(Currency1, Currency2, Amount);    
+            double Dollar;
+            double DollarRate = 10.58;
+            double Krona;
+            double KronaRate = 10.9653;
+            double Euro;
+            double EuroRate = 10.89;
+          
+
+
+            if (Currency1 == "SEK" && Currency2 == "SEK")
             {
-                Console.WriteLine(message);
-                if (decimal.TryParse(Console.ReadLine(), out decimal value))
-                    if (zeroAllowed || value != 0m)
-                        return value; 
+                return KronaRate * KronaRate;
             }
         }
 
