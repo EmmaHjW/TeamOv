@@ -115,6 +115,9 @@ namespace TeamOv
 
                 var FromAccount = bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = bankAccounts.Find(a => a.AccountId == toAccount);
+                var currentCurrency = fromAccount;
+                var currentCurrencySec = toAccount;
+
 
                 decimal amount;
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
@@ -142,8 +145,8 @@ namespace TeamOv
                         FromAccount.Balance -= amount;
                         ToAccount.Balance += amount;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($"You have: {FromAccount.Balance}{Currency = "SEK"} left on your {FromAccount.AccountName}");
-                        Console.WriteLine($"You have: {ToAccount.Balance}{Currency = "SEK"} left on your {ToAccount.AccountName}");
+                        Console.WriteLine($"You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
+                        Console.WriteLine($"You have: {ToAccount.Balance}{ToAccount.Currency} left on your {ToAccount.AccountName}");
                         Console.ResetColor();
                     }
                 }
