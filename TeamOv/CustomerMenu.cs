@@ -32,8 +32,8 @@ namespace TeamOv
                 grid.AddRow(new Text[]{
                  new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
                 new Text("(O)pen account", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(D)eposit", new Style(Color.Green, Color.Black)).LeftAligned(),
+                new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).LeftAligned(),
                 //new Text(" ").RightAligned(),
                 //new Text(" ").RightAligned()
                 });
@@ -41,8 +41,8 @@ namespace TeamOv
                 // Add content row 
                 grid.AddRow(new Text[]{
                
-                new Text("(T)ransfer", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
+                new Text("(T)ransfer", new Style(Color.Green, Color.Black)).RightAligned(),
+                new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(H)istory transactions", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
                 });

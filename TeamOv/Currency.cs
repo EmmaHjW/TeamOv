@@ -50,7 +50,6 @@ namespace TeamOv
             var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
             var ToCurrency = BankAccount.bankAccounts.Find(a => a.Currency == toCurrency);
 
-            
         }
     }
 }
