@@ -45,7 +45,7 @@ namespace TeamOv
                     Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
                     Console.ResetColor();
                     string accountOwner = loggedInCustomer;
-                    Transactionservice.transactionslist.Add($"Amount: {amount}{0:C} deposit succesfull to AccountId: {AccountId} Account owner: {accountOwner}");
+                    Transactionservice.transactionslist.Add($"Amount: {amount}{0:C} deposit succesfull to AccountId: {ToAccount.AccountId} Account owner: {accountOwner}");
                     Console.WriteLine();
                 }
                 Console.WriteLine();

@@ -10,16 +10,16 @@ using System.Security.Cryptography;
 
 namespace TeamOv
 {
-    public class Currencyservice
+    public class CurrencyService
     {
         Dictionary<string, float> Currencies = new Dictionary<string, float>();
-
+        
         public void DifferentCurrency()
         {
             Currencies.Add("USD", 10.58f);
             Currencies.Add("EUR", 10.89f);
             Currencies.Add("SEK", 10.9653f);
-
+            
         }
 
 
@@ -30,12 +30,27 @@ namespace TeamOv
         //        Console.WriteLine(message);
         //        if (decimal.TryParse(Console.ReadLine(), out decimal value))
         //            if (zeroAllowed || value != 0m)
-        //                return value;
+        //                return value; 
         //    }
         //}
 
         //string EnterCurrency(string message)
         //{
+
+        //    //while (true)
+        //    //{
+        //    //    Console.WriteLine(message);
+        //    //    var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
+        //    //    if (Currency.Lenght == 3)
+        //    //    {
+        //    //        return CurrencyFrom;
+        //    //    }
+        //    //}
+
+        //    
+        //}
+        //string EnterCurrency(string message)
+        //{  
 
         //    while (true)
         //    {
@@ -55,57 +70,58 @@ namespace TeamOv
         //    Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
         //}
 
-        double Dollar;
-        decimal DollarRate = 10;
-        double Krona;
-        decimal KronaRate = 10;
-        double Euro;
-        decimal EuroRate = 10;
-        public decimal CurrencyConverter(string Currency1, string Currency2, decimal amount)
+        //public void CurrencyConverter(string Currency1, string Currency2, decimal Amount)
+        //{
+        //    DifferentCurrency();
+
+
+        public double CurrencyConverter(string Currency1, string Currency2, double Amount)
         {
             DifferentCurrency();
-
+            
+            double DollarRate = 10.58;
+            double KronaRate = 10.9653; 
+            double EuroRate = 10.89;
+            
             if (Currency1 == "SEK" && Currency2 == "SEK")
             {
-                return amount;
+                return Amount;
             }
             else if (Currency1 == "USD" && Currency2 == "USD")
             {
-                return amount;
+                return Amount;
             }
             else if (Currency1 == "EUR" && Currency2 == "EUR")
             {
-                return amount;
+                return Amount;
             }
             else if (Currency1 == "USD" && Currency2 == "SEK")
             {
-                return amount;
+                return DollarRate * Amount;
             }
             else if (Currency1 == "SEK" && Currency2 == "USD")
             {
-                return amount;
+                return KronaRate / Amount;
             }
             else if (Currency1 == "EUR" && Currency2 == "SEK")
             {
-                return amount;
+                return EuroRate * Amount;
             }
             else if (Currency1 == "SEK" && Currency2 == "EUR")
             {
-                return amount;
+                return KronaRate / Amount;
             }
             else if (Currency1 == "EUR" && Currency2 == "USD")
             {
-                return amount;
+                return EuroRate * Amount;
             }
             else if (Currency1 == "USD" && Currency2 == "EUR")
             {
-                return amount;
+                return DollarRate / Amount;
             }
-            return amount;
+            return Amount;
         }
-        public void CheckCurrencyInput()
-        {
-            Console.WriteLine("Enter currency ");
-        }
+            
+        
     }
 }
