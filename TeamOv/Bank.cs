@@ -16,14 +16,14 @@ namespace TeamOv
         public static void RunBank()
         {
             BankAccount bankAccount = new BankAccount();
-            Loginservice loginservice= new Loginservice();
+            Loginservice loginservice = new Loginservice();
 
             bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
-            
-            
-            
+
+
+
         }
 
 

@@ -41,6 +41,7 @@ namespace TeamOv
             var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
             var ToCurrency = BankAccount.bankAccounts.Find(a => a.Currency == toCurrency);
 
+            
 
 
             //Console.WriteLine("Available Currencies");
@@ -57,10 +58,5 @@ namespace TeamOv
 
             //Console.ReadLine();
         }
-        
-
-
-
-
     }
 }
