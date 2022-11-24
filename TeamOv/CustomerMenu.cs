@@ -21,32 +21,29 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
                 grid.AddColumn();
-                grid.AddColumn();
-                grid.AddColumn();
-                grid.AddColumn();
-                grid.AddColumn();
+                //grid.AddColumn();
+                //grid.AddColumn();
+                //grid.AddColumn();
+                //grid.AddColumn();
 
                 Console.WriteLine("                            Welcome to OV.ATM");
                 Console.WriteLine($"Logged in as: {loggedInCustomer} \n{DateTime.Now}");
                 // Add header row 
                 grid.AddRow(new Text[]{
-                new Text("bbbb ").LeftAligned(),
-                new Text(" ").Centered(),
-                new Text(" ").Centered(),
-                new Text(" ").Centered(),
-                new Text(" ").RightAligned(),
-                new Text(" ").RightAligned()
+                 new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
+                new Text("(O)pen account", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
+                new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).Centered(),
+                //new Text(" ").RightAligned(),
+                //new Text(" ").RightAligned()
                 });
 
                 // Add content row 
                 grid.AddRow(new Text[]{
-                new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
-                new Text("(O)pen account", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(D)eposit", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).Centered(),
+               
                 new Text("(T)ransfer", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(C)hange currency account", new Style(Color.Green, Color.Black)).LeftAligned(),
-                new Text("(H)istory account transactions", new Style(Color.Green, Color.Black)).LeftAligned(),
+                new Text("(H)istory transactions", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).LeftAligned()
                 });
                 AnsiConsole.Write(grid);

@@ -18,7 +18,6 @@ namespace TeamOv
         {
             foreach (var transactions in transactionslist)
             {
-                Console.WriteLine("Transactions");
                 Console.WriteLine(transactions);
             }
         }
