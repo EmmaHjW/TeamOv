@@ -103,9 +103,11 @@ namespace TeamOv
         }
         public void TransferAmount(string loggedInCustomer)
         {
+
             string input = "Y";
             while (input == "Y" || input == "y")
             {
+
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter accountID to transfer from: ");

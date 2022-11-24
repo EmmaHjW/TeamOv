@@ -71,7 +71,11 @@ namespace TeamOv
                         break;
                     case "c":        
                         Console.WriteLine("Change Currency");
-                        //currency.CurrencyConverter(loggedInCustomer);
+<<<<<<< HEAD
+                        
+=======
+                        
+>>>>>>> Here you go Oskar :)
                         Console.ReadLine();
                         break;
                     case "h":        
