@@ -9,10 +9,8 @@ namespace TeamOv
     internal class Transactionservice
     {
         public static List<string> transactionslist = new List<string>();
-
         public Transactionservice(string accountOwner)
         {
-            
         }
         public static void PrintTransactionHistory() //Prints history
         {
@@ -20,8 +18,6 @@ namespace TeamOv
             {
                 Console.WriteLine(transactions);
             }
-        }
-       
-        //$"Amount deposit{amount} {DateTime.Now} {loggedInCustomer}"
+        }  //$"Amount deposit{amount} {DateTime.Now} {loggedInCustomer}"
     }
 }

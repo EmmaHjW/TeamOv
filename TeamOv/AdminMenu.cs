@@ -11,7 +11,7 @@ using System.Reflection.Metadata;
 
 namespace TeamOv
 {
-    public static class AdminMenu
+  public static class AdminMenu
     {
         public static void ShowAdminScreen(string currentUser)
         {
@@ -19,7 +19,6 @@ namespace TeamOv
             {
                 Console.Clear();
                 var grid = new Grid();
-
                 // Add columns 
                 grid.AddColumn();
                 grid.AddColumn();
@@ -36,7 +35,6 @@ namespace TeamOv
                 new Text(" ").RightAligned(),
                 new Text(" ").RightAligned()
                 });
-
                 // Add content row 
                 grid.AddRow(new Text[]{
                 new Text("(P)rint customers", new Style(Color.Green, Color.Black)).Centered(),
@@ -44,11 +42,8 @@ namespace TeamOv
                 new Text("(D)elete customer", new Style(Color.Green, Color.Black)).Centered(),
                 new Text("(L)ogout", new Style(Color.Green, Color.Black)).Centered(),
                 });
-
                 AnsiConsole.Write(grid);
-
                 string customerOptions = Console.ReadLine();
-
                 switch (customerOptions.ToLower())
                 {
                     case "p":
@@ -95,10 +90,8 @@ namespace TeamOv
             }
             return add;
         }
-
         public static void CreateCustomerScreen() //Admin can create new customer
         {
-            //Console.Clear();
             Console.WriteLine("Input customer data");
             bool completed = false;
             do
@@ -123,7 +116,6 @@ namespace TeamOv
                         _ => null
                     };
                 } while (active is null);
-
                 completed = AddUser(username, password, (bool) active);
                 if (!completed)
                 {
@@ -133,10 +125,8 @@ namespace TeamOv
                 {
                     Console.WriteLine($"Customer {username} created");
                 }
-            } while (completed == false);
-            
+            } while (completed == false);  
         }
-        
         public static bool UserExists(string username)
         {
             bool exists = Customer.customerList.Exists(user => user.UserName == username);
@@ -145,7 +135,6 @@ namespace TeamOv
                 username,
                 (exists ? "exists." : "does not exist.")
             );
-
             return exists;
         }
         public static void PrintAllCustomers()
@@ -170,10 +159,7 @@ namespace TeamOv
 
                 User.customerList.Remove(ToDelete);
                 Console.WriteLine($"Customer: {ToDelete} deleted.", ToDelete);
-            }
-                
-
-                  
+            } 
         }
     }
 }

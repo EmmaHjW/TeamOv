@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 namespace TeamOv
 {
     public class BankAccount
-    {
-          
+    {    
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
-
         private static int accountIdPool;
         public string Owner { get; set; }
         public int AccountId { get; set; }
@@ -28,7 +26,6 @@ namespace TeamOv
         {
 
         }
-
         public BankAccount(string owner, string accountNumber, string? name, int balance, string currency, bool active)
         {
             AccountId= accountIdPool++;
@@ -39,7 +36,6 @@ namespace TeamOv
             Currency = currency;
             Active = active;
         }
-
         public void InitiateBankAccount() //Adds account to users at program run
         {
             BankAccount bankAccount1 = new BankAccount() { AccountId = accountIdPool++, Owner = "Oskar", AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = "SEK", Active = true };
@@ -55,8 +51,7 @@ namespace TeamOv
             bankAccounts.Add(bankAccount4);
             bankAccounts.Add(bankAccount5);
             bankAccounts.Add(bankAccount6);
-        }
-        
+        } 
         public static string GenerateBankAccountNumber()
         {
             Random random = new Random();
@@ -73,27 +68,9 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency} ";
+            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, " +
+                $"AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency} ";
         }
-
-        //public void ChangeCurrency()
-        //{
-        //    foreach (Currency Currency in Enum.GetValues<Currency>())
-        //    {
-        //        Console.WriteLine(Currency);
-        //    }
-        //    Console.WriteLine("Choose currency from list: ");
-        //    int toCurrency = int.Parse(Console.ReadLine());
-        //    Console.WriteLine("Choose account: ");
-        //    int ToAccountId = int.Parse(Console.ReadLine());
-
-        //    var ToCurrency = bankAccounts.Find(a => a.AccountId == ToAccountId);
-        //    //ToCurrency.Currency = ;
-
-
-        //    Console.WriteLine($"Currency changed to {ToCurrency.Currency}");
-        //    Console.ReadLine();
-        //}
     }
 }
 

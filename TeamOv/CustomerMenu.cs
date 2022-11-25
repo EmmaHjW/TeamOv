@@ -31,7 +31,6 @@ namespace TeamOv
                 new Text("(D)eposit", new Style(Color.Green, Color.Black)).LeftAligned(),
                 new Text("(W)ithdraw", new Style(Color.Green, Color.Black)).LeftAligned(),
                 });
-
                 // Add content row 
                 grid.AddRow(new Text[]{
                

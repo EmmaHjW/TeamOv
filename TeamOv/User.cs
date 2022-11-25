@@ -11,12 +11,10 @@ namespace TeamOv
     public class User
     {
         public static List<User> customerList = new();
-
         private static int idPool;      
         protected bool isAdmin;
         protected string username;
         protected string password;
-
         public string? UserName { get; set; }
         public string? Password { get; set; }
         public int UserId { get; init; }
@@ -29,14 +27,10 @@ namespace TeamOv
             this.Password = password;
             this.Active = active;
             this.IsAdmin = IsAdmin;
-            
-
         }
-
         public User()
         {
         }
-
         public static bool UserExists(string username) //Checks so not dublicate new customer
         {
             bool exists = customerList.Exists(User=>User.UserName == username );
@@ -45,15 +39,11 @@ namespace TeamOv
                 username,
                 (exists ? "exists." : "does not exist.")
             );
-
             return exists;
         }
         public override string ToString()
         {
             return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}, isAdmin: {IsAdmin}";
         }
-        
-
-
     }
 }
