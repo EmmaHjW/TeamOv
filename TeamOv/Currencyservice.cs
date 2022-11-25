@@ -22,7 +22,7 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             
         }
-        public double CurrencyConverter(double amount)
+        public double CurrencyConverter(double amount, int fromAccount, int toAccount)
         {
             DifferentCurrency();
 
@@ -33,9 +33,10 @@ namespace TeamOv
             double euroToDollar = 1.04;
 
             Console.WriteLine("Enter accountID to transfer from");
-            int fromAccount = int.Parse(Console.ReadLine());
+            fromAccount = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter accountID to transfer to");
-            int toAccount = int.Parse(Console.ReadLine());
+            toAccount = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter amount to transfer: ");
 
             var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
             var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);

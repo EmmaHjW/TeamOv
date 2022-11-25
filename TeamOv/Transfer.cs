@@ -14,6 +14,8 @@ namespace TeamOv
     public class Transfer
     {
         private double amountD;
+        private readonly int fromAccount;
+        private readonly int toAccount;
 
         public void Deposit(string loggedInCustomer)
         {
@@ -104,24 +106,32 @@ namespace TeamOv
         }
         public void TransferAmount(string loggedInCustomer)
         {
+            
             string input = "Y";
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Enter accountID to transfer from: ");
-                int fromAccount = int.Parse(Console.ReadLine());
-                Console.WriteLine("Transfer to: ");
-                int toAccount = int.Parse(Console.ReadLine());
-                Console.WriteLine("Please enter amount: ");
 
                 var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
 
                 decimal amount = (decimal)amountD;
 
+
+
+
+
                 CurrencyService currencyService = new CurrencyService();
-                currencyService.CurrencyConverter(amountD);
+                currencyService.CurrencyConverter(amountD, fromAccount, toAccount);
+                //Console.ForegroundColor = ConsoleColor.Blue;
+                //Console.WriteLine("Enter accountID to transfer from: ");
+                //int fromAccount = int.Parse(Console.ReadLine());
+                //Console.WriteLine("Transfer to: ");
+                //int toAccount = int.Parse(Console.ReadLine());
+                //Console.WriteLine("Please enter amount: ");
+
+               
+               
 
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
