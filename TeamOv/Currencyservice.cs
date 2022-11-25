@@ -7,17 +7,13 @@ using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
 using System.Security;
 using System.Security.Cryptography;
-using System.Security.Principal;
 
 namespace TeamOv
 {
     public class CurrencyService
     {
-
         Dictionary<string, float> Currencies = new Dictionary<string, float>();
-        private BankAccount? FromAccount;
-        private BankAccount? ToAccount;
-
+        
         public void DifferentCurrency()
         {
             Currencies.Add("USD", 10.58f);
@@ -25,126 +21,107 @@ namespace TeamOv
             Currencies.Add("SEK", 10.9653f);
             
         }
-        public double CurrencyConverter(double amount, int fromAccount, int toAccount)
+
+
+        //decimal EnterDecimal(string message, bool zeroAllowed)
+        //{
+        //    while (true)
+        //    {
+        //        Console.WriteLine(message);
+        //        if (decimal.TryParse(Console.ReadLine(), out decimal value))
+        //            if (zeroAllowed || value != 0m)
+        //                return value; 
+        //    }
+        //}
+
+        //string EnterCurrency(string message)
+        //{
+
+        //    //while (true)
+        //    //{
+        //    //    Console.WriteLine(message);
+        //    //    var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
+        //    //    if (Currency.Lenght == 3)
+        //    //    {
+        //    //        return CurrencyFrom;
+        //    //    }
+        //    //}
+
+        //    
+        //}
+        //string EnterCurrency(string message)
+        //{  
+
+        //    while (true)
+        //    {
+        //        Console.WriteLine(message);
+        //        var CurrencyFrom = Console.ReadLine().ToUpperInvariant();
+        //        if (Currency.Lenght == 3)
+        //        {
+        //            return CurrencyFrom;
+        //        }
+        //    }
+
+        //    string CurrencyFrom = EnterCurrency("Enter From currency: ");
+        //    string CurrencyTo = EnterCurrency("Enter To currency: ");
+        //    decimal rate = EnterDecimal($"Enter exchange rate from {CurrencyFrom} to {CurrencyTo}", false);
+        //    decimal amountFrom = EnterDecimal($"Enter the amount of {CurrencyFrom} to convert", true);
+        //    decimal amountTo = amountFrom * rate;
+        //    Console.WriteLine($"{amountFrom} {CurrencyFrom} equals {amountTo} {CurrencyTo}");
+        //}
+
+        //public void CurrencyConverter(string Currency1, string Currency2, decimal Amount)
+        //{
+        //    DifferentCurrency();
+
+
+        public double CurrencyConverter(string Currency1, string Currency2, double Amount)
         {
             DifferentCurrency();
-
-            double dollarRate = 10.58;
-            double dollarToEuro = 0.96;
-            double kronaRate = 10.9653;
-            double euroRate = 10.89;
-            double euroToDollar = 1.04;
-
-            //Console.WriteLine("Enter accountID to transfer from");
-            //fromAccount = int.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter accountID to transfer to");
-            //toAccount = int.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter amount to transfer: ");
             
-            FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
-            ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
-
-      
-            foreach (var item in BankAccount.bankAccounts)
+            double DollarRate = 10.58;
+            double KronaRate = 10.9653; 
+            double EuroRate = 10.89;
+            
+            if (Currency1 == "SEK" && Currency2 == "SEK")
             {
-                if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
-                {
-                    return amount;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "USD")
-                {
-                    return amount;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "EUR")
-                {
-                    return amount;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
-                {
-                    return amount * kronaRate; 
-                }
-                else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
-                {
-                    return amount / dollarRate;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
-                {
-                    return amount * euroRate;
-                }
-                else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
-                {
-                    return amount / euroRate;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
-                {
-                    return amount * euroToDollar;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
-                {
-                    return amount * dollarToEuro;
-                }
-            //}
-            //return amount;
-
-        }
-        public void Validate() //My test method to check if it was possible to reach currency value! YAAAJ! Works :D
-        {
-            Console.WriteLine("Enter accountID to transfer from");
-            int fromAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter accountID to transfer to");
-            int toAccount = int.Parse(Console.ReadLine());
-
-            var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
-            var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
-
-            foreach (var item in BankAccount.bankAccounts)
-            {
-                if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
-                {
-                    Console.WriteLine("Transferred in SEK");
-                    break;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "USD")
-                {
-                    Console.WriteLine("Transferred in USD");
-                    break;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "EUR")
-                {
-                    Console.WriteLine("Trasferred in EUR");
-                    break;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
-                {
-                    Console.WriteLine("Transferred USD to SEK");
-                    break;
-                }
-                else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
-                {
-                    Console.WriteLine("Transferred SEK to USD");
-                    break;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
-                {
-                    Console.WriteLine("Transferred EUR to SEK");
-                    break;
-                }
-                else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
-                {
-                    Console.WriteLine("Transferred SEK to EUR");
-                    break;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
-                {
-                    Console.WriteLine("Transferred EUR to USD");
-                    break;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
-                {
-                    Console.WriteLine("Transferred USD to EUR");
-                    break;
-                }
+                return Amount;
             }
+            else if (Currency1 == "USD" && Currency2 == "USD")
+            {
+                return Amount;
+            }
+            else if (Currency1 == "EUR" && Currency2 == "EUR")
+            {
+                return Amount;
+            }
+            else if (Currency1 == "USD" && Currency2 == "SEK")
+            {
+                return DollarRate * Amount;
+            }
+            else if (Currency1 == "SEK" && Currency2 == "USD")
+            {
+                return KronaRate / Amount;
+            }
+            else if (Currency1 == "EUR" && Currency2 == "SEK")
+            {
+                return EuroRate * Amount;
+            }
+            else if (Currency1 == "SEK" && Currency2 == "EUR")
+            {
+                return KronaRate / Amount;
+            }
+            else if (Currency1 == "EUR" && Currency2 == "USD")
+            {
+                return EuroRate * Amount;
+            }
+            else if (Currency1 == "USD" && Currency2 == "EUR")
+            {
+                return DollarRate / Amount;
+            }
+            return Amount;
         }
+            
+        
     }
 }
