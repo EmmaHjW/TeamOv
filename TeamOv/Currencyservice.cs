@@ -57,7 +57,7 @@ namespace TeamOv
                 }
                 else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
                 {
-                    return amount *= kronaRate; 
+                    return amount * kronaRate; 
                 }
                 else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
                 {

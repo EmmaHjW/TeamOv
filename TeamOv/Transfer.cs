@@ -117,10 +117,6 @@ namespace TeamOv
 
                 decimal amount = (decimal)amountD;
 
-
-
-
-
                 CurrencyService currencyService = new CurrencyService();
                 currencyService.CurrencyConverter(amountD, fromAccount, toAccount);
                 //Console.ForegroundColor = ConsoleColor.Blue;
@@ -129,9 +125,6 @@ namespace TeamOv
                 //Console.WriteLine("Transfer to: ");
                 //int toAccount = int.Parse(Console.ReadLine());
                 //Console.WriteLine("Please enter amount: ");
-
-               
-               
 
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
