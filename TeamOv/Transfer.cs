@@ -103,11 +103,9 @@ namespace TeamOv
         }
         public void TransferAmount(string loggedInCustomer)
         {
-
             string input = "Y";
             while (input == "Y" || input == "y")
             {
-
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter accountID to transfer from: ");
@@ -122,7 +120,6 @@ namespace TeamOv
                 
 
                 decimal amount;
-                Console.WriteLine(FromAccount.Currency);
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)

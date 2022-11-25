@@ -21,8 +21,9 @@ namespace TeamOv
             bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
-
-
+            CurrencyService currencyService= new CurrencyService();
+            //currencyService.CurrencyConverter();
+            //currencyService.Validate();
         }
 
 

@@ -118,6 +118,6 @@ namespace TeamOv
                 Console.WriteLine(own);
             }
             Console.WriteLine();
-        } 
+        }
     }
 }
