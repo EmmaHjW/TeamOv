@@ -65,26 +65,26 @@ namespace TeamOv
                 }
                 else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
                 {
-                    return amount /= dollarRate;
+                    return amount / dollarRate;
                 }
                 else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
                 {
-                    return amount *= euroRate;
+                    return amount * euroRate;
                 }
                 else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
                 {
-                    return amount /= euroRate;
+                    return amount / euroRate;
                 }
                 else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
                 {
-                    return amount *= euroToDollar;
+                    return amount * euroToDollar;
                 }
                 else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
                 {
-                    return amount *= dollarToEuro;
+                    return amount * dollarToEuro;
                 }
-            }
-            return amount;
+            //}
+            //return amount;
 
         }
         public void Validate() //My test method to check if it was possible to reach currency value! YAAAJ! Works :D

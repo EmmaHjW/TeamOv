@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace TeamOv
 {
-    public class Transfer
+    public class Transfer : CurrencyService
     {
         private decimal amount;
         private double amountD;
