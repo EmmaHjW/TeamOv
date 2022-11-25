@@ -13,6 +13,7 @@ namespace TeamOv
 {
     public class Transfer
     {
+        private double amountD;
 
         public void Deposit(string loggedInCustomer)
         {
@@ -117,9 +118,11 @@ namespace TeamOv
                 var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
 
-                
+                decimal amount = (decimal)amountD;
 
-                decimal amount;
+                CurrencyService currencyService = new CurrencyService();
+                currencyService.CurrencyConverter(amountD);
+
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)
@@ -145,7 +148,7 @@ namespace TeamOv
                         FromAccount.Balance -= amount;
                         ToAccount.Balance += amount;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($"You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
+                        Console.WriteLine($"Amount transferred: {amount} You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
                         Console.WriteLine($"You have: {ToAccount.Balance}{ToAccount.Currency} left on your {ToAccount.AccountName}");
                         Console.ResetColor();
                     }

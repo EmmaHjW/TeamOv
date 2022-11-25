@@ -12,20 +12,14 @@ namespace TeamOv
 {
     public class Bank
     {
-        
         public static void RunBank()
         {
+
             BankAccount bankAccount = new BankAccount();
             Loginservice loginservice = new Loginservice();
 
             bankAccount.InitiateBankAccount();
             Loginservice.InitiateUsers();
             loginservice.ValidateLogin();
-            CurrencyService currencyService= new CurrencyService();
-            //currencyService.CurrencyConverter();
-            //currencyService.Validate();
         }
-
-
-    }
-}
+}   }

@@ -32,7 +32,6 @@ namespace TeamOv
             double euroRate = 10.89;
             double euroToDollar = 1.04;
 
-
             Console.WriteLine("Enter accountID to transfer from");
             int fromAccount = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter accountID to transfer to");
