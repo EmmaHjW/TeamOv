@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.VisualBasic;
 using Spectre.Console;
+using PanoramicData.ConsoleExtensions;
 
 namespace TeamOv
 {
@@ -43,9 +45,9 @@ namespace TeamOv
             do
             {
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter username: ");
-                string name = Console.ReadLine();
+                var name = Console.ReadLine();
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
-                string password = Console.ReadLine();
+                var password = ConsolePlus.ReadPassword();
 
                 string currentUser = name;
                 if (User.customerList.Exists(User => User.UserName == name && User.Password == password)
@@ -83,6 +85,32 @@ namespace TeamOv
             {
                 CustomerMenu.ShowCustomerScreen(currentUser);
             }
+        }
+        public SecureString GetPassword()
+        {
+            var pwd = new SecureString();
+            while (true)
+            {
+                ConsoleKeyInfo i = Console.ReadKey(true);
+                if (i.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+                else if (i.Key == ConsoleKey.Backspace)
+                {
+                    if (pwd.Length > 0)
+                    {
+                        pwd.RemoveAt(pwd.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                }
+                else if (i.KeyChar != '\u0000') // KeyChar == '\u0000' if the key pressed does not correspond to a printable character, e.g. F1, Pause-Break, etc
+                {
+                    pwd.AppendChar(i.KeyChar);
+                    Console.Write("*");
+                }
+            }
+            return pwd;
         }
     }  
 }
