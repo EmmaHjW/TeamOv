@@ -13,9 +13,15 @@ namespace TeamOv
 {
     public class Transfer
     {
+        private decimal amount;
         private double amountD;
         private readonly int fromAccount;
         private readonly int toAccount;
+        decimal dollarRate = 10.58m;
+        decimal dollarToEuro = 0.96m;
+        decimal kronaRate = 10.9653m;
+        decimal euroRate = 10.89m;
+        decimal euroToDollar = 1.04m;
 
         public void Deposit(string loggedInCustomer)
         {
@@ -106,26 +112,24 @@ namespace TeamOv
         }
         public void TransferAmount(string loggedInCustomer)
         {
-            
             string input = "Y";
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Enter accountID to transfer from: ");
+                int fromAccount = int.Parse(Console.ReadLine());
+                Console.WriteLine("Transfer to: ");
+                int toAccount = int.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter amount: ");
 
                 var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
 
-                decimal amount = (decimal)amountD;
-
-                CurrencyService currencyService = new CurrencyService();
-                currencyService.CurrencyConverter(amountD, fromAccount, toAccount);
-                //Console.ForegroundColor = ConsoleColor.Blue;
-                //Console.WriteLine("Enter accountID to transfer from: ");
-                //int fromAccount = int.Parse(Console.ReadLine());
-                //Console.WriteLine("Transfer to: ");
-                //int toAccount = int.Parse(Console.ReadLine());
-                //Console.WriteLine("Please enter amount: ");
-
+                //decimal amount = (decimal)amountD;
+                //decimal amount;
+                
+                
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)
@@ -148,6 +152,54 @@ namespace TeamOv
                     }
                     else
                     {
+                        foreach (var item in BankAccount.bankAccounts)
+                        {
+                            if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
+                            {
+                                _ = amount;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "USD" && ToAccount.Currency == "USD")
+                            {
+                                _ = amount;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "EUR")
+                            {
+                                _ = amount;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
+                            {
+                                amount *= dollarRate;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
+                            {
+                                amount /= dollarRate;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
+                            {
+                                amount *= euroRate;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
+                            {
+                                amount /= euroRate;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
+                            {
+                                amount *= euroToDollar;
+                                break;
+                            }
+                            else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
+                            {
+                                amount *= dollarToEuro;
+                                break;
+                            }
+                        }
                         FromAccount.Balance -= amount;
                         ToAccount.Balance += amount;
                         Console.ForegroundColor = ConsoleColor.White;

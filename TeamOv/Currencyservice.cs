@@ -13,8 +13,11 @@ namespace TeamOv
 {
     public class CurrencyService
     {
+
         Dictionary<string, float> Currencies = new Dictionary<string, float>();
-        
+        private BankAccount? FromAccount;
+        private BankAccount? ToAccount;
+
         public void DifferentCurrency()
         {
             Currencies.Add("USD", 10.58f);
@@ -32,15 +35,16 @@ namespace TeamOv
             double euroRate = 10.89;
             double euroToDollar = 1.04;
 
-            Console.WriteLine("Enter accountID to transfer from");
-            fromAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter accountID to transfer to");
-            toAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter amount to transfer: ");
+            //Console.WriteLine("Enter accountID to transfer from");
+            //fromAccount = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Enter accountID to transfer to");
+            //toAccount = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Enter amount to transfer: ");
+            
+            FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
+            ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
 
-            var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
-            var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
-
+      
             foreach (var item in BankAccount.bankAccounts)
             {
                 if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
