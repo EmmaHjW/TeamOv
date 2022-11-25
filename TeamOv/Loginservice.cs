@@ -28,17 +28,25 @@ namespace TeamOv
         public void ValidateLogin() //Login with validation if user exists
         {
             Loginservice loginservice= new Loginservice();
-            Console.WriteLine("Welcome to TeamOv-Bank");
+            //Console.WriteLine("Welcome to TeamOv-Bank");
             Console.ForegroundColor= ConsoleColor.DarkGray;
             Console.WriteLine(DateTime.Now);
             Console.ResetColor();
+
+            AnsiConsole.Write(
+                new FigletText("Welcome to Team EmOs Bank 2.0")
+                    .Centered()
+                    .Color(Color.SandyBrown));
+            var rule = new Rule();
+            AnsiConsole.Write(rule);
             Console.WriteLine();
             do
             {
-                Console.Write("Enter username: ");
+                Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter username: ");
                 string name = Console.ReadLine();
-                Console.Write("Enter password: ");  
+                Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
                 string password = Console.ReadLine();
+
                 string currentUser = name;
                 if (User.customerList.Exists(User => User.UserName == name && User.Password == password)
                     || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))   //Check if username exisist in list
@@ -49,14 +57,20 @@ namespace TeamOv
                 }
                 else
                 {
-                    Console.WriteLine("Wrong password or username");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    string msg = "Wrong username or password";
+                    Console.WriteLine("{0," + ((Console.WindowWidth / 2) + msg.Length / 3) + "}", msg);
+                    Console.ResetColor();
                     tries++;
                 }
             } while (tries < 3);
 
             if (tries == 3)
             {
-                Console.WriteLine("Too many attempts, try again in 5 minutes. ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                string msg = "Too many attempts, try again in 5 minutes.";
+                Console.WriteLine("{0," + ((Console.WindowWidth / 2) + msg.Length / 3) + "}", msg);
+                Console.ResetColor();
             }
         }
         public void LoggedInUser(string currentUser) //Check if user is admin or customer
