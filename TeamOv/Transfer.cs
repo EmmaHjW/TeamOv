@@ -13,6 +13,7 @@ namespace TeamOv
 {
     public class Transfer : CurrencyService
     {
+        private decimal tempSekAmount;
         private decimal amount;
         private double amountD;
         private readonly int fromAccount;
@@ -174,11 +175,13 @@ namespace TeamOv
                             }
                             else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
                             {
+                                tempSekAmount = amount;
                                 amount /= dollarRate;
                                 break;
                             }
                             else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
                             {
+                                tempSekAmount = amount;
                                 amount *= euroRate;
                                 break;
                             }
@@ -198,10 +201,20 @@ namespace TeamOv
                                 break;
                             }
                         }
-                        FromAccount.Balance -= amount;
-                        ToAccount.Balance += amount;
+                        //tempamount to store right amount when SEK is from or toAccount
+                        if (FromAccount.Currency == "SEK")
+                        {
+                            FromAccount.Balance -= tempSekAmount;
+                        }
+                        if (ToAccount.Currency == "SEK")
+                        {
+                            ToAccount.Balance -= tempSekAmount;
+                        }
+                            FromAccount.Balance -= amount;
+                            ToAccount.Balance += amount;
+                        
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($"Amount transferred: {amount.ToString("N" + 2)}.{ToAccount.Currency} You have: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} left on your {FromAccount.AccountName}");
+                        Console.WriteLine($"Amount transferred: {amount.ToString("N" + 2)}.{FromAccount.Currency} You have: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} left on your {FromAccount.AccountName}");
                         Console.WriteLine($"You have: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on your {ToAccount.AccountName}");
                         Console.ResetColor();
                     }

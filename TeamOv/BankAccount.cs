@@ -68,8 +68,8 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, " +
-                $"AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency} ";
+            return $"AccountID {AccountId}, AccountNumber: {AccountNumber}, " +
+                $"AccountName: {AccountName}, Balance: {Balance.ToString("N" + 2)}, Currency: {Currency} ";
         }
     }
 }

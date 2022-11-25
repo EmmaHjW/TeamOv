@@ -48,7 +48,6 @@ namespace TeamOv
                 var name = Console.ReadLine();
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
                 var password = ConsolePlus.ReadPassword();
-
                 string currentUser = name;
                 if (User.customerList.Exists(User => User.UserName == name && User.Password == password)
                     || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))   //Check if username exisist in list
@@ -59,8 +58,8 @@ namespace TeamOv
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    string msg = "Wrong username or password";
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    string msg = "Invalid username or password.";
                     Console.WriteLine("{0," + ((Console.WindowWidth / 2) + msg.Length / 3) + "}", msg);
                     Console.ResetColor();
                     tries++;
