@@ -13,6 +13,10 @@ namespace TeamOv
 {
     public class CurrencyService
     {
+        public double Amount { get; set; }
+        public int FromAccount { get; set; }
+        public int ToAccount { get; set; }
+
         Dictionary<string, float> Currencies = new Dictionary<string, float>();
         
         public void DifferentCurrency()
@@ -31,6 +35,7 @@ namespace TeamOv
             double kronaRate = 10.9653;
             double euroRate = 10.89;
             double euroToDollar = 1.04;
+           
 
             Console.WriteLine("Enter accountID to transfer from");
             fromAccount = int.Parse(Console.ReadLine());
@@ -40,6 +45,7 @@ namespace TeamOv
 
             var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
             var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
+           
 
             foreach (var item in BankAccount.bankAccounts)
             {
@@ -61,26 +67,26 @@ namespace TeamOv
                 }
                 else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
                 {
-                    return amount /= dollarRate;
+                    return amount / dollarRate;
                 }
                 else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
                 {
-                    return amount *= euroRate;
+                    return amount * euroRate;
                 }
                 else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
                 {
-                    return amount /= euroRate;
+                    return amount / euroRate;
                 }
                 else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
                 {
-                    return amount *= euroToDollar;
+                    return amount * euroToDollar;
                 }
                 else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
                 {
-                    return amount *= dollarToEuro;
+                    return amount * dollarToEuro;
                 }
-            }
-            return amount;
+            //}
+            //return amount;
 
         }
         public void Validate() //My test method to check if it was possible to reach currency value! YAAAJ! Works :D
