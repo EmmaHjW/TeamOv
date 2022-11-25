@@ -31,7 +31,7 @@ namespace TeamOv
 
         public BankAccount(string owner, string accountNumber, string? name, int balance, string currency, bool active)
         {
-            //AccountId= accountId;
+            AccountId= accountIdPool++;
             Owner = owner;
             AccountNumber = accountNumber;
             Name = name;
@@ -73,7 +73,7 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency = ""} ";
+            return $"Owner: {Owner}, AccountID {AccountId}, AccountNumber: {AccountNumber}, AccountName: {AccountName}, Balance: {Balance}, Currency: {Currency} ";
         }
 
         //public void ChangeCurrency()
