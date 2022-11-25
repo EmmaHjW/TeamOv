@@ -22,38 +22,32 @@ namespace TeamOv
         
         public string Currency { get; set; }
         public string AccountType { get; set; }
-
-        public BankAccount(
-            string owner,
-            string accountNumber,
-            string accountName,
-            decimal balance = 0,
-            bool active = false,
-            string currency = ""
-        )
-        {
-            this.Owner = owner;
-            this.AccountId = accountIdPool++;
-            this.AccountNumber = GenerateBankAccountNumber(); ;
-            this.AccountName = accountName;
-            this.Balance = balance;
-            this.Active = active;
-            this.Currency = currency;
-        }
+        public string? Name { get; }
 
         public BankAccount() //constructor
         {
 
         }
 
+        public BankAccount(string owner, string accountNumber, string? name, int balance, string currency, bool active)
+        {
+            //AccountId= accountId;
+            Owner = owner;
+            AccountNumber = accountNumber;
+            Name = name;
+            Balance = balance;
+            Currency = currency;
+            Active = active;
+        }
+
         public void InitiateBankAccount() //Adds account to users at program run
         {
-            BankAccount bankAccount1 = new BankAccount() { Owner = "Oskar", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = "SEK", Active = true };
-            BankAccount bankAccount2 = new BankAccount() { Owner = "Oskar", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 150, Currency = "USD", Active = true };
-            BankAccount bankAccount3 = new BankAccount() { Owner = "Oskar", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 456, Currency = "EUR", Active = true };
-            BankAccount bankAccount4 = new BankAccount() { Owner = "Emma", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance =30000, Currency = "SEK", Active = true };
-            BankAccount bankAccount5 = new BankAccount() { Owner = "Emma", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 5000, Currency = "USD", Active = true };
-            BankAccount bankAccount6 = new BankAccount() { Owner = "Emma", AccountId = accountIdPool++, AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 500, Currency = "EUR", Active = true };
+            BankAccount bankAccount1 = new BankAccount() { AccountId = accountIdPool++, Owner = "Oskar", AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance = 20000, Currency = "SEK", Active = true };
+            BankAccount bankAccount2 = new BankAccount() { AccountId = accountIdPool++, Owner = "Oskar",  AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 150, Currency = "USD", Active = true };
+            BankAccount bankAccount3 = new BankAccount() { AccountId = accountIdPool++, Owner = "Oskar", AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 456, Currency = "EUR", Active = true };
+            BankAccount bankAccount4 = new BankAccount() { AccountId = accountIdPool++, Owner = "Emma", AccountNumber = GenerateBankAccountNumber(), AccountName = "Salary account", Balance =30000, Currency = "SEK", Active = true };
+            BankAccount bankAccount5 = new BankAccount() { AccountId = accountIdPool++, Owner = "Emma", AccountNumber = GenerateBankAccountNumber(), AccountName = "Saving account", Balance = 5000, Currency = "USD", Active = true };
+            BankAccount bankAccount6 = new BankAccount() { AccountId = accountIdPool++, Owner = "Emma", AccountNumber = GenerateBankAccountNumber(), AccountName = "Fund account", Balance = 500, Currency = "EUR", Active = true };
 
             bankAccounts.Add(bankAccount1);
             bankAccounts.Add(bankAccount2);

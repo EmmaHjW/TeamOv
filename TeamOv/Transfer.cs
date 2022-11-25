@@ -204,7 +204,7 @@ namespace TeamOv
                         ToAccount.Balance += amount;
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine($"Amount transferred: {amount} You have: {FromAccount.Balance}{FromAccount.Currency} left on your {FromAccount.AccountName}");
-                        Console.WriteLine($"You have: {ToAccount.Balance}{ToAccount.Currency} left on your {ToAccount.AccountName}");
+                        Console.WriteLine($"You have: {ToAccount.Balance} Currency: {ToAccount.Currency.ToString()} left on your {ToAccount.AccountName}");
                         Console.ResetColor();
                     }
                 }

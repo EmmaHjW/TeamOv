@@ -23,7 +23,7 @@ namespace TeamOv
             Currencies.Add("USD", 10.58f);
             Currencies.Add("EUR", 10.89f);
             Currencies.Add("SEK", 10.9653f);
-            
+
         }
         public double CurrencyConverter(double amount, int fromAccount, int toAccount)
         {
@@ -40,11 +40,11 @@ namespace TeamOv
             //Console.WriteLine("Enter accountID to transfer to");
             //toAccount = int.Parse(Console.ReadLine());
             //Console.WriteLine("Enter amount to transfer: ");
-            
+
             FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
             ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
 
-      
+
             foreach (var item in BankAccount.bankAccounts)
             {
                 if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
@@ -61,7 +61,7 @@ namespace TeamOv
                 }
                 else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
                 {
-                    return amount * kronaRate; 
+                    return amount * kronaRate;
                 }
                 else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
                 {
@@ -83,68 +83,68 @@ namespace TeamOv
                 {
                     return amount * dollarToEuro;
                 }
-            //}
-            //return amount;
-
+            }
+            return amount;
         }
-        public void Validate() //My test method to check if it was possible to reach currency value! YAAAJ! Works :D
-        {
-            Console.WriteLine("Enter accountID to transfer from");
-            int fromAccount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter accountID to transfer to");
-            int toAccount = int.Parse(Console.ReadLine());
-
-            var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
-            var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
-
-            foreach (var item in BankAccount.bankAccounts)
+            public void Validate() //My test method to check if it was possible to reach currency value! YAAAJ! Works :D
             {
-                if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
+                Console.WriteLine("Enter accountID to transfer from");
+                int fromAccount = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter accountID to transfer to");
+                int toAccount = int.Parse(Console.ReadLine());
+
+                var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
+                var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
+
+                foreach (var item in BankAccount.bankAccounts)
                 {
-                    Console.WriteLine("Transferred in SEK");
-                    break;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "USD")
-                {
-                    Console.WriteLine("Transferred in USD");
-                    break;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "EUR")
-                {
-                    Console.WriteLine("Trasferred in EUR");
-                    break;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
-                {
-                    Console.WriteLine("Transferred USD to SEK");
-                    break;
-                }
-                else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
-                {
-                    Console.WriteLine("Transferred SEK to USD");
-                    break;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
-                {
-                    Console.WriteLine("Transferred EUR to SEK");
-                    break;
-                }
-                else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
-                {
-                    Console.WriteLine("Transferred SEK to EUR");
-                    break;
-                }
-                else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
-                {
-                    Console.WriteLine("Transferred EUR to USD");
-                    break;
-                }
-                else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
-                {
-                    Console.WriteLine("Transferred USD to EUR");
-                    break;
+                    if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
+                    {
+                        Console.WriteLine("Transferred in SEK");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "USD" && ToAccount.Currency == "USD")
+                    {
+                        Console.WriteLine("Transferred in USD");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "EUR")
+                    {
+                        Console.WriteLine("Trasferred in EUR");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
+                    {
+                        Console.WriteLine("Transferred USD to SEK");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
+                    {
+                        Console.WriteLine("Transferred SEK to USD");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
+                    {
+                        Console.WriteLine("Transferred EUR to SEK");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
+                    {
+                        Console.WriteLine("Transferred SEK to EUR");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
+                    {
+                        Console.WriteLine("Transferred EUR to USD");
+                        break;
+                    }
+                    else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
+                    {
+                        Console.WriteLine("Transferred USD to EUR");
+                        break;
+                    }
                 }
             }
-        }
-    }
+        
+    } 
 }

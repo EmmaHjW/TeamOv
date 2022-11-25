@@ -101,7 +101,7 @@ namespace TeamOv
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
 
-            BankAccount.bankAccounts.Add(new BankAccount(owner, accountNumber, name, 0, true, "SEK"));
+            BankAccount.bankAccounts.Add(new BankAccount(owner, accountNumber, name, 0, "SEK", true));
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
         }
