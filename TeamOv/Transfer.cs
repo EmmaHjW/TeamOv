@@ -24,12 +24,14 @@ namespace TeamOv
         decimal euroRate = 10.89m;
         decimal euroToDollar = 1.04m;
 
-        public void Deposit(string loggedInCustomer)
+        public void Deposit(string loggedInCustomer) //Deposit to accounts
         {
             string input = "Y";
             while (input == "Y" || input == "y")
             {
+                Console.WriteLine(new string('_', 100));
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
+                Console.WriteLine(new string('_', 100));
                 if (BankAccount.bankAccounts.Count < 1)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -37,9 +39,9 @@ namespace TeamOv
                     Console.ResetColor();
                 }
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Enter account to deposit to");
+                Console.Write("Enter account ID to deposit to: ");
                 int toAccount = int.Parse(Console.ReadLine());
-                Console.WriteLine("Enter amount to deposit: ");
+                Console.Write("Enter amount to deposit: ");
                 decimal amount = decimal.Parse(Console.ReadLine());
                 if (amount <= 0)
                 {
@@ -51,16 +53,15 @@ namespace TeamOv
                 {
                     var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
                     ToAccount.Balance += amount;
+                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"Balance after deposit: {ToAccount.Balance}");
+                    Console.WriteLine($"New balance: {ToAccount.Balance.ToString("N" + 2)} {ToAccount.Currency}");
                     Console.ResetColor();
-                    string accountOwner = loggedInCustomer;
-                    Transactionservice.transactionslist.Add($"Amount: {amount}{0:C} deposit succesfull to AccountId: {ToAccount.AccountId} Account owner: {accountOwner}");
+                    Transactionservice.transactionslist.Add($"{DateTime.Now} Deposit: {amount} {ToAccount.Currency} to Account number: {ToAccount.AccountNumber} ");
                     Console.WriteLine();
                 }
-                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to try again? Y/N?");
+                Console.WriteLine("Do you have more to deposit? Y/N?");
                 Console.ResetColor();
                 input = Console.ReadLine();
             }
@@ -100,9 +101,12 @@ namespace TeamOv
                 else
                 {
                     FromAccount.Balance -= amount;
+                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"Balance after withdraw: {FromAccount.Balance}");
+                    Console.WriteLine($"Balance after withdraw: {FromAccount.Balance.ToString("N" + 2)} {FromAccount.Currency}");
                     Console.ResetColor();
+                    Transactionservice.transactionslist.Add($"{DateTime.Now} Withdraw: {amount} {FromAccount.Currency} from account number: {FromAccount.AccountNumber} ");
+                    Console.WriteLine();
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -151,7 +155,7 @@ namespace TeamOv
                     }
                     else
                     {
-                        foreach (var item in BankAccount.bankAccounts)
+                        foreach (var item in BankAccount.bankAccounts) //Search for right currency to accountID
                         {
                             if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
                             {
@@ -205,6 +209,7 @@ namespace TeamOv
                         if (FromAccount.Currency == "SEK")
                         {
                             FromAccount.Balance -= tempSekAmount;
+                            
                         }
                         if (ToAccount.Currency == "SEK")
                         {

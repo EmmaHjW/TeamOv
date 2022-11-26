@@ -22,8 +22,11 @@ namespace TeamOv
                 grid.AddColumn();
                 grid.AddColumn();
 
-                Console.WriteLine("                            Welcome to OV.ATM");
-                Console.WriteLine($"Logged in as: {loggedInCustomer} \n{DateTime.Now}");
+                Console.WriteLine("                            Welcome to EmOs Bank 2.0");
+                Console.ForegroundColor= ConsoleColor.DarkGray;
+                Console.WriteLine($"Logged in: {DateTime.Now}\nCustomer: {loggedInCustomer}");
+                Console.ResetColor();
+                Console.WriteLine();
                 // Add header row 
                 grid.AddRow(new Text[]{
                 new Text("(A)ccount info", new Style(Color.Green, Color.Black)).RightAligned(),
@@ -48,20 +51,16 @@ namespace TeamOv
                 switch (customerOptions.ToLower())
                 {
                     case "a":
-                        Console.WriteLine("Accounts");
                         PrintAccountInfo(loggedInCustomer);
                         Console.ReadLine();
                         break;
                     case "o": //Create account
-                        Console.WriteLine("Create account");
                         AddBankAccount(loggedInCustomer);
                         break;
                     case "d": //Deposit
-                        Console.WriteLine("Make a deposit");
                         transfer.Deposit(loggedInCustomer);
                         break;
                     case "w": //Withdrawl
-                        Console.WriteLine("Make a withdraw");
                         transfer.Withdraw(loggedInCustomer);
 
                         break;
@@ -69,11 +68,9 @@ namespace TeamOv
                         transfer.TransferMenu(loggedInCustomer);
                         break;
                     case "c":        
-                        Console.WriteLine("Change Currency");
                         Console.ReadLine();
                         break;
                     case "h":        
-                        Console.WriteLine("Transaction history");
                         Transactionservice.PrintTransactionHistory();
                         Console.ReadLine();
                         break;
@@ -100,11 +97,11 @@ namespace TeamOv
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
 
-            BankAccount.bankAccounts.Add(new BankAccount(owner, accountNumber, name, 0, "SEK", true));
+            BankAccount.bankAccounts.Add(new BankAccount(owner, accountNumber, name, 0, "SEK", true)); //wrong accountname
             Console.WriteLine($"{name} account {accountNumber} created");
             Console.ReadLine();
         }
-        public static void PrintAccountInfo(string loggedInCustomer) //Somthing wrong!Fix!
+        public static void PrintAccountInfo(string loggedInCustomer)
         {  
             if (BankAccount.bankAccounts.Count < 0)
             {
@@ -116,7 +113,6 @@ namespace TeamOv
             {
                 Console.WriteLine(own);
             }
-            Console.WriteLine();
         }
     }
 }
