@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -92,14 +93,38 @@ namespace TeamOv
         }
         public static void AddBankAccount(string loggedInCustomer)
         {
+            Transfer transfer = new Transfer();
             Console.Write("Please enter a name to your new account: ");
-            string name = Console.ReadLine();
+            var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
-
-            BankAccount.bankAccounts.Add(new BankAccount(owner, accountNumber, name, 0, "SEK", true)); //wrong accountname
-            Console.WriteLine($"{name} account {accountNumber} created");
-            Console.ReadLine();
+            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK", true)); //wrong accountname
+            Console.WriteLine($"{accountname} account {accountNumber} created");
+            Console.WriteLine();
+            Console.WriteLine("Do you want to make a first deposit? (Yes/No)" );
+            var firstDeposit = Console.ReadLine();
+            if (firstDeposit.ToLower() == "y" || firstDeposit.ToLower() == "yes")
+            {
+                decimal amount;
+                Console.Write("Enter amount: ");
+                if(decimal.TryParse(Console.ReadLine(), out amount))
+                {
+                    string deposit = accountNumber;
+                    var Deposit = BankAccount.bankAccounts.Find(a => a.AccountNumber == deposit);
+                    Deposit.Balance += amount;
+                    Console.WriteLine($"Successful deposit with {amount} {Deposit.Currency}.");
+                    Console.ReadLine();
+                    Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
+                }
+                else
+                {
+                    Console.WriteLine("It´s ok, you can come back another time.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You can do it another time instead.");
+            }
         }
         public static void PrintAccountInfo(string loggedInCustomer)
         {  

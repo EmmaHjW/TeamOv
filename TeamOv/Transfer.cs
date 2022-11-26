@@ -18,11 +18,11 @@ namespace TeamOv
         private double amountD;
         private readonly int fromAccount;
         private readonly int toAccount;
-        decimal dollarRate = 10.58m;
-        decimal dollarToEuro = 0.96m;
-        decimal kronaRate = 10.9653m;
-        decimal euroRate = 10.89m;
-        decimal euroToDollar = 1.04m;
+        private decimal dollarRate = 10.58m;
+        private decimal dollarToEuro = 0.96m;
+        private decimal kronaRate = 10.9653m;
+        private decimal euroRate = 10.89m;
+        private decimal euroToDollar = 1.04m;
 
         public void Deposit(string loggedInCustomer) //Deposit to accounts
         {
@@ -46,7 +46,7 @@ namespace TeamOv
                 if (amount <= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Withdraw amount must be positive");
+                    Console.WriteLine("Deposit amount must be positive");
                     Console.ResetColor();
                 }
                 else
@@ -174,7 +174,9 @@ namespace TeamOv
                             }
                             else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
                             {
-                                amount *= dollarRate;
+                                tempSekAmount = amount;
+                                tempSekAmount *= 0.95m;
+                                amount /= dollarRate;
                                 break;
                             }
                             else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
@@ -186,7 +188,8 @@ namespace TeamOv
                             else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
                             {
                                 tempSekAmount = amount;
-                                amount *= euroRate;
+                                tempSekAmount *= euroRate;
+                                amount /= euroRate;
                                 break;
                             }
                             else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
@@ -205,23 +208,39 @@ namespace TeamOv
                                 break;
                             }
                         }
-                        //tempamount to store right amount when SEK is from or toAccount
+                        //temp amount to store right amount when SEK is from or toAccount
                         if (FromAccount.Currency == "SEK")
                         {
                             FromAccount.Balance -= tempSekAmount;
-                            
+                            ToAccount.Balance += amount;
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {tempSekAmount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
+                            Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {amount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
+                            Console.ResetColor();
+                            Transactionservice.transactionslist.Add($"{DateTime.Now} {FromAccount.AccountNumber} Transfer added {tempSekAmount.ToString("N" + 2)} {FromAccount.Currency} {DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} transfer received {amount.ToString("N"+2)} {ToAccount.Currency}");
                         }
-                        if (ToAccount.Currency == "SEK")
+                        else if (ToAccount.Currency == "SEK")
                         {
-                            ToAccount.Balance -= tempSekAmount;
+                            ToAccount.Balance += tempSekAmount;
+                            FromAccount.Balance -= amount;
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {amount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
+                            Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {tempSekAmount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
+                            Console.ResetColor();
+                            Transactionservice.transactionslist.Add($"{DateTime.Now} {FromAccount.AccountNumber} Transfer added {amount.ToString("N" + 2)} {FromAccount.Currency} {DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} transfer received {tempSekAmount} {ToAccount.Currency}");
                         }
+                        else
+                        {
                             FromAccount.Balance -= amount;
                             ToAccount.Balance += amount;
-                        
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($"Amount transferred: {amount.ToString("N" + 2)}.{FromAccount.Currency} You have: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} left on your {FromAccount.AccountName}");
-                        Console.WriteLine($"You have: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on your {ToAccount.AccountName}");
-                        Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {amount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
+                            Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {amount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
+                            Console.ResetColor();
+                            Transactionservice.transactionslist.Add($"{DateTime.Now} {FromAccount.AccountNumber} Transfer added {amount.ToString("N" + 2)} {FromAccount.Currency} {DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} transfer received {amount.ToString("N" + 2)} {ToAccount.Currency}");
+                            Console.ResetColor();
+                        }
                     }
                 }
                 Console.WriteLine();
