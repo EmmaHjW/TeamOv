@@ -15,9 +15,9 @@ namespace TeamOv
     {
         private decimal tempSekAmount;
         private decimal amount;
-        private double amountD;
-        private readonly int fromAccount;
-        private readonly int toAccount;
+        private double amountD; //Maybe will go away
+        private readonly int fromAccount; //Maybe will go away
+        private readonly int toAccount; //Maybe will go away
         private decimal dollarRate = 10.58m;
         private decimal dollarToEuro = 0.96m;
         private decimal kronaRate = 10.9653m;
