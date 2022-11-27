@@ -17,7 +17,7 @@ namespace TeamOv
             BankAccount bankAccount = new BankAccount();
             Loginservice loginservice = new Loginservice();
             bankAccount.InitiateBankAccount();
-            Loginservice.InitiateUsers();
+            User.InitiateUsers();
             loginservice.ValidateLogin();
         }
 }   }

@@ -22,14 +22,22 @@ namespace TeamOv
         public bool IsAdmin { get; init; }
         protected User(string? userName, string? password, bool active)
         {
-            this.UserId = idPool++;
-            this.UserName = userName;
-            this.Password = password;
-            this.Active = active;
-            this.IsAdmin = IsAdmin;
+            UserId = idPool++;
+            UserName = userName;
+            Password = password;
+            Active = active;
+            IsAdmin = IsAdmin;
         }
         public User()
         {
+        }
+        public static void InitiateUsers() //Adds users to userList at run
+        {
+            Admin.adminList.Add(new Admin("Admin", "password", true));
+            User customer1 = new User() { UserId = idPool++,UserName = "Oskar", Password = "1234", Active = true };
+            User customer2 = new User() { UserId = idPool++,UserName = "Emma", Password = "1234", Active = true };
+            User.customerList.Add(customer1);
+            User.customerList.Add(customer2);
         }
         public static bool UserExists(string username) //Checks so not dublicate new customer
         {

@@ -128,121 +128,12 @@ namespace TeamOv
                 int toAccount = int.Parse(Console.ReadLine());
                 Console.WriteLine("Please enter amount: ");
 
-                var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
-                var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
+                
                 //decimal amount;
-                //decimal amount = (decimal)amountD;
+                decimal amount = (decimal)amountD;
+                CurrencyService currencyService = new CurrencyService();
+                //currencyService.Currency(amount, fromAccount, toAccount);
 
-                while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
-                {
-                    if (amount <= 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Transfer amount must be positive");
-                        Console.ResetColor();
-                    }
-                    else if (amount == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid transfer amount");
-                        Console.ResetColor();
-                    }
-                    else if (amount > FromAccount.Balance)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Not enought money on account");
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        foreach (var item in BankAccount.bankAccounts) //Search for right currency to accountID
-                        {
-                            if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
-                            {
-                                _ = amount;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "USD" && ToAccount.Currency == "USD")
-                            {
-                                _ = amount;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "EUR")
-                            {
-                                _ = amount;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "USD" && ToAccount.Currency == "SEK")
-                            {
-                                tempSekAmount = amount;
-                                tempSekAmount *= 0.95m;
-                                amount /= dollarRate;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "USD")
-                            {
-                                tempSekAmount = amount;
-                                amount /= dollarRate;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "SEK")
-                            {
-                                tempSekAmount = amount;
-                                tempSekAmount *= euroRate;
-                                amount /= euroRate;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "SEK" && ToAccount.Currency == "EUR")
-                            {
-                                amount /= euroRate;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "EUR" && ToAccount.Currency == "USD")
-                            {
-                                amount *= euroToDollar;
-                                break;
-                            }
-                            else if (FromAccount.Currency == "USD" && ToAccount.Currency == "EUR")
-                            {
-                                amount *= dollarToEuro;
-                                break;
-                            }
-                        }
-                        //temp amount to store right amount when SEK is from or toAccount
-                        if (FromAccount.Currency == "SEK")
-                        {
-                            FromAccount.Balance -= tempSekAmount;
-                            ToAccount.Balance += amount;
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {tempSekAmount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
-                            Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {amount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
-                            Console.ResetColor();
-                            Transactionservice.transactionslist.Add($"{DateTime.Now} {FromAccount.AccountNumber} Transfer added {tempSekAmount.ToString("N" + 2)} {FromAccount.Currency} {DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} transfer received {amount.ToString("N"+2)} {ToAccount.Currency}");
-                        }
-                        else if (ToAccount.Currency == "SEK")
-                        {
-                            ToAccount.Balance += tempSekAmount;
-                            FromAccount.Balance -= amount;
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {amount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
-                            Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {tempSekAmount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
-                            Console.ResetColor();
-                            Transactionservice.transactionslist.Add($"{DateTime.Now} {FromAccount.AccountNumber} Transfer added {amount.ToString("N" + 2)} {FromAccount.Currency} {DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} transfer received {tempSekAmount} {ToAccount.Currency}");
-                        }
-                        else
-                        {
-                            FromAccount.Balance -= amount;
-                            ToAccount.Balance += amount;
-
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {amount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
-                            Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {amount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
-                            Console.ResetColor();
-                            Transactionservice.transactionslist.Add($"{DateTime.Now} {FromAccount.AccountNumber} Transfer added {amount.ToString("N" + 2)} {FromAccount.Currency} {DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} transfer received {amount.ToString("N" + 2)} {ToAccount.Currency}");
-                            Console.ResetColor();
-                        }
-                    }
-                }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Do you want to try again? Y/N?");

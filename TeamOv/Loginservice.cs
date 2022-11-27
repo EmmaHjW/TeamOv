@@ -19,14 +19,14 @@ namespace TeamOv
         public Loginservice() //Constructor
         {      
         }
-        public static void InitiateUsers() //Adds users to userList at run
-        {
-            Admin.adminList.Add(new Admin("Admin", "password", true));
-            User customer1 = new User() { UserName = "Oskar", Password = "1234", Active = true, UserId = 0};
-            User customer2 = new User() { UserName = "Emma", Password = "1234", Active = true, UserId = 1 };
-            User.customerList.Add(customer1);
-            User.customerList.Add(customer2);
-        }
+        //public static void InitiateUsers() //Adds users to userList at run
+        //{
+        //    Admin.adminList.Add(new Admin("Admin", "password", true));
+        //    User customer1 = new User() { UserName = "Oskar", Password = "1234", Active = true};
+        //    User customer2 = new User() { UserName = "Emma", Password = "1234", Active = true};
+        //    User.customerList.Add(customer1);
+        //    User.customerList.Add(customer2);
+        //}
         public void ValidateLogin() //Login with validation if user exists
         {
             Loginservice loginservice= new Loginservice();
@@ -34,11 +34,11 @@ namespace TeamOv
             Console.ForegroundColor= ConsoleColor.DarkGray;
             Console.WriteLine(DateTime.Now);
             Console.ResetColor();
-            
             AnsiConsole.Write(
                 new FigletText("Welcome to Team EmOs Bank 2.0")
                     .Centered()
                     .Color(Color.SandyBrown));
+            
             var rule = new Rule();
             AnsiConsole.Write(rule);
             Console.WriteLine();

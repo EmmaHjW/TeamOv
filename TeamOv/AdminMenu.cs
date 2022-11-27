@@ -15,65 +15,117 @@ namespace TeamOv
     {
         public static void ShowAdminScreen(string currentUser)
         {
-            while (true)
+            //while (true)
+            //{
+            //    Console.Clear();
+            //    var grid = new Grid();
+            //    // Add columns 
+            //    grid.AddColumn();
+            //    grid.AddColumn();
+            //    grid.AddColumn();
+            //    grid.AddColumn();
+            //    grid.AddColumn();
+            //    Console.WriteLine("                         Welcome to OV.ATM");
+            //    Console.WriteLine($"Logged in as: {currentUser}\n{DateTime.Now}");
+            //    // Add header row 
+            //    grid.AddRow(new Text[]{
+            //    new Text(" ").LeftAligned(),
+            //    new Text(" ").Centered(),
+            //    new Text(" ").Centered(),
+            //    new Text(" ").RightAligned(),
+            //    new Text(" ").RightAligned()
+            //    });
+            //    // Add content row 
+            //    grid.AddRow(new Text[]{
+            //    new Text("(P)rint customers", new Style(Color.Green, Color.Black)).Centered(),
+            //    new Text("(C)reate customer", new Style(Color.Green, Color.Black)).Centered(),
+            //    new Text("(D)elete customer", new Style(Color.Green, Color.Black)).Centered(),
+            //    new Text("(L)ogout", new Style(Color.Green, Color.Black)).Centered(),
+            //    });
+            //    AnsiConsole.Write(grid);
+            //    string customerOptions = Console.ReadLine();
+            //    switch (customerOptions.ToLower())
+            //    {
+            //        case "p":
+            //            PrintAllCustomers();
+            //            Console.ReadLine();
+            //            break;
+            //        case "c":
+            //            CreateCustomerScreen();
+            //            Console.ReadLine();
+            //            break;
+            //        case "d":
+            //            Console.WriteLine("Delete customer");
+            //            DeleteCustomer();
+            //            Console.ReadLine();
+            //            break;
+            //        case "l":
+            //            Console.WriteLine("You going to be logged out..");
+            //            Console.WriteLine("_");
+            //            Thread.Sleep(200);
+            //            Console.WriteLine("_");
+            //            Thread.Sleep(200);
+            //            Console.WriteLine("_");
+            //            Thread.Sleep(200);
+            //            Console.WriteLine("logged out complete");
+            //            Environment.Exit(0);
+            //            break;
+            //        default:
+            //            continue;
+            //    }
+            //}
+            bool menu = true;
+            do
             {
                 Console.Clear();
-                var grid = new Grid();
-                // Add columns 
-                grid.AddColumn();
-                grid.AddColumn();
-                grid.AddColumn();
-                grid.AddColumn();
-                grid.AddColumn();
-                Console.WriteLine("                         Welcome to OV.ATM");
                 Console.WriteLine($"Logged in as: {currentUser}\n{DateTime.Now}");
-                // Add header row 
-                grid.AddRow(new Text[]{
-                new Text(" ").LeftAligned(),
-                new Text(" ").Centered(),
-                new Text(" ").Centered(),
-                new Text(" ").RightAligned(),
-                new Text(" ").RightAligned()
-                });
-                // Add content row 
-                grid.AddRow(new Text[]{
-                new Text("(P)rint customers", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(C)reate customer", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(D)elete customer", new Style(Color.Green, Color.Black)).Centered(),
-                new Text("(L)ogout", new Style(Color.Green, Color.Black)).Centered(),
-                });
-                AnsiConsole.Write(grid);
-                string customerOptions = Console.ReadLine();
-                switch (customerOptions.ToLower())
-                {
-                    case "p":
-                        PrintAllCustomers();
-                        Console.ReadLine();
-                        break;
-                    case "c":
-                        CreateCustomerScreen();
-                        Console.ReadLine();
-                        break;
-                    case "d":
-                        Console.WriteLine("Delete customer");
-                        DeleteCustomer();
-                        Console.ReadLine();
-                        break;
-                    case "l":
-                        Console.WriteLine("You going to be logged out..");
-                        Console.WriteLine("_");
-                        Thread.Sleep(200);
-                        Console.WriteLine("_");
-                        Thread.Sleep(200);
-                        Console.WriteLine("_");
-                        Thread.Sleep(200);
-                        Console.WriteLine("logged out complete");
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        continue;
+                var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                        .Title("[green]*** Customer menu ***[/]")
+                        .PageSize(10)
+                        .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
+                        .AddChoices(new[] {
+                        "Print customers",
+                        "Create customer",
+                        "Delete customer",
+                        "Logout"
+                        }));
+                    switch (menuOptions)
+                    {
+                        case "Print customers":
+                            Console.WriteLine("Print Print");
+                            PrintAllCustomers();
+                            Console.ReadLine();
+                            break;
+                        case "Create customer":
+                            CreateCustomerScreen();
+                            Console.ReadLine();
+                            break;
+                        case "Delete customer":
+                            Console.WriteLine("Delete customer");
+                            DeleteCustomer();
+                            Console.ReadLine();
+                            break;
+                        case "Logout":
+                            Console.WriteLine("You going to be logged out..");
+                            Console.WriteLine("_");
+                            Thread.Sleep(200);
+                            Console.WriteLine("_");
+                            Thread.Sleep(200);
+                            Console.WriteLine("_");
+                            Thread.Sleep(200);
+                            Console.WriteLine("logged out complete");
+                            Environment.Exit(0);
+                            break;
+                        default:
+                        Console.WriteLine("Do you want to go back? Yes/No");
+                        var back = Console.ReadLine();
+                        if (back.ToLower() == "no")
+                        {
+                            Environment.Exit(0);
+                        }
+                            continue;
                 }
-            }
+            } while (menu);  
         }
         public static bool AddUser(string username, string password, bool active) //Add new customer to bank
         {
