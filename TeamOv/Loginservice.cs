@@ -34,7 +34,7 @@ namespace TeamOv
             Console.ForegroundColor= ConsoleColor.DarkGray;
             Console.WriteLine(DateTime.Now);
             Console.ResetColor();
-
+            
             AnsiConsole.Write(
                 new FigletText("Welcome to Team EmOs Bank 2.0")
                     .Centered()
@@ -44,6 +44,7 @@ namespace TeamOv
             Console.WriteLine();
             do
             {
+                
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter username: ");
                 var name = Console.ReadLine();
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
@@ -58,8 +59,9 @@ namespace TeamOv
                 }
                 else
                 {
+                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    string msg = "Invalid username or password.";
+                    string msg = "Invalid username or password!";
                     Console.WriteLine("{0," + ((Console.WindowWidth / 2) + msg.Length / 3) + "}", msg);
                     Console.ResetColor();
                     tries++;
