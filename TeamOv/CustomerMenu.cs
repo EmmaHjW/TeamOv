@@ -103,7 +103,6 @@ namespace TeamOv
                         .AddChoices(new[] {
                         "Account info",
                         "Open account",
-                        "Open saving account",
                         "Deposit",
                         "Withdrawl",
                         "Transfer",
@@ -120,15 +119,11 @@ namespace TeamOv
                     case "Open account": //Create account
                         AddBankAccount(loggedInCustomer);
                         break;
-                    case "Open saving account":
-                        SavingAccount.AddANewSavingAccount(loggedInCustomer);
-                        break;
                     case "Deposit": //Deposit
                         transfer.Deposit(loggedInCustomer);
                         break;
                     case "Withdrawl": //Withdrawl
                         transfer.Withdraw(loggedInCustomer);
-
                         break;
                     case "Transfer": //Transfer
                         transfer.TransferMenu(loggedInCustomer);
@@ -157,23 +152,22 @@ namespace TeamOv
                 }
             } while (menu);
         }
-        public static void AddBankAccount(string loggedInCustomer)
+        public static void ChosenSalaryAccount(string loggedInCustomer)
         {
-            Transfer transfer = new Transfer();
             Console.Write("Please enter a name to your new account: ");
             var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
             BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK", true)); //wrong accountname
             Console.WriteLine($"{accountname} account {accountNumber} created");
-            Console.WriteLine();
-            Console.WriteLine("Do you want to make a first deposit? (Yes/No)" );
+
+            Console.WriteLine("Do you want to make a first deposit? (Yes/No)");
             var firstDeposit = Console.ReadLine();
             if (firstDeposit.ToLower() == "y" || firstDeposit.ToLower() == "yes")
             {
                 decimal amount;
                 Console.Write("Enter amount: ");
-                if(decimal.TryParse(Console.ReadLine(), out amount))
+                if (decimal.TryParse(Console.ReadLine(), out amount))
                 {
                     string deposit = accountNumber;
                     var Deposit = BankAccount.bankAccounts.Find(a => a.AccountNumber == deposit);
@@ -191,6 +185,23 @@ namespace TeamOv
             {
                 Console.WriteLine("You can do it another time instead.");
             }
+        }
+        
+        public static void AddBankAccount(string loggedInCustomer)
+        {
+            SavingAccount account = new SavingAccount();
+            Console.WriteLine("Which type of account do you want to open?: \n(SA)lary/(S)aving");
+            var chooseAccount = Console.ReadLine();
+            if (chooseAccount.ToLower() == "sa" || chooseAccount.ToLower() == "Salary")
+            {
+                ChosenSalaryAccount(loggedInCustomer);
+            }
+            else if (chooseAccount.ToLower() == "s" || chooseAccount.ToLower() == "Saving")
+            {
+                
+                SavingAccount.ChosenSavingAccount(loggedInCustomer);
+            }
+            
         }
         public static void PrintAccountInfo(string loggedInCustomer)
         {  
