@@ -186,10 +186,9 @@ namespace TeamOv
                 Console.WriteLine("You can do it another time instead.");
             }
         }
-        
         public static void AddBankAccount(string loggedInCustomer)
         {
-            SavingAccount account = new SavingAccount();
+            SavingAccount savingAccount = new SavingAccount();
             Console.WriteLine("Which type of account do you want to open?: \n(SA)lary/(S)aving");
             var chooseAccount = Console.ReadLine();
             if (chooseAccount.ToLower() == "sa" || chooseAccount.ToLower() == "Salary")
@@ -199,9 +198,8 @@ namespace TeamOv
             else if (chooseAccount.ToLower() == "s" || chooseAccount.ToLower() == "Saving")
             {
                 
-                SavingAccount.ChosenSavingAccount(loggedInCustomer);
+                savingAccount.ChosenSavingAccount(loggedInCustomer);
             }
-            
         }
         public static void PrintAccountInfo(string loggedInCustomer)
         {  
