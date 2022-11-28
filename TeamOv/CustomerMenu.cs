@@ -103,6 +103,7 @@ namespace TeamOv
                         .AddChoices(new[] {
                         "Account info",
                         "Open account",
+                        "Open saving account",
                         "Deposit",
                         "Withdrawl",
                         "Transfer",
@@ -118,6 +119,9 @@ namespace TeamOv
                         break;
                     case "Open account": //Create account
                         AddBankAccount(loggedInCustomer);
+                        break;
+                    case "Open saving account":
+                        SavingAccount.AddANewSavingAccount(loggedInCustomer);
                         break;
                     case "Deposit": //Deposit
                         transfer.Deposit(loggedInCustomer);
