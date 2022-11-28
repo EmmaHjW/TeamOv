@@ -13,17 +13,18 @@ namespace TeamOv
         private decimal interestRate2 = 0.8m;
         private decimal interestRate3 = 1.3m;
         private decimal givingRate = 0.0m;
+
         public decimal InterestRate(decimal amount, decimal givingRate)
         {
             if (amount < 10000)
             {
                 Console.WriteLine("Your rate: " + interestRate1 + "%");
             }
-            else if (amount > 10000 && amount < 50000)
+            else if (amount >= 10000 && amount <= 50000)
             {
                 Console.WriteLine("Your rate: " + interestRate2 + "%");
             }
-            else if(amount > 50000 && amount < 100000)
+            else if(amount >= 50000)
             {
                 Console.WriteLine("Your rate: " + interestRate3 + "%");
             }
@@ -50,7 +51,7 @@ namespace TeamOv
                     var Deposit = BankAccount.bankAccounts.Find(a => a.AccountNumber == deposit);
                     Deposit.Balance += amount;
                     InterestRate(amount, givingRate);
-                    Console.WriteLine($"Successful deposit with {amount} with rate {givingRate} {Deposit.Currency}.");
+                    Console.WriteLine($"Successful deposit {amount} {Deposit.Currency}.");
                     Console.ReadLine();
                     Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
                 }

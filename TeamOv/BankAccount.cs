@@ -17,7 +17,6 @@ namespace TeamOv
         public bool Active { get; set; }
         public decimal InterestRate { get; set; }
         public string AccountName { get; set; }
-        
         public string Currency { get; set; }
         public string AccountType { get; set; }
         public string? Name { get; }
