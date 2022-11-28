@@ -9,28 +9,26 @@ namespace TeamOv
 {
     public class SavingAccount 
     {
-        private readonly decimal interestRate1 = 0.0m;
-        private readonly decimal interestRate2 = 0.8m;
-        private readonly decimal interestRate3 = 1.3m;
-        private readonly decimal givingRate;
+        private decimal interestRate1 = 0.0m;
+        private decimal interestRate2 = 0.8m;
+        private decimal interestRate3 = 1.3m;
+        private decimal givingRate = 0.0m;
         public decimal InterestRate(decimal amount, decimal givingRate)
         {
-
             if (amount < 10000)
             {
-                return interestRate1;
+                Console.WriteLine("Your rate: " + interestRate1 + "%");
             }
-            else if (amount >= 10000 || amount <= 50000)
+            else if (amount > 10000 && amount < 50000)
             {
-                return interestRate2;
+                Console.WriteLine("Your rate: " + interestRate2 + "%");
             }
-            else if(amount >= 50000 || amount <= 100000)
+            else if(amount > 50000 && amount < 100000)
             {
-                return interestRate3;
+                Console.WriteLine("Your rate: " + interestRate3 + "%");
             }
             return givingRate;
         }
-
         public void ChosenSavingAccount(string loggedInCustomer)
         {
             Console.Write("Please enter a name to your new account: ");

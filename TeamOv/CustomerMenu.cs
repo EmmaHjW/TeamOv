@@ -185,8 +185,7 @@ namespace TeamOv
             {
                 Console.WriteLine("You can do it another time instead.");
             }
-        }
-        
+        }  
         public static void AddBankAccount(string loggedInCustomer)
         {
             SavingAccount account = new SavingAccount();
@@ -198,10 +197,8 @@ namespace TeamOv
             }
             else if (chooseAccount.ToLower() == "s" || chooseAccount.ToLower() == "Saving")
             {
-                
-                SavingAccount.ChosenSavingAccount(loggedInCustomer);
-            }
-            
+                account.ChosenSavingAccount(loggedInCustomer);
+            }    
         }
         public static void PrintAccountInfo(string loggedInCustomer)
         {  
