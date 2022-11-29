@@ -36,7 +36,6 @@ namespace TeamOv
             Console.WriteLine();
             do
             {
-                
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter username: ");
                 var name = Console.ReadLine();
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
