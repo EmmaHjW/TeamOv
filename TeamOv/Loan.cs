@@ -1,6 +1,6 @@
 ﻿using SixLabors.ImageSharp.Metadata.Profiles.Icc;
 using System;
-using System.Collections;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,31 +32,32 @@ namespace TeamOv
             }
             return givingLoanRate;
         }
-        public bool TotalBalance(string loggedInCustomer, decimal amount)
+
+        public void CheckCredit(string loggedInCustomer, decimal amount)
         {
-            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(b => b.Owner == loggedInCustomer);
-            
+            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
             decimal allowedToLoan = 0;
             foreach (var item in Owner)
             {
-                if (item.Currency == "SEK")
-                {
-                    allowedToLoan += item.Balance;
-                }
+                    if (item.Currency == "SEK")
+                    {
+                      //allowedToLoan += item.Balance;
+                        if (amount > item.Balance * 5)
+                        {
+                            Console.WriteLine("Your loan is denied");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your loan is allowed");
+                            LoanInterestRate(amount, givingLoanRate);
+                        }
+                    }    
             }
             return amount > allowedToLoan * 5;
 
         }
 
-        //public decimal CheckCredit(string loggedInCustomer, decimal amount, decimal balance)
-        //{
-        //    if (balance >= amount)
-        //    {
-
-        //    }
-        //}
-
-        public void LoanFromBank(string loggedInCustomer)
+    public void LoanFromBank(string loggedInCustomer)
         {
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
             var answer = Console.ReadLine();
@@ -67,7 +68,7 @@ namespace TeamOv
                 Console.Write("Enter amount: ");
                 if (decimal.TryParse(Console.ReadLine(), out amount))
                 {
-                    
+                    CheckCredit(loggedInCustomer, amount);
                 }
             }
             else if(answer.ToLower() == "n" || answer.ToLower() == "no")

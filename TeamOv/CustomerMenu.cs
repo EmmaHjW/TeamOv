@@ -130,7 +130,8 @@ namespace TeamOv
                         break;
                     case "Loan": //Loanservice
                         Console.WriteLine("Under construction");
-                        Loan.TotalBalance(loggedInCustomer);
+                        Loan loan = new Loan();
+                        loan.LoanFromBank(loggedInCustomer);
                         Console.ReadLine();
                         break;
                     case "Transaction history": //Print transaction history
