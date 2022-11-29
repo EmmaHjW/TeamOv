@@ -123,7 +123,6 @@ namespace TeamOv
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Enter accountID to transfer from: ");
-
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.Write("Transfer to: ");
                 int toAccount = int.Parse(Console.ReadLine());
@@ -240,7 +239,6 @@ namespace TeamOv
                             Console.ResetColor();
                         }
                     }
-                    Console.WriteLine("Not a valid amont");
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
