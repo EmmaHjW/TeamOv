@@ -9,13 +9,12 @@ using Xamarin.Forms;
 
 namespace TeamOv
 {
-    public class Loan : BankAccount
+    internal class Loan : BankAccount
     {
         private decimal loanInterestRate1 = 1.15m;
         private decimal loanInterestRate2 = 2.15m;
         private decimal loanInterestRate3 = 3.15m;
         private decimal givingLoanRate = 0.0m;
-        private decimal checkCredit;
 
         public decimal LoanInterestRate(decimal amount, decimal givingLoanRate, string loggedInCustomer)
         {
@@ -37,10 +36,8 @@ namespace TeamOv
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate3 + "%");
                 Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
-            return givingLoanRate;
-            
+            return givingLoanRate;  
         }
-
         public void CheckCredit(string loggedInCustomer, decimal amount)
         {
             List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
@@ -56,13 +53,11 @@ namespace TeamOv
                     else
                     {
                         Console.WriteLine("Your loan is allowed");
-                        LoanInterestRate(amount, givingLoanRate);
+                        LoanInterestRate(amount, givingLoanRate, loggedInCustomer);
                     }
                 }
-                
             }
         }
-
     public void LoanFromBank(string loggedInCustomer)
     {
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
@@ -82,6 +77,5 @@ namespace TeamOv
                 Console.WriteLine("Okej, let us know if you change your mind.");
             }
         }
-
     }
 }
