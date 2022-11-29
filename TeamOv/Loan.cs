@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace TeamOv
 {
@@ -16,27 +17,34 @@ namespace TeamOv
         private decimal givingLoanRate = 0.0m;
         private decimal checkCredit;
 
-        public decimal LoanInterestRate(decimal amount, decimal givingLoanRate)
+        public decimal LoanInterestRate(decimal amount, decimal givingLoanRate, string loggedInCustomer)
         {
             if (amount < 10000)
             {
+                givingLoanRate = loanInterestRate1;
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate1 + "%");
+                Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             else if (amount >= 10000 && amount <= 70000)
             {
+                givingLoanRate= loanInterestRate2;
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate2 + "%");
+                Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             else if (amount > 70000)
-            {
+            {   
+                givingLoanRate = loanInterestRate3;
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate3 + "%");
+                Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             return givingLoanRate;
+            
         }
 
         public void CheckCredit(string loggedInCustomer, decimal amount)
         {
             List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
-            decimal allowedToLoan = 0;
+           // decimal allowedToLoan = 0;
             foreach (var item in Owner)
             {
                     if (item.Currency == "SEK")
@@ -49,12 +57,11 @@ namespace TeamOv
                         else
                         {
                             Console.WriteLine("Your loan is allowed");
-                            LoanInterestRate(amount, givingLoanRate);
+                            LoanInterestRate(amount, givingLoanRate, loggedInCustomer);
+                            
                         }
                     }    
             }
-            return amount > allowedToLoan * 5;
-
         }
 
     public void LoanFromBank(string loggedInCustomer)
