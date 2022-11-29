@@ -18,15 +18,15 @@ namespace TeamOv
         {
             if (amount < 10000)
             {
-                Console.WriteLine("Your rate: " + interestRate1 + "%");
+                Console.WriteLine("Your interest rate: " + interestRate1 + "%");
             }
             else if (amount >= 10000 && amount <= 50000)
             {
-                Console.WriteLine("Your rate: " + interestRate2 + "%");
+                Console.WriteLine("Your interest rate: " + interestRate2 + "%");
             }
             else if(amount >= 50000)
             {
-                Console.WriteLine("Your rate: " + interestRate3 + "%");
+                Console.WriteLine("Your interest rate: " + interestRate3 + "%");
             }
             return givingRate;
         }
@@ -36,7 +36,7 @@ namespace TeamOv
             var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
-            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK", /*interrestRate*/true)); //wrong accountname
+            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK", true)); //wrong accountname
             Console.WriteLine($"{accountname} account {accountNumber} created");
 
             Console.WriteLine("Do you want to make a first deposit? (Yes/No)");

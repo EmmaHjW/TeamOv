@@ -65,6 +65,7 @@ namespace TeamOv
             }
             return bankaccount.Trim('-');
         }
+
         public override string ToString()
         {
             return $"AccountID {AccountId}, AccountNumber: {AccountNumber}, " +
