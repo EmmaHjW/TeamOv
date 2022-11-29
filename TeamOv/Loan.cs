@@ -50,14 +50,13 @@ namespace TeamOv
                         Console.WriteLine("Your loan is allowed");
                         LoanInterestRate(amount, givingLoanRate);
                     }
-                }    
+                }
+                
             }
-            return amount > allowedToLoan * 5;
-
         }
 
     public void LoanFromBank(string loggedInCustomer)
-        {
+    {
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
             var answer = Console.ReadLine();
             if (answer.ToLower() == "y" || answer.ToLower() == "yes")
