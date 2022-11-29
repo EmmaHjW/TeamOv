@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SixLabors.ImageSharp.Metadata.Profiles.Icc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,22 +32,24 @@ namespace TeamOv
             return givingLoanRate;
         }
 
-        public decimal TotalBalance(string loggedInCustomer, decimal Balance)
+        public static void TotalBalance(string loggedInCustomer)
         {
-            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == "Balance");
+            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
             foreach (var item in Owner)
             {
-                
-            }
-        }
-
-        public decimal CheckCredit(string loggedInCustomer, decimal amount, decimal balance)
-        {
-            if (balance >= amount)
-            {
+                Console.WriteLine(item.Balance);
 
             }
+            
         }
+
+        //public decimal CheckCredit(string loggedInCustomer, decimal amount, decimal balance)
+        //{
+        //    if (balance >= amount)
+        //    {
+
+        //    }
+        //}
 
         public void LoanFromBank(string loggedInCustomer)
         {
