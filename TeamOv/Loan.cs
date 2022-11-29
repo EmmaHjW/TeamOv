@@ -47,25 +47,24 @@ namespace TeamOv
            // decimal allowedToLoan = 0;
             foreach (var item in Owner)
             {
-                    if (item.Currency == "SEK")
+                if (item.Currency == "SEK")
+                {
+                    if (amount > item.Balance * 5)
                     {
-                      //allowedToLoan += item.Balance;
-                        if (amount > item.Balance * 5)
-                        {
-                            Console.WriteLine("Your loan is denied");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Your loan is allowed");
-                            LoanInterestRate(amount, givingLoanRate, loggedInCustomer);
-                            
-                        }
-                    }    
+                        Console.WriteLine("Your loan is denied");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your loan is allowed");
+                        LoanInterestRate(amount, givingLoanRate);
+                    }
+                }
+                
             }
         }
 
     public void LoanFromBank(string loggedInCustomer)
-        {
+    {
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
             var answer = Console.ReadLine();
             if (answer.ToLower() == "y" || answer.ToLower() == "yes")
