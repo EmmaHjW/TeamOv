@@ -16,8 +16,9 @@ namespace TeamOv
         {
             foreach (var transactions in transactionslist)
             {
+                Console.WriteLine();
                 Console.WriteLine(transactions);
             }
-        }  //$"Amount deposit{amount} {DateTime.Now} {loggedInCustomer}"
+        }  
     }
 }

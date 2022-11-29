@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Shapes;
 
 namespace TeamOv
 {
@@ -15,12 +16,10 @@ namespace TeamOv
     {
         private decimal tempSekAmount;
         private decimal amount;
-        private double amountD; //Maybe will go away
-        private readonly int fromAccount; //Maybe will go away
-        private readonly int toAccount; //Maybe will go away
+        //private int fromAccount;
+        //private int toAccount;
         private decimal dollarRate = 10.58m;
         private decimal dollarToEuro = 0.96m;
-        private decimal kronaRate = 10.9653m;
         private decimal euroRate = 10.89m;
         private decimal euroToDollar = 1.04m;
 
@@ -123,18 +122,15 @@ namespace TeamOv
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Enter accountID to transfer from: ");
+                Console.Write("Enter accountID to transfer from: ");
+
                 int fromAccount = int.Parse(Console.ReadLine());
-                Console.WriteLine("Transfer to: ");
+                Console.Write("Transfer to: ");
                 int toAccount = int.Parse(Console.ReadLine());
-                Console.WriteLine("Please enter amount: ");
+                Console.Write("Please enter amount: ");
 
                 var FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
                 var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
-                //decimal amount;
-                //decimal amount = (decimal)amountD;
-                //CurrencyService currencyService = new CurrencyService();
-                //currencyService.Currency(amount, fromAccount, toAccount);
                 while (decimal.TryParse(Console.ReadLine(), out amount)) //Check that amount is valid to transfer
                 {
                     if (amount <= 0)
@@ -244,10 +240,11 @@ namespace TeamOv
                             Console.ResetColor();
                         }
                     }
+                    Console.WriteLine("Not a valid amont");
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to try again? Y/N?");
+                Console.WriteLine("Do you want to make another transfer? Y/N?");
                 Console.ResetColor();
                 input = Console.ReadLine();
             }
@@ -264,7 +261,7 @@ namespace TeamOv
                 List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountName == "Salary account");
                 foreach (var owner in Owner)
                 {
-                    Console.WriteLine($"Owner: {owner.Owner} Account ID: {owner.AccountId} Account number: {owner.AccountNumber} Account name: {owner.AccountName}");
+                    Console.WriteLine($"Owner: {owner.Owner} Account ID: {owner.AccountId} Account number: {owner.AccountNumber} Account name: {owner.AccountName} Balance: {owner.Balance} {owner.Currency}");
                 }
                 Console.WriteLine(new string('_', 92));
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -307,30 +304,83 @@ namespace TeamOv
                         Console.WriteLine($"Transfer success: {amount}.SEK");
                         Console.WriteLine($"You have: {FromAccount.Balance}.SEK left on your {FromAccount.AccountName}");
                         Console.ResetColor();
+                        Transactionservice.transactionslist.Add($"{DateTime.Now} Transfer added {amount.ToString("N" + 2)} {FromAccount.Currency} Account: {FromAccount.AccountNumber} || " +
+                            $"{DateTime.Now.AddMinutes(15)} Transfer received {amount.ToString("N" + 2)} {ToAccount.Currency} Account: {ToAccount.AccountNumber} ");
                     }
-                Console.ResetColor();
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to try again? Y/N?");
-                input = Console.ReadLine();
+                    Console.ResetColor();
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Do you want to try again? Y/N?");
+                    input = Console.ReadLine();
                 }
             }
         }
         public void TransferMenu(string loggedInCustomer)
         {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("(O)wn accounts | (T)hird party transfer ");
-            Console.ResetColor();
-            string inputTransfer = Console.ReadLine();
+            bool menu = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                var transferOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                        .Title("[green]*** Customer menu ***[/]")
+                        .PageSize(10)
+                        .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
+                        .AddChoices(new[] {
+                        "Own accounts",
+                        "Third party",
+                        "Logout"
+                        }));
+                switch (transferOptions)
+                {
+                    case "Own accounts":
+                        TransferAmount(loggedInCustomer);
+                        Console.ReadLine();
+                        break;
+                    case "Third party": //Create account
+                        ThirdPartTransfer(loggedInCustomer);
+                        Console.ReadLine();
+                        break;
+                    case "Logout":
+                        Console.WriteLine("You going to be logged out..");
+                        Console.WriteLine("_");
+                        Thread.Sleep(200);
+                        Console.WriteLine("_");
+                        Thread.Sleep(200);
+                        Console.WriteLine("_");
+                        Thread.Sleep(200);
+                        Console.WriteLine("logged out complete");
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        continue;
+                }
+            } while (menu);
 
-            if (inputTransfer.ToLower() == "o")
+            //Console.WriteLine();
+            //Console.ForegroundColor = ConsoleColor.White;
+            //Console.WriteLine("(O)wn accounts | (T)hird party transfer ");
+            //Console.ResetColor();
+            //string inputTransfer = Console.ReadLine();
+
+            //if (inputTransfer.ToLower() == "o")
+            //{
+            //    TransferAmount(loggedInCustomer);
+            //}
+            //if (inputTransfer.ToLower() == "t")
+            //{
+            //    ThirdPartTransfer(loggedInCustomer);
+            //}
+        }
+        private int CheckForInt(string accountIn, int accountOut)
+        {
+            
+            while (true)
             {
-                TransferAmount(loggedInCustomer);
+                bool CheckSuccess = int.TryParse(Console.ReadLine(), out accountOut);
             }
-            if (inputTransfer.ToLower() == "t")
-            {
-                ThirdPartTransfer(loggedInCustomer);
-            }
+            
+
         }
     }
 }
