@@ -59,6 +59,7 @@ namespace TeamOv
                             Environment.Exit(0);
                             break;
                         default:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Do you want to go back? Yes/No");
                         var back = Console.ReadLine();
                         if (back.ToLower() == "no")
@@ -74,11 +75,13 @@ namespace TeamOv
             bool add;
             if (UserExists(username))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 add = false;
                 Log.Information("Duplicate username {username}. No user added.", username);
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 add = true;
                 User.customerList.Add(new Customer(username, password, customerName, (bool)active));
             }
@@ -86,6 +89,7 @@ namespace TeamOv
         }
         public static void CreateCustomerScreen() //Admin can create new customer
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Input customer data");
             Console.WriteLine(new string('_', 19));
             bool completed = false;
@@ -102,6 +106,7 @@ namespace TeamOv
                     Console.ResetColor();
                     continue;
                 }
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Input password: ");
                 var password = Console.ReadLine();
                 Console.Write("Enter firstname and lastname: ");
@@ -121,18 +126,22 @@ namespace TeamOv
                 completed = AddUser(username, password, customerName, (bool) active);
                 if (!completed)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Operation failed. No user added.");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Customer {username} created");
                 }
             } while (completed == false);  
         }
         public static bool UserExists(string username)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             bool exists = Customer.customerList.Exists(user => user.UserName == username);
             Log.Debug(
+               
                 "User with username {username} {existing}",
                 username,
                 (exists ? "exists." : "does not exist.")
@@ -141,6 +150,7 @@ namespace TeamOv
         }
         public static void PrintAllCustomers()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             foreach (var customers in User.customerList)
             {
                 Console.WriteLine(customers);
@@ -150,15 +160,17 @@ namespace TeamOv
         {
             if (User.customerList.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No customer to delete!");
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 PrintAllCustomers();
                 Console.WriteLine("Enter customer accountID to delete: ");
                 var toDelete = int.Parse(Console.ReadLine());
                 var ToDelete = User.customerList.Find(i => i.UserId == toDelete);
-
+                Console.ForegroundColor = ConsoleColor.Green;
                 User.customerList.Remove(ToDelete);
                 Console.WriteLine($"Customer: {ToDelete} deleted.", ToDelete);
             } 

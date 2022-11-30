@@ -50,14 +50,14 @@ namespace TeamOv
                     var ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
                     ToAccount.Balance += amount;
                     Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"New balance: {ToAccount.Balance.ToString("N" + 2)} {ToAccount.Currency}");
                     Console.ResetColor();
                     Transactionservice.transactionslist.Add($"{DateTime.Now} Deposit: {amount} {ToAccount.Currency} to Account number: {ToAccount.AccountNumber} Account owner: {ToAccount.Owner}");
                     Console.WriteLine();
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to deposit more? (Y/N)");
+                Console.WriteLine("Do you have more to deposit? (Y/N)");
                 Console.ResetColor();
                 input = Console.ReadLine();
             }
@@ -72,10 +72,10 @@ namespace TeamOv
                 if (BankAccount.bankAccounts.Count < 1)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("No accounts found to withdraw money from");
+                    Console.WriteLine("No accounts found to withdraw money from:");
                     Console.ResetColor();
                 }
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Enter account to withdraw from");
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.Write("Enter amount to withdraw: ");
@@ -98,7 +98,7 @@ namespace TeamOv
                 {
                     FromAccount.Balance -= amount;
                     Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Balance after withdraw: {FromAccount.Balance.ToString("N" + 2)} {FromAccount.Currency}");
                     Console.ResetColor();
                     Transactionservice.transactionslist.Add($"{DateTime.Now} Withdraw: {amount} {FromAccount.Currency} from account number: {FromAccount.AccountNumber} Account owner: {FromAccount.Owner}");
@@ -117,9 +117,7 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
-                CurrencyService currencyService= new CurrencyService();
-                currencyService.DifferentCurrency();
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Enter accountID to transfer from: ");
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.Write("Transfer to: ");
@@ -208,7 +206,7 @@ namespace TeamOv
                         {
                             FromAccount.Balance -= tempSekAmount;
                             ToAccount.Balance += amount;
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {tempSekAmount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
                             Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {amount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
                             Console.ResetColor();
@@ -219,7 +217,7 @@ namespace TeamOv
                         {
                             ToAccount.Balance += tempSekAmount;
                             FromAccount.Balance -= amount;
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {amount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
                             Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {tempSekAmount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
                             Console.ResetColor();
@@ -231,7 +229,7 @@ namespace TeamOv
                             FromAccount.Balance -= amount;
                             ToAccount.Balance += amount;
 
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"{DateTime.Now} Your transfer has been placed: {amount.ToString("N" + 2)}.{FromAccount.Currency} New balance: {FromAccount.Balance.ToString("N" + 2)}{FromAccount.Currency} on {FromAccount.AccountName}");
                             Console.WriteLine($"{DateTime.Now.AddMinutes(15)} Transfer received: {amount.ToString("N" + 2)} {ToAccount.Currency} New balance: {ToAccount.Balance.ToString("N" + 2)}.{ToAccount.Currency} on {ToAccount.AccountName}");
                             Console.ResetColor();
@@ -250,7 +248,8 @@ namespace TeamOv
         }
         public void ThirdPartTransfer(string loggedInCustomer)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Accounts available for third party transfer.");
             Console.WriteLine(new string('_', 110));
             Console.ResetColor();
@@ -258,12 +257,14 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.AccountName == "Salary account");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 foreach (var owner in Owner)
                 {
                     Console.WriteLine($"Account ID: {owner.AccountId} Account number: {owner.AccountNumber} Account name: {owner.AccountName} Balance: {owner.Balance} {owner.Currency} Owner: {owner.Owner} ");
                 }
-                Console.WriteLine(new string('_', 110));
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(new string('-', 92));
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Enter accountID to transfer from: ");
                 int fromAccount = int.Parse(Console.ReadLine());
                 Console.Write("Enter accountID to transfer to: ");
@@ -299,7 +300,7 @@ namespace TeamOv
                         Console.WriteLine();
                         FromAccount.Balance -= amount;
                         ToAccount.Balance += amount;
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Transfer success: {amount}.SEK");
                         Console.WriteLine($"New balance: {FromAccount.Balance}.SEK left on your {FromAccount.AccountName}");
                         Console.ResetColor();
@@ -320,7 +321,9 @@ namespace TeamOv
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                Console.ResetColor();
                 var transferOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
                         .Title("[green]*** Customer menu ***[/]")
                         .PageSize(10)

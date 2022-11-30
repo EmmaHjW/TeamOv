@@ -68,16 +68,18 @@ namespace TeamOv
         }
         public void LoanFromBank(string loggedInCustomer)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
             var answer = Console.ReadLine();
             Console.Clear();
             if (answer.ToLower() == "y" || answer.ToLower() == "yes")
             {
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Okey! To be able to offer you a loan we need to check if first, it is possible and second, to give you correct interest rate.\nHow mouch would you like to loan?");
                 Console.WriteLine();
                 decimal amount;
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Enter amount: ");
                 
                 if (decimal.TryParse(Console.ReadLine(), out amount))
@@ -88,6 +90,7 @@ namespace TeamOv
             }
             else if(answer.ToLower() == "n" || answer.ToLower() == "no")
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Okej, let us know if you change your mind.");
             }
         }
@@ -99,18 +102,18 @@ namespace TeamOv
             {
                 // Simulate some work
                 Console.WriteLine();
-                AnsiConsole.MarkupLine("[Green]Counting on your loan application[/]");
+                AnsiConsole.MarkupLine("[Darkgreen]Counting on your loan application[/]");
                 Thread.Sleep(1000);
 
                 // Update the status and spinner
-                ctx.Status("\r\n[Green]Will check the budget calculation[/]");
+                ctx.Status("\r\n[Darkgreen]Will check the budget calculation[/]");
                 ctx.Spinner(Spinner.Known.Star);
                 ctx.SpinnerStyle(Style.Parse("blue"));
 
                 // Simulate some work
                 AnsiConsole.MarkupLine("[Green]Are you married?[/]");
                 Thread.Sleep(2000); 
-                AnsiConsole.MarkupLine("[Green]It'll probably be fine. [/]");
+                AnsiConsole.MarkupLine("[Lightgreen]It'll probably be fine. [/]");
                 Thread.Sleep(2000); 
                 AnsiConsole.MarkupLine("[Yellow]Your lone is allowed![/]");
                 Thread.Sleep(2000);
@@ -123,18 +126,18 @@ namespace TeamOv
             .Start("Thinking...", ctx =>
             {
                 // Simulate some work
-                AnsiConsole.MarkupLine("[Green]Counting on your loan application[/]");
+                AnsiConsole.MarkupLine("[Darkgreen]Counting on your loan application[/]");
                 Thread.Sleep(1000);
 
                 // Update the status and spinner
-                ctx.Status("\r\n[Green]Will check the budget calculation[/]");
+                ctx.Status("\r\n[Darkgreen]Will check the budget calculation[/]");
                 ctx.Spinner(Spinner.Known.Star);
                 ctx.SpinnerStyle(Style.Parse("green"));
 
                 // Simulate some work
                 AnsiConsole.MarkupLine("[Green]Are you planning to buy house?[/]");
                 Thread.Sleep(2000); 
-                AnsiConsole.MarkupLine("[Green]It will be expensive to live there[/]");
+                AnsiConsole.MarkupLine("[Lightgreen]It will be expensive to live there[/]");
                 Thread.Sleep(2000); 
                 AnsiConsole.MarkupLine("[Red]Sorry, but your loan could not be approved![/]");
                 Thread.Sleep(2000);

@@ -35,6 +35,7 @@ namespace TeamOv
             Console.WriteLine();
             do
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter username: ");
                 var name = Console.ReadLine();
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
@@ -42,6 +43,7 @@ namespace TeamOv
                 
                 if (User.customerList.Exists(User => User.UserName == name && User.Password == password))   //Check if username exisist in list
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     var currentUser = User.customerList.Find(c => c.UserName == name); //Find customerName for loggedInUser.
                     Console.WriteLine("Logged in");
                     LoggedInUser(currentUser.CustomerName, name);
