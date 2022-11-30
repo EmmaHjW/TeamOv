@@ -19,7 +19,7 @@ namespace TeamOv
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                AnsiConsole.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
                 Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
                         .Title("[green]*** Customer menu ***[/]")

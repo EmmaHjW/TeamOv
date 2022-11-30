@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spectre.Console;
 
 namespace TeamOv
 {
@@ -19,20 +20,26 @@ namespace TeamOv
         }
         public static void PrintTransactionHistory() //Prints history
         {
+            AnsiConsole.Foreground = Color.CadetBlue;
+            AnsiConsole.WriteLine("Transfer history");
             foreach (var transactions in transactionslist)
             {
-                Console.WriteLine("Transfer history");
-                Console.WriteLine(new string('_', 101));
-                Console.WriteLine(transactions);
-            }      
+                AnsiConsole.WriteLine(transactions);
+                Console.WriteLine();
+            }
+            AnsiConsole.ResetColors();
+            PrintLoanHistory();
+        }  
+        public static void PrintLoanHistory()
+        {
+            AnsiConsole.Foreground = Color.IndianRed;
+            AnsiConsole.WriteLine("Loan history");
             foreach (var loanTransaktions in loanTransacktionList)
             {
-                Console.WriteLine(new string('_', 101));
-                Console.WriteLine("Loan history");
-                Console.WriteLine(loanTransaktions);
-                Console.WriteLine(new string('_', 101));
+                AnsiConsole.WriteLine(loanTransaktions);
+                Console.WriteLine();
             }
-            
-        }  
+            AnsiConsole.ResetColors();
+        }
     }
 }

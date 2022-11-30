@@ -25,7 +25,7 @@ namespace TeamOv
                 Console.WriteLine();
                 givingLoanRate = loanInterestRate1;
                 AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate1 + "%[/]");
-                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
+                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}%");
             }
             else if (amount >= 10000 && amount <= 70000)
             {
@@ -33,7 +33,7 @@ namespace TeamOv
                 givingLoanRate= loanInterestRate2;
                 Console.ForegroundColor = ConsoleColor.Blue;
                 AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate2 + "%[/]");
-                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
+                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}%");
             }
             else if (amount > 70000)
             {
@@ -41,7 +41,7 @@ namespace TeamOv
                 givingLoanRate = loanInterestRate3;
                 Console.ForegroundColor = ConsoleColor.Blue;
                 AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/][Green] " + loanInterestRate3 + "%[/]");
-                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
+                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate} %");
             }
             return givingLoanRate;  
         }
