@@ -92,6 +92,8 @@ namespace TeamOv
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Okej, let us know if you change your mind.");
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
             }
         }
         private void LoanAllowed()

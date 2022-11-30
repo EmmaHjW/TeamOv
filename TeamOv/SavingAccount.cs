@@ -55,9 +55,9 @@ namespace TeamOv
                     Deposit.Balance += amount;
                     InterestRate(amount, givingRate);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Successful deposit {amount} {Deposit.Currency}.");
-                    Console.ReadLine();
-                    Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
+                    Console.WriteLine($"Successful deposit {amount.ToString("N" + 2)} {Deposit.Currency}.");
+                    Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount.ToString("N" + 2)} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -67,9 +67,10 @@ namespace TeamOv
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("You can do it another time instead.");
             }
+
         }
 
     }

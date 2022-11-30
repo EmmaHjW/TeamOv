@@ -152,6 +152,7 @@ namespace TeamOv
                         {
                             if (FromAccount.Currency == "SEK" && ToAccount.Currency == "SEK")
                             {
+                                tempSekAmount = amount;
                                 _ = amount;
                                 break;
                             }
@@ -238,12 +239,12 @@ namespace TeamOv
                             Console.ResetColor();
                         }
                     }
-                }
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to make another transfer? Y/N");
-                Console.ResetColor();
-                input = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Do you want to make another transfer? Y/N");
+                    Console.ResetColor();
+                    input = Console.ReadLine();
+                }              
             }
         }
         public void ThirdPartTransfer(string loggedInCustomer)
@@ -313,6 +314,7 @@ namespace TeamOv
                     Console.WriteLine("Do you want to try again? (Y/N)");
                     input = Console.ReadLine();
                 }
+
             }
         }
         public void TransferMenu(string loggedInCustomer)

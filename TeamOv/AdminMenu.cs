@@ -24,20 +24,24 @@ namespace TeamOv
                 Console.ResetColor();
                 Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
-                        .Title("[green]*** Customer menu ***[/]")
+                        .Title("[lightgreen]*** Admin menu ***[/]")
                         .PageSize(10)
                         .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
                         .AddChoices(new[] {
                         "Print customers",
                         "Create customer",
                         "Delete customer",
+                        "Back to login screen",
                         "Logout"
                         }));
                     switch (menuOptions)
                     {
                         case "Print customers":
                             PrintAllCustomers();
-                            Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to get back to menu|");
+                        Console.ResetColor();
+                        Console.ReadLine();
                             break;
                         case "Create customer":
                             CreateCustomerScreen();
@@ -45,6 +49,12 @@ namespace TeamOv
                             break;
                         case "Delete customer":
                             DeleteCustomer();
+                            Console.ReadLine();
+                            break;
+                        case "Back to login screen":
+                            Console.Clear();
+                            Loginservice loginservice = new Loginservice();
+                            loginservice.ValidateLogin();
                             Console.ReadLine();
                             break;
                         case "Logout":
@@ -91,14 +101,14 @@ namespace TeamOv
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Input customer data");
-            Console.WriteLine(new string('_', 19));
+            Console.WriteLine(new string('-', 19));
             bool completed = false;
             do
             {
-                Console.ForegroundColor= ConsoleColor.Green;
+                Console.ForegroundColor= ConsoleColor.Yellow;
                 Console.Write("Input username: ");
-                Console.ResetColor();
                 var username = Console.ReadLine();
+                Console.ResetColor();
                 if (UserExists(username))
                 {
                     Console.ForegroundColor= ConsoleColor.Red;
@@ -115,11 +125,17 @@ namespace TeamOv
                 bool? active;
                 do
                 {
-                    Console.WriteLine("active or inactive");
+                    Console.WriteLine("Active or Inactive?");
                     active = Console.ReadLine() switch
                     {
+                        "Active" => true,
                         "active" => true,
+                        "A" => true,
+                        "a" => true,
+                        "Inactive" => false,
                         "inactive" => false,
+                        "I" => false,
+                        "i" => false,
                         _ => null
                     };
                 } while (active is null);
@@ -133,6 +149,9 @@ namespace TeamOv
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Customer {username} created");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("|enter to get back to menu|");
                 }
             } while (completed == false);  
         }
@@ -155,6 +174,7 @@ namespace TeamOv
             {
                 Console.WriteLine(customers);
             }
+            Console.WriteLine();
         }
         public static void DeleteCustomer() //Removes customer
         {
@@ -165,14 +185,18 @@ namespace TeamOv
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
                 PrintAllCustomers();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Enter customer accountID to delete: ");
                 var toDelete = int.Parse(Console.ReadLine());
                 var ToDelete = User.customerList.Find(i => i.UserId == toDelete);
                 Console.ForegroundColor = ConsoleColor.Green;
                 User.customerList.Remove(ToDelete);
                 Console.WriteLine($"Customer: {ToDelete} deleted.", ToDelete);
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("|enter to get back to menu|");
+                Console.ResetColor();
             } 
         }
     }

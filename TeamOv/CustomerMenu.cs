@@ -24,7 +24,7 @@ namespace TeamOv
                 Console.ResetColor();
                 Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
-                        .Title("[green]*** Customer menu ***[/]")
+                        .Title("[lightgreen]*** Customer menu ***[/]")
                         .PageSize(10)
                         .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
                         .AddChoices(new[] {
@@ -35,12 +35,17 @@ namespace TeamOv
                         "Transfer",
                         "Loan",
                         "Transaction history",
+                        "Back to login screen",
                         "Logout"
                         }));
                 switch (menuOptions)
                 {
-                    case "Account info":
+                    case "Account info": //Print all accounts
                         PrintAccountInfo(loggedInCustomer);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to get back to menu|");
+                        Console.ResetColor();
                         Console.ReadLine();
                         break;
                     case "Open account": //Create account
@@ -62,6 +67,12 @@ namespace TeamOv
                         break;
                     case "Transaction history": //Print transaction history
                         Transactionservice.PrintTransactionHistory();
+                        Console.ReadLine();
+                        break;
+                    case "Back to login screen": //Print transaction history
+                        Console.Clear();
+                        Loginservice loginservice = new Loginservice();
+                        loginservice.ValidateLogin();
                         Console.ReadLine();
                         break;
                     case "Logout":
@@ -106,20 +117,22 @@ namespace TeamOv
                     string deposit = accountNumber;
                     var Deposit = BankAccount.bankAccounts.Find(a => a.AccountNumber == deposit);
                     Deposit.Balance += amount;
-                    Console.WriteLine($"Successful deposit with {amount} {Deposit.Currency}.");
-                    Console.ReadLine();
-                    Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
+                    Console.WriteLine($"Successful deposit with {amount.ToString("N" + 2)} {Deposit.Currency}.");
+                    Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount.ToString("N" + 2)} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
+                    Console.WriteLine();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("It´s ok, you can come back another time.");
+                    Console.WriteLine();
                 }
             }  
             else
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("You can do it another time instead.");
+                Console.WriteLine();
             }
         }
         public static void AddBankAccount(string loggedInCustomer)
@@ -148,10 +161,19 @@ namespace TeamOv
                 {
                     case "Salary account":
                         ChosenSalaryAccount(loggedInCustomer);
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to get back to menu|");
+                        Console.WriteLine();
                         Console.ReadLine();
+                        Console.ResetColor();
                         break;
                     case "Saving account": //Create account
                         savingAccount.ChosenSavingAccount(loggedInCustomer);
+                        Console.ForegroundColor= ConsoleColor.DarkGray;
+                        Console.WriteLine();
+                        Console.WriteLine("|enter to get back to menu|");
+                        Console.ReadLine();
+                        Console.ResetColor();
                         break;
                     case "Back to menu": //Create account
                         ShowCustomerScreen(loggedInCustomer);
@@ -174,20 +196,23 @@ namespace TeamOv
         }
         public static void PrintAccountInfo(string loggedInCustomer) //Print account info loggInCustomer
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            if (BankAccount.bankAccounts.Count < 0)
+            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
+
+            if (BankAccount.bankAccounts.Count < 1)
             {
-                Console.WriteLine("No accounts found, talk to a bank employee to open one.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No accounts found, add one to get one.");
+                Console.ResetColor();
             }
-            List<BankAccount>Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(new string('-', 101));
-            foreach (var own in Owner)
-            {
-                Console.WriteLine(own);
-            }
-            Console.WriteLine(new string('-', 101));
-            Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(new string('-', 101));
+                foreach (var own in Owner)
+                {
+                    Console.WriteLine(own);
+                }
+                Console.WriteLine(new string('-', 101));
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.ResetColor();
         }
     }
 }
