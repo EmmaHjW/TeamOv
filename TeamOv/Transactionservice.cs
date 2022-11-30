@@ -11,6 +11,7 @@ namespace TeamOv
         public string AccountOwner { get; set; }
 
         public static List<string> transactionslist = new List<string>();
+        public static List<string> loanTransacktionList= new List<string>();
         public Transactionservice(string accountOwner)
         {
             AccountOwner = accountOwner;
@@ -20,9 +21,18 @@ namespace TeamOv
         {
             foreach (var transactions in transactionslist)
             {
-                Console.WriteLine();
+                Console.WriteLine("Transfer history");
+                Console.WriteLine(new string('_', 101));
                 Console.WriteLine(transactions);
+            }      
+            foreach (var loanTransaktions in loanTransacktionList)
+            {
+                Console.WriteLine(new string('_', 101));
+                Console.WriteLine("Loan history");
+                Console.WriteLine(loanTransaktions);
+                Console.WriteLine(new string('_', 101));
             }
+            
         }  
     }
 }

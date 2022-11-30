@@ -2,14 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Shapes;
 
 namespace TeamOv
 {
     public class CustomerMenu
     {
+        private static int index;
+
         public static void ShowCustomerScreen(string loggedInCustomer)
         {
             Transfer transfer = new Transfer();
@@ -18,6 +22,7 @@ namespace TeamOv
             {
                 Console.Clear();
                 Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
                         .Title("[green]*** Customer menu ***[/]")
                         .PageSize(10)
@@ -51,7 +56,6 @@ namespace TeamOv
                         transfer.TransferMenu(loggedInCustomer);
                         break;
                     case "Loan": //Loanservice
-                        Console.WriteLine("Under construction");
                         Loan loan = new Loan();
                         loan.LoanFromBank(loggedInCustomer);
                         Console.ReadLine();
@@ -82,7 +86,7 @@ namespace TeamOv
             var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
-            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK", true)); //wrong accountname
+            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK",true)); //wrong accountname
             Console.WriteLine($"{accountname} account {accountNumber} created");
 
             Console.WriteLine("Do you want to make a first deposit? (Yes/No)");
@@ -112,31 +116,80 @@ namespace TeamOv
         }
         public static void AddBankAccount(string loggedInCustomer)
         {
+            Console.WriteLine();
             SavingAccount savingAccount = new SavingAccount();
-            Console.WriteLine("Which type of account do you want to open?: \n(SA)lary/(S)aving");
-            var chooseAccount = Console.ReadLine();
-            if (chooseAccount.ToLower() == "sa" || chooseAccount.ToLower() == "Salary")
+            //Console.WriteLine("Which type of account do you want to open?");
+
+            bool menu = true;
+            do
             {
-                ChosenSalaryAccount(loggedInCustomer);
-            }
-            else if (chooseAccount.ToLower() == "s" || chooseAccount.ToLower() == "Saving")
-            {
-                
-                savingAccount.ChosenSavingAccount(loggedInCustomer);
-            }
+                Console.Clear();
+                Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                Console.WriteLine();
+                var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                        .Title("[green]Which type of account do you want to open?[/]")
+                        .PageSize(10)
+                        .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
+                        .AddChoices(new[] {
+                        "Salary account",
+                        "Saving account",
+                        "Back to menu",
+                        "Logout"
+                        }));
+                switch (menuOptions)
+                {
+                    case "Salary account":
+                        ChosenSalaryAccount(loggedInCustomer);
+                        Console.ReadLine();
+                        break;
+                    case "Saving account": //Create account
+                        savingAccount.ChosenSavingAccount(loggedInCustomer);
+                        break;
+                    case "Back to menu": //Create account
+                        ShowCustomerScreen(loggedInCustomer);
+                        break;
+                    case "Logout":
+                        Console.WriteLine("You going to be logged out..");
+                        Console.WriteLine("_");
+                        Thread.Sleep(200);
+                        Console.WriteLine("_");
+                        Thread.Sleep(200);
+                        Console.WriteLine("_");
+                        Thread.Sleep(200);
+                        Console.WriteLine("logged out complete");
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        continue;
+                }
+            } while (menu);
+
+            //var chooseAccount = Console.ReadLine();
+            //if (chooseAccount.ToLower() == "sa" || chooseAccount.ToLower() == "Salary")
+            //{
+            //    ChosenSalaryAccount(loggedInCustomer);
+            //}
+            //else if (chooseAccount.ToLower() == "s" || chooseAccount.ToLower() == "Saving")
+            //{
+
+            //    savingAccount.ChosenSavingAccount(loggedInCustomer);
+            //}
         }
-        public static void PrintAccountInfo(string loggedInCustomer)
-        {  
+        public static void PrintAccountInfo(string loggedInCustomer) //Print account info loggInCustomer
+        {
             if (BankAccount.bankAccounts.Count < 0)
             {
                 Console.WriteLine("No accounts found, talk to a bank employee to open one.");
             }
             List<BankAccount>Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
-
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(new string('_', 101));
             foreach (var own in Owner)
             {
                 Console.WriteLine(own);
             }
+            Console.WriteLine(new string('_', 101));
+            Console.ResetColor();
         }
     }
 }

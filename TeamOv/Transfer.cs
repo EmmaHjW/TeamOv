@@ -28,16 +28,15 @@ namespace TeamOv
             string input = "Y";
             while (input == "Y" || input == "y")
             {
-                Console.WriteLine(new string('_', 100));
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
-                Console.WriteLine(new string('_', 100));
                 if (BankAccount.bankAccounts.Count < 1)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No accounts found to deposit money into");
                     Console.ResetColor();
                 }
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Enter account ID to deposit to: ");
                 int toAccount = int.Parse(Console.ReadLine());
                 Console.Write("Enter amount to deposit: ");
@@ -327,6 +326,7 @@ namespace TeamOv
                         .AddChoices(new[] {
                         "Own accounts",
                         "Third party",
+                        "Back to menu",
                         "Logout"
                         }));
                 switch (transferOptions)
@@ -338,6 +338,9 @@ namespace TeamOv
                     case "Third party": //Create account
                         ThirdPartTransfer(loggedInCustomer);
                         Console.ReadLine();
+                        break;
+                    case "Back to menu": //Create account
+                        CustomerMenu.ShowCustomerScreen(loggedInCustomer);
                         break;
                     case "Logout":
                         Console.WriteLine("You going to be logged out..");

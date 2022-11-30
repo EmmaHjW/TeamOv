@@ -1,4 +1,5 @@
 ﻿using SixLabors.ImageSharp.Metadata.Profiles.Icc;
+using Spectre.Console;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Style = Spectre.Console.Style;
 
 namespace TeamOv
 {
@@ -22,19 +24,19 @@ namespace TeamOv
             {
                 givingLoanRate = loanInterestRate1;
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate1 + "%");
-                Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
+                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             else if (amount >= 10000 && amount <= 70000)
             {
                 givingLoanRate= loanInterestRate2;
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate2 + "%");
-                Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
+                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             else if (amount > 70000)
             {   
                 givingLoanRate = loanInterestRate3;
                 Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate3 + "%");
-                Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
+                Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             return givingLoanRate;  
         }
@@ -48,18 +50,19 @@ namespace TeamOv
                 {
                     if (amount > item.Balance * 5)
                     {
-                        Console.WriteLine("Your loan is denied");
+                        LoanDenied();
+                        Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer}");
                     }
                     else
                     {
-                        Console.WriteLine("Your loan is allowed");
+                        LoanAllowed();
                         LoanInterestRate(amount, givingLoanRate, loggedInCustomer);
                     }
                 }
             }
         }
-    public void LoanFromBank(string loggedInCustomer)
-    {
+        public void LoanFromBank(string loggedInCustomer)
+        {
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
             var answer = Console.ReadLine();
             if (answer.ToLower() == "y" || answer.ToLower() == "yes")
@@ -76,6 +79,54 @@ namespace TeamOv
             {
                 Console.WriteLine("Okej, let us know if you change your mind.");
             }
+        }
+        private void LoanAllowed()
+        {
+            AnsiConsole.Status()
+            .Start("Thinking...", ctx =>
+            {
+                // Simulate some work
+                AnsiConsole.MarkupLine("Counting on your loan application");
+                Thread.Sleep(1000);
+
+                // Update the status and spinner
+                ctx.Status("\r\nWill check the budget calculation");
+                ctx.Spinner(Spinner.Known.Star);
+                ctx.SpinnerStyle(Style.Parse("green"));
+
+                // Simulate some work
+                AnsiConsole.MarkupLine("Are you married?");
+                Thread.Sleep(2000); 
+                AnsiConsole.MarkupLine("It'll probably be fine. ");
+                Thread.Sleep(2000); 
+                AnsiConsole.MarkupLine("[Yellow]Your lone is allowed![/]");
+                Thread.Sleep(2000);
+            });
+            Console.ReadLine();
+        }    
+        private void LoanDenied()
+        {
+            AnsiConsole.Status()
+            .Start("Thinking...", ctx =>
+            {
+                // Simulate some work
+                AnsiConsole.MarkupLine("Counting on your loan application");
+                Thread.Sleep(1000);
+
+                // Update the status and spinner
+                ctx.Status("\r\nWill check the budget calculation");
+                ctx.Spinner(Spinner.Known.Star);
+                ctx.SpinnerStyle(Style.Parse("green"));
+
+                // Simulate some work
+                AnsiConsole.MarkupLine("Planing to buy house?");
+                Thread.Sleep(2000); 
+                AnsiConsole.MarkupLine("It will be expensive to live there");
+                Thread.Sleep(2000); 
+                AnsiConsole.MarkupLine("[Red]Sorry, but your loan could not be approved![/]");
+                Thread.Sleep(2000);
+            });
+            Console.ReadLine();
         }
     }
 }
