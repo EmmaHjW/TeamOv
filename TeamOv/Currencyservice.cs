@@ -45,8 +45,6 @@ namespace TeamOv
         //    double euroRate = 10.89;
         //    double euroToDollar = 1.04;
 
-        //    FromAccount = BankAccount.bankAccounts.Find(a => a.AccountId == fromAccount);
-        //    ToAccount = BankAccount.bankAccounts.Find(a => a.AccountId == toAccount);
 
 
         //    foreach (var item in BankAccount.bankAccounts)

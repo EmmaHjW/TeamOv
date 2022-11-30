@@ -15,6 +15,7 @@ namespace TeamOv
         private readonly decimal givingRate = 0.0m;
         public decimal InterestRate(decimal amount, decimal givingRate)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             if (amount < 10000)
             {
                 Console.WriteLine("Your interest rate: " + interestRate1 + "%");
@@ -31,13 +32,16 @@ namespace TeamOv
         }
         public void ChosenSavingAccount(string loggedInCustomer)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Please enter a name to your new account: ");
             var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
             BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK", true)); //wrong accountname
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{accountname} account {accountNumber} created");
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Do you want to make a first deposit? (Yes/No)");
             var firstDeposit = Console.ReadLine();
             if (firstDeposit.ToLower() == "y" || firstDeposit.ToLower() == "yes")
@@ -50,17 +54,20 @@ namespace TeamOv
                     var Deposit = BankAccount.bankAccounts.Find(a => a.AccountNumber == deposit);
                     Deposit.Balance += amount;
                     InterestRate(amount, givingRate);
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Successful deposit {amount} {Deposit.Currency}.");
                     Console.ReadLine();
                     Transactionservice.transactionslist.Add($"{DateTime.Now} Depsoit: {amount} {Deposit.Currency} to account number: {Deposit.AccountNumber}");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("It´s ok, you can come back another time.");
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("You can do it another time instead.");
             }
         }

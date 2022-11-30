@@ -19,7 +19,9 @@ namespace TeamOv
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                Console.ResetColor();
                 Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
                         .Title("[green]*** Customer menu ***[/]")
@@ -80,19 +82,25 @@ namespace TeamOv
         }
         public static void ChosenSalaryAccount(string loggedInCustomer)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Please enter a name to your new account: ");
             var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
             BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK",true));
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{accountname} account {accountNumber} created");
-
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Do you want to make a first deposit? (Yes/No)");
             var firstDeposit = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Green;
             if (firstDeposit.ToLower() == "y" || firstDeposit.ToLower() == "yes")
             {
                 decimal amount;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Enter amount: ");
+                Console.ForegroundColor = ConsoleColor.Green;
                 if (decimal.TryParse(Console.ReadLine(), out amount))
                 {
                     string deposit = accountNumber;
@@ -104,11 +112,13 @@ namespace TeamOv
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("It´s ok, you can come back another time.");
                 }
-            }
+            }  
             else
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("You can do it another time instead.");
             }
         }
@@ -120,10 +130,12 @@ namespace TeamOv
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"Logged in as: {loggedInCustomer}\n{DateTime.Now}");
+                Console.ResetColor();
                 Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
-                        .Title("[green]Which type of account do you want to open?[/]")
+                        .Title("[yellow]Which type of account do you want to open?[/]")
                         .PageSize(10)
                         .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
                         .AddChoices(new[] {
@@ -162,6 +174,7 @@ namespace TeamOv
         }
         public static void PrintAccountInfo(string loggedInCustomer) //Print account info loggInCustomer
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             if (BankAccount.bankAccounts.Count < 0)
             {
                 Console.WriteLine("No accounts found, talk to a bank employee to open one.");
