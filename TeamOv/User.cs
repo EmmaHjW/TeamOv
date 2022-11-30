@@ -15,6 +15,8 @@ namespace TeamOv
         protected bool isAdmin;
         protected string username;
         protected string password;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string CustomerName { get; set; }
         public string? UserName { get; set; }
         public string? Password { get; set; }

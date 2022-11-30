@@ -24,7 +24,10 @@ namespace TeamOv
             do
             {
                 Console.Clear();
+                Console.ForegroundColor= ConsoleColor.DarkGray;
                 Console.WriteLine($"Logged in as: {currentUser}\n{DateTime.Now}");
+                Console.ResetColor();
+                Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
                         .Title("[green]*** Customer menu ***[/]")
                         .PageSize(10)
@@ -89,19 +92,25 @@ namespace TeamOv
         public static void CreateCustomerScreen() //Admin can create new customer
         {
             Console.WriteLine("Input customer data");
+            Console.WriteLine(new string('_', 19));
             bool completed = false;
             do
             {
+                Console.ForegroundColor= ConsoleColor.Green;
                 Console.Write("Input username: ");
+                Console.ResetColor();
                 var username = Console.ReadLine();
                 if (UserExists(username))
                 {
+                    Console.ForegroundColor= ConsoleColor.Red;
                     Console.WriteLine("Duplicate username!");
+                    Console.ResetColor();
                     continue;
                 }
                 Console.Write("Input password: ");
                 var password = Console.ReadLine();
                 Console.Write("Enter firstname and lastname: ");
+
                 var customerName = Console.ReadLine();
                 bool? active;
                 do

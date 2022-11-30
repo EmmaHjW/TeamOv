@@ -168,12 +168,12 @@ namespace TeamOv
             }
             List<BankAccount>Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer); //WORKS YIIPPPEEE!!!
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(new string('_', 101));
+            Console.WriteLine(new string('-', 101));
             foreach (var own in Owner)
             {
                 Console.WriteLine(own);
             }
-            Console.WriteLine(new string('_', 101));
+            Console.WriteLine(new string('-', 101));
             Console.ResetColor();
         }
     }

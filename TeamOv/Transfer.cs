@@ -118,6 +118,8 @@ namespace TeamOv
             while (input == "Y" || input == "y")
             {
                 CustomerMenu.PrintAccountInfo(loggedInCustomer);
+                CurrencyService currencyService= new CurrencyService();
+                currencyService.DifferentCurrency();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Enter accountID to transfer from: ");
                 int fromAccount = int.Parse(Console.ReadLine());
