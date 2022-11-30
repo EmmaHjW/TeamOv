@@ -33,15 +33,16 @@ namespace TeamOv
         }
         public User()
         {
+
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
             Admin admin = new Admin() { UserName = "Admin", Password = "password", AdminName = "Team OV", Active = true};
-            Admin.adminList.Add(admin);
-            User customer1 = new User() { UserId = idPool++,UserName = "Oskar", Password = "1234", CustomerName = "Oskar Ullsten", Active = true };
-            User customer2 = new User() { UserId = idPool++,UserName = "Emma", Password = "1234", CustomerName = "Emma Hjalmarsson Wahlström", Active = true };
+            User customer1 = new User() { UserId = idPool++, UserName = "Oskar", Password = "1234", CustomerName = "Oskar Ullsten", Active = true };
+            User customer2 = new User() { UserId = idPool++, UserName = "Emma", Password = "1234", CustomerName = "Emma Hjalmarsson Wahlström", Active = true };
             User.customerList.Add(customer1);
             User.customerList.Add(customer2);
+            Admin.adminList.Add(admin);
         }
         public static bool UserExists(string username) //Checks so not dublicate new customer
         {
@@ -55,7 +56,7 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"userid: {UserId}, username: {UserName}, password: {Password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
+            return $"Userid: {UserId}, Username: {UserName}{username} Password: {Password}{password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
         }
     }
 }

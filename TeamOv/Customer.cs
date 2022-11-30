@@ -14,16 +14,19 @@ namespace TeamOv
             this.bankAccounts = bankAccounts;
         }
 
-        public Customer(string username, string password, bool active)
+        public Customer(string username, string password, string customerName, bool active)
         {
             this.username = username;
             this.password = password;
+            this.CustomerName= customerName;
             Active = active;
         }
 
-        public override string ToString()
-        {
-            return $"userid: {UserId}, username: {UserName}, password: {Password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"userid: {UserId}, username: {UserName}, password: {Password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
+        //}
+
+
     }
 }

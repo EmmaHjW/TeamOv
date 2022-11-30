@@ -71,7 +71,7 @@ namespace TeamOv
                 }
             } while (menu);  
         }
-        public static bool AddUser(string username, string password, bool active) //Add new customer to bank
+        public static bool AddUser(string username, string password, string customerName, bool active) //Add new customer to bank
         {
             bool add;
             if (UserExists(username))
@@ -82,7 +82,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.customerList.Add(new Customer(username, password, (bool)active));
+                User.customerList.Add(new Customer(username, password, customerName, (bool)active));
             }
             return add;
         }
@@ -101,6 +101,8 @@ namespace TeamOv
                 }
                 Console.Write("Input password: ");
                 var password = Console.ReadLine();
+                Console.Write("Enter firstname and lastname: ");
+                var customerName = Console.ReadLine();
                 bool? active;
                 do
                 {
@@ -112,7 +114,7 @@ namespace TeamOv
                         _ => null
                     };
                 } while (active is null);
-                completed = AddUser(username, password, (bool) active);
+                completed = AddUser(username, password, customerName, (bool) active);
                 if (!completed)
                 {
                     Console.WriteLine("Operation failed. No user added.");
