@@ -12,7 +12,7 @@ namespace TeamOv
         public string AccountOwner { get; set; }
 
         public static List<string> transactionslist = new List<string>();
-        public static List<string> loanTransacktionList= new List<string>();
+        public static List<string> loanTransacktionList = new List<string>();
         public Transactionservice(string accountOwner)
         {
             AccountOwner = accountOwner;
