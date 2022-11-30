@@ -1,3 +1,2 @@
-# TeamOv
-Teamwork at Edugrade system developer education  
-It's a new start! Now we code with smile on our lips! 😁💃
+NET-22 System developer
+Last project for the C# OOP course - Emma Hjalmarsson & Oskar Ullsten.
