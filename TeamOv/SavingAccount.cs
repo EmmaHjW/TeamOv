@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TeamOv
 {
-    public class SavingAccount 
+    public class SavingAccount : BankAccount
     {
         private readonly decimal interestRate1 = 0.0m;
         private readonly decimal interestRate2 = 0.8m;

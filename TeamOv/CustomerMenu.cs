@@ -118,8 +118,6 @@ namespace TeamOv
         {
             Console.WriteLine();
             SavingAccount savingAccount = new SavingAccount();
-            //Console.WriteLine("Which type of account do you want to open?");
-
             bool menu = true;
             do
             {
@@ -163,17 +161,6 @@ namespace TeamOv
                         continue;
                 }
             } while (menu);
-
-            //var chooseAccount = Console.ReadLine();
-            //if (chooseAccount.ToLower() == "sa" || chooseAccount.ToLower() == "Salary")
-            //{
-            //    ChosenSalaryAccount(loggedInCustomer);
-            //}
-            //else if (chooseAccount.ToLower() == "s" || chooseAccount.ToLower() == "Saving")
-            //{
-
-            //    savingAccount.ChosenSavingAccount(loggedInCustomer);
-            //}
         }
         public static void PrintAccountInfo(string loggedInCustomer) //Print account info loggInCustomer
         {

@@ -22,7 +22,6 @@ namespace TeamOv
         public void ValidateLogin() //Login with validation if user exists
         {
             Loginservice loginservice= new Loginservice();
-            //Console.WriteLine("Welcome to TeamOv-Bank");
             Console.ForegroundColor= ConsoleColor.DarkGray;
             Console.WriteLine(DateTime.Now);
             Console.ResetColor();
@@ -41,6 +40,9 @@ namespace TeamOv
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
                 var password = ConsolePlus.ReadPassword();
                 string currentUser = name;
+
+
+
                 if (User.customerList.Exists(User => User.UserName == name && User.Password == password)
                     || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))   //Check if username exisist in list
                 {

@@ -20,6 +20,7 @@ namespace TeamOv
 
         public decimal LoanInterestRate(decimal amount, decimal givingLoanRate, string loggedInCustomer)
         {
+
             if (amount < 10000)
             {
                 givingLoanRate = loanInterestRate1;
@@ -42,7 +43,7 @@ namespace TeamOv
         }
         public void CheckCredit(string loggedInCustomer, decimal amount)
         {
-            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
+            List<BankAccount> Owner = bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
            // decimal allowedToLoan = 0;
             foreach (var item in Owner)
             {
@@ -51,7 +52,7 @@ namespace TeamOv
                     if (amount > item.Balance * 5)
                     {
                         LoanDenied();
-                        Transactionservice.transactionslist.Add($"{DateTime.Now} {loggedInCustomer}");
+                        Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer}");
                     }
                     else
                     {
@@ -107,6 +108,7 @@ namespace TeamOv
         private void LoanDenied()
         {
             AnsiConsole.Status()
+
             .Start("Thinking...", ctx =>
             {
                 // Simulate some work

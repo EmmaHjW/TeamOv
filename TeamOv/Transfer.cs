@@ -12,12 +12,10 @@ using Xamarin.Forms.Shapes;
 
 namespace TeamOv
 {
-    public class Transfer : CurrencyService
+    public class Transfer
     {
         private decimal tempSekAmount;
         private decimal amount;
-        //private int fromAccount;
-        //private int toAccount;
         private decimal dollarRate = 10.58m;
         private decimal dollarToEuro = 0.96m;
         private decimal euroRate = 10.89m;
