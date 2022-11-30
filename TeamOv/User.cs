@@ -22,6 +22,7 @@ namespace TeamOv
         public bool Active { get; set; }
         public bool IsAdmin { get; init; }
         public string LoggedInUser { get; set; }
+        
         public User(string? userName, string? password, string customerName, bool active)
         {
             UserId = idPool++;
@@ -31,10 +32,11 @@ namespace TeamOv
             IsAdmin = IsAdmin;
             CustomerName = customerName;
         }
+
         public User()
         {
-
         }
+
         public static void InitiateUsers() //Adds users to userList at run
         {
             Admin admin = new Admin() { UserName = "Admin", Password = "password", AdminName = "Team OV", Active = true};

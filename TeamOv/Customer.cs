@@ -9,18 +9,18 @@ namespace TeamOv
     public class Customer : User
     {
         private List<BankAccount> bankAccounts = new List<BankAccount>();
-        public Customer(List<BankAccount> bankAccounts)
+
+        public Customer(string? userName, string? password, string customerName, bool active) : base(userName, password, customerName, active)
         {
-            this.bankAccounts = bankAccounts;
         }
 
-        public Customer(string username, string password, string customerName, bool active)
-        {
-            this.username = username;
-            this.password = password;
-            this.CustomerName= customerName;
-            Active = active;
-        }
+        //public Customer(string username, string password, string customerName, bool active)
+        //{
+        //    this.username = username;
+        //    this.password = password;
+        //    this.CustomerName= customerName;
+        //    this.Active = active;
+        //}
 
         //public override string ToString()
         //{

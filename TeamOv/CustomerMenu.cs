@@ -12,8 +12,6 @@ namespace TeamOv
 {
     public class CustomerMenu
     {
-        private static int index;
-
         public static void ShowCustomerScreen(string loggedInCustomer)
         {
             Transfer transfer = new Transfer();
@@ -86,7 +84,7 @@ namespace TeamOv
             var accountname = Console.ReadLine();
             string accountNumber = BankAccount.GenerateBankAccountNumber();
             string owner = loggedInCustomer;
-            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK",true)); //wrong accountname
+            BankAccount.bankAccounts.Add(new BankAccount(accountNumber, accountname, owner, 0, "SEK",true));
             Console.WriteLine($"{accountname} account {accountNumber} created");
 
             Console.WriteLine("Do you want to make a first deposit? (Yes/No)");
