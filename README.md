@@ -1,4 +1,5 @@
 # NET-22 System developer Last project for the C\# OOP course Emma Hjalmarsson & Oskar Ullsten
+UML in separate file.
 
 The project was about creating an application after a backlog about a bank.  
 This is our interpretation of what a banking application might look like.  
