@@ -14,19 +14,10 @@ namespace TeamOv
         {
         }
 
-        //public Customer(string username, string password, string customerName, bool active)
-        //{
-        //    this.username = username;
-        //    this.password = password;
-        //    this.CustomerName= customerName;
-        //    this.Active = active;
-        //}
-
-        //public override string ToString()
-        //{
-        //    return $"userid: {UserId}, username: {UserName}, password: {Password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
-        //}
-
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
     }
 }
