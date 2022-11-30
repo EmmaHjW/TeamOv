@@ -15,6 +15,11 @@ namespace TeamOv
     {
         public static void ShowAdminScreen(string currentUser)
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(DateTime.Now);
+            Console.ResetColor();
+            
+
             bool menu = true;
             do
             {
