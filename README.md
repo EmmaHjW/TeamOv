@@ -60,3 +60,5 @@ This is how the program is divided:
 -   **Transaction service class  
     **Maintains transaction list and loan list.  
     Methods to printing lists
+
+Bugs exist, but there was no time to fix them right now.
