@@ -19,32 +19,36 @@ namespace TeamOv
         private decimal givingLoanRate = 0.0m;
 
         public decimal LoanInterestRate(decimal amount, decimal givingLoanRate, string loggedInCustomer)
-        {
-
+        { 
             if (amount < 10000)
             {
+                Console.WriteLine();
                 givingLoanRate = loanInterestRate1;
-                Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate1 + "%");
+                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate1 + "%[/]");
                 Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             else if (amount >= 10000 && amount <= 70000)
             {
+                Console.WriteLine();
                 givingLoanRate= loanInterestRate2;
-                Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate2 + "%");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate2 + "%[/]");
                 Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             else if (amount > 70000)
-            {   
+            {
+                Console.WriteLine();
                 givingLoanRate = loanInterestRate3;
-                Console.WriteLine("Your interest rate on this loan will be: " + loanInterestRate3 + "%");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/][Green] " + loanInterestRate3 + "%[/]");
                 Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}");
             }
             return givingLoanRate;  
         }
         public void CheckCredit(string loggedInCustomer, decimal amount)
         {
-            List<BankAccount> Owner = bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
-           // decimal allowedToLoan = 0;
+            List<BankAccount> Owner = BankAccount.bankAccounts.FindAll(bankAccounts => bankAccounts.Owner == loggedInCustomer);
+           
             foreach (var item in Owner)
             {
                 if (item.Currency == "SEK")
@@ -66,15 +70,21 @@ namespace TeamOv
         {
             Console.WriteLine("Would you like to take a loan? (Yes/No)");
             var answer = Console.ReadLine();
+            Console.Clear();
             if (answer.ToLower() == "y" || answer.ToLower() == "yes")
             {
+                Console.WriteLine();
                 Console.WriteLine("Okey! To be able to offer you a loan we need to check if first, it is possible and second, to give you correct interest rate.\nHow mouch would you like to loan?");
+                Console.WriteLine();
                 decimal amount;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Enter amount: ");
+                
                 if (decimal.TryParse(Console.ReadLine(), out amount))
                 {
                     CheckCredit(loggedInCustomer, amount);
                 }
+                Console.ResetColor();
             }
             else if(answer.ToLower() == "n" || answer.ToLower() == "no")
             {
@@ -83,27 +93,28 @@ namespace TeamOv
         }
         private void LoanAllowed()
         {
+            Console.Clear();
             AnsiConsole.Status()
-            .Start("Thinking...", ctx =>
+            .Start("[Green]Thinking...[/]", ctx =>
             {
                 // Simulate some work
-                AnsiConsole.MarkupLine("Counting on your loan application");
+                Console.WriteLine();
+                AnsiConsole.MarkupLine("[Green]Counting on your loan application[/]");
                 Thread.Sleep(1000);
 
                 // Update the status and spinner
-                ctx.Status("\r\nWill check the budget calculation");
+                ctx.Status("\r\n[Green]Will check the budget calculation[/]");
                 ctx.Spinner(Spinner.Known.Star);
-                ctx.SpinnerStyle(Style.Parse("green"));
+                ctx.SpinnerStyle(Style.Parse("blue"));
 
                 // Simulate some work
-                AnsiConsole.MarkupLine("Are you married?");
+                AnsiConsole.MarkupLine("[Green]Are you married?[/]");
                 Thread.Sleep(2000); 
-                AnsiConsole.MarkupLine("It'll probably be fine. ");
+                AnsiConsole.MarkupLine("[Green]It'll probably be fine. [/]");
                 Thread.Sleep(2000); 
                 AnsiConsole.MarkupLine("[Yellow]Your lone is allowed![/]");
                 Thread.Sleep(2000);
             });
-            Console.ReadLine();
         }    
         private void LoanDenied()
         {
@@ -112,23 +123,23 @@ namespace TeamOv
             .Start("Thinking...", ctx =>
             {
                 // Simulate some work
-                AnsiConsole.MarkupLine("Counting on your loan application");
+                AnsiConsole.MarkupLine("[Green]Counting on your loan application[/]");
                 Thread.Sleep(1000);
 
                 // Update the status and spinner
-                ctx.Status("\r\nWill check the budget calculation");
+                ctx.Status("\r\n[Green]Will check the budget calculation[/]");
                 ctx.Spinner(Spinner.Known.Star);
                 ctx.SpinnerStyle(Style.Parse("green"));
 
                 // Simulate some work
-                AnsiConsole.MarkupLine("Planing to buy house?");
+                AnsiConsole.MarkupLine("[Green]Are you planning to buy house?[/]");
                 Thread.Sleep(2000); 
-                AnsiConsole.MarkupLine("It will be expensive to live there");
+                AnsiConsole.MarkupLine("[Green]It will be expensive to live there[/]");
                 Thread.Sleep(2000); 
                 AnsiConsole.MarkupLine("[Red]Sorry, but your loan could not be approved![/]");
                 Thread.Sleep(2000);
             });
-            Console.ReadLine();
+            
         }
     }
 }
