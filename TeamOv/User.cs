@@ -57,7 +57,7 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"userid: {UserId}, username: {UserName}, password: {Password}, active: {Active}, isAdmin: {IsAdmin}";
+            return $"userid: {UserId}, username: {UserName}, password: {Password}, firstname: {FirstName}, lastname: {LastName} active: {Active}, isAdmin: {IsAdmin}";
         }
     }
 }
