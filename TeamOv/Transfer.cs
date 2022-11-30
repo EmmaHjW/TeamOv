@@ -57,7 +57,7 @@ namespace TeamOv
                     Console.WriteLine();
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you have more to deposit? (Y/N)");
+                Console.WriteLine("Do you have more to deposit? (Yes/No)");
                 Console.ResetColor();
                 input = Console.ReadLine();
             }
@@ -106,7 +106,7 @@ namespace TeamOv
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to make another withdraw? (Y/N)");
+                Console.WriteLine("Do you want to make another withdraw? (Yes/No)");
                 Console.ResetColor();
                 input = Console.ReadLine();
             }
@@ -241,7 +241,7 @@ namespace TeamOv
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to make another transfer? Y/N");
+                Console.WriteLine("Do you want to make another transfer? Yes/No");
                 Console.ResetColor();
                 input = Console.ReadLine();
             }
@@ -310,7 +310,7 @@ namespace TeamOv
                     Console.ResetColor();
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Do you want to try again? (Y/N)");
+                    Console.WriteLine("Do you want to try again? (Yes/No)");
                     input = Console.ReadLine();
                 }
             }

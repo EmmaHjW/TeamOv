@@ -24,7 +24,7 @@ namespace TeamOv
                 Console.ResetColor();
                 Console.WriteLine();
                 var menuOptions = AnsiConsole.Prompt(new SelectionPrompt<string>()
-                        .Title("[green]*** Customer menu ***[/]")
+                        .Title("[lightgreen]*** Customer menu ***[/]")
                         .PageSize(10)
                         .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
                         .AddChoices(new[] {
