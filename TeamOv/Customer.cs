@@ -23,7 +23,7 @@ namespace TeamOv
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"userid: {UserId}, username: {UserName}, password: {Password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
         }
     }
 }

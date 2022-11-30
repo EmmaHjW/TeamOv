@@ -38,7 +38,6 @@ namespace TeamOv
                     switch (menuOptions)
                     {
                         case "Print customers":
-                            Console.WriteLine("Print Print");
                             PrintAllCustomers();
                             Console.ReadLine();
                             break;
@@ -47,7 +46,6 @@ namespace TeamOv
                             Console.ReadLine();
                             break;
                         case "Delete customer":
-                            Console.WriteLine("Delete customer");
                             DeleteCustomer();
                             Console.ReadLine();
                             break;
@@ -84,7 +82,7 @@ namespace TeamOv
             else
             {
                 add = true;
-                User.customerList.Add(new Customer(username, password, (bool) active));
+                User.customerList.Add(new Customer(username, password, (bool)active));
             }
             return add;
         }

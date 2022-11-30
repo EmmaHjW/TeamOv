@@ -15,8 +15,6 @@ namespace TeamOv
         protected bool isAdmin;
         protected string username;
         protected string password;
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public string CustomerName { get; set; }
         public string? UserName { get; set; }
         public string? Password { get; set; }
@@ -38,7 +36,8 @@ namespace TeamOv
         }
         public static void InitiateUsers() //Adds users to userList at run
         {
-            Admin.adminList.Add(new Admin("Admin", "password","Team OV", true));
+            Admin admin = new Admin() { UserName = "Admin", Password = "password", AdminName = "Team OV", Active = true};
+            Admin.adminList.Add(admin);
             User customer1 = new User() { UserId = idPool++,UserName = "Oskar", Password = "1234", CustomerName = "Oskar Ullsten", Active = true };
             User customer2 = new User() { UserId = idPool++,UserName = "Emma", Password = "1234", CustomerName = "Emma Hjalmarsson Wahlström", Active = true };
             User.customerList.Add(customer1);
@@ -56,7 +55,7 @@ namespace TeamOv
         }
         public override string ToString()
         {
-            return $"userid: {UserId}, username: {UserName}, password: {Password}, firstname: {FirstName}, lastname: {LastName} active: {Active}, isAdmin: {IsAdmin}";
+            return $"userid: {UserId}, username: {UserName}, password: {Password}, Name: {CustomerName} active: {Active}, isAdmin: {IsAdmin}";
         }
     }
 }

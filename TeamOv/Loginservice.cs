@@ -39,15 +39,18 @@ namespace TeamOv
                 var name = Console.ReadLine();
                 Console.Write("{0," + Console.WindowWidth / 2 + "}", "Enter password: ");
                 var password = ConsolePlus.ReadPassword();
-                string currentUser = name;
-
-
-
-                if (User.customerList.Exists(User => User.UserName == name && User.Password == password)
-                    || Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))   //Check if username exisist in list
+                
+                if (User.customerList.Exists(User => User.UserName == name && User.Password == password))   //Check if username exisist in list
                 {
+                    var currentUser = User.customerList.Find(c => c.UserName == name); //Find customerName for loggedInUser.
                     Console.WriteLine("Logged in");
-                    LoggedInUser(currentUser);
+                    LoggedInUser(currentUser.CustomerName, name);
+                    break;
+                }
+                if (Admin.adminList.Exists(Admin => Admin.UserName == name && Admin.Password == password))
+                {
+                    var currentUser = Admin.adminList.Find(c => c.UserName == name); //Find AdminName for loggedInUser
+                    LoggedInUser(currentUser.AdminName, name);
                     break;
                 }
                 else
@@ -69,9 +72,9 @@ namespace TeamOv
                 Console.ResetColor();
             }
         }
-        public void LoggedInUser(string currentUser) //Check if user is admin or customer
+        public void LoggedInUser(string currentUser, string name) //Check if user is admin or customer
         {
-            if (currentUser == "Admin")
+            if (name == "Admin")
             {
                 AdminMenu.ShowAdminScreen(currentUser);
             }
