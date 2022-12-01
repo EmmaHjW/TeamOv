@@ -24,7 +24,7 @@ namespace TeamOv
             {
                 Console.WriteLine();
                 givingLoanRate = loanInterestRate1;
-                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate1 + "%[/]");
+                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + " SEK[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate1 + "%[/]");
                 Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}%");
             }
             else if (amount >= 10000 && amount <= 70000)
@@ -32,7 +32,7 @@ namespace TeamOv
                 Console.WriteLine();
                 givingLoanRate= loanInterestRate2;
                 Console.ForegroundColor = ConsoleColor.Blue;
-                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/] [Green]" + loanInterestRate2 + "%[/]");
+                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + " SEK[/][Blue]will give you an interest rate:[/] [Green]" + loanInterestRate2 + "%[/]");
                 Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate}%");
             }
             else if (amount > 70000)
@@ -40,7 +40,7 @@ namespace TeamOv
                 Console.WriteLine();
                 givingLoanRate = loanInterestRate3;
                 Console.ForegroundColor = ConsoleColor.Blue;
-                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount + "[/] [Blue]will give you an interest rate:[/][Green] " + loanInterestRate3 + "%[/]");
+                AnsiConsole.MarkupLine("[Blue]Your loan application with amount:[/] [Green]" + amount +" SEK[/] [Blue]will give you an interest rate:[/][Green] " + loanInterestRate3 + "%[/]");
                 Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer} Loan allowed: {amount} Rate: {givingLoanRate} %");
             }
             return givingLoanRate;  
@@ -57,11 +57,21 @@ namespace TeamOv
                     {
                         LoanDenied();
                         Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer}");
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to go back to menu|");
+                        Console.ResetColor();
+                        break;
                     }
                     else
                     {
                         LoanAllowed();
                         LoanInterestRate(amount, givingLoanRate, loggedInCustomer);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to go back to menu|");
+                        Console.ResetColor();
+                        break;
                     }
                 }
             }
@@ -114,9 +124,9 @@ namespace TeamOv
 
                 // Simulate some work
                 AnsiConsole.MarkupLine("[Green]Are you married?[/]");
-                Thread.Sleep(2000); 
+                Thread.Sleep(2000);
                 AnsiConsole.MarkupLine("[Lightgreen]It'll probably be fine. [/]");
-                Thread.Sleep(2000); 
+                Thread.Sleep(2000);
                 AnsiConsole.MarkupLine("[Yellow]Your lone is allowed![/]");
                 Thread.Sleep(2000);
             });
