@@ -35,14 +35,14 @@ namespace TeamOv
             AnsiConsole.Foreground = Color.IndianRed;
             AnsiConsole.WriteLine("Loan history");
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("|enter to go back to menu|");
-            Console.ResetColor();
             foreach (var loanTransaktions in loanTransacktionList)
             {
                 AnsiConsole.WriteLine(loanTransaktions);
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("|enter to go back to menu|");
+            Console.ResetColor();
             AnsiConsole.ResetColors();
         }
     }
