@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TeamOv
 {
     public class BankAccount
-    {    
+    { 
         public static List<BankAccount> bankAccounts = new List<BankAccount>();
         private static int accountIdPool;
         public string Owner { get; set; }
@@ -67,7 +67,7 @@ namespace TeamOv
 
         public override string ToString()
         {
-            return $"AccountID {AccountId}, AccountNumber: {AccountNumber}, " +
+            return $"AccountID {AccountId}, Account owner: {Owner} AccountNumber: {AccountNumber}, " +
                 $"AccountName: {AccountName}, Balance: {Balance.ToString("N" + 2)} {Currency} ";
         }
     }

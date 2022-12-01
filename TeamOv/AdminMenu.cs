@@ -13,6 +13,7 @@ namespace TeamOv
 {
   public static class AdminMenu
     {
+        private static List<string> customerHistory = new List<string>();
         public static void ShowAdminScreen(string currentUser)
         {
             bool menu = true;
@@ -29,8 +30,10 @@ namespace TeamOv
                         .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
                         .AddChoices(new[] {
                         "Print customers",
+                        "Print bank accounts",
                         "Create customer",
                         "Delete customer",
+                        "Print history",
                         "Back to login screen",
                         "Logout"
                         }));
@@ -38,6 +41,14 @@ namespace TeamOv
                     {
                         case "Print customers":
                             PrintAllCustomers();
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine("|enter to get back to menu|");
+                            Console.ResetColor();
+                            Console.ReadLine();
+                            break;
+                        case "Print bank accounts":
+                            PrintAllAccounts();
+                        Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine("|enter to get back to menu|");
                         Console.ResetColor();
@@ -49,6 +60,10 @@ namespace TeamOv
                             break;
                         case "Delete customer":
                             DeleteCustomer();
+                            Console.ReadLine();
+                            break;
+                        case "Print history":
+                            PrintBankHistory();
                             Console.ReadLine();
                             break;
                         case "Back to login screen":
@@ -140,6 +155,11 @@ namespace TeamOv
                     };
                 } while (active is null);
                 completed = AddUser(username, password, customerName, (bool) active);
+                var accountNumber = BankAccount.GenerateBankAccountNumber();
+                var balance = 0;
+                var currency = "SEK";
+                BankAccount.bankAccounts.Add(new BankAccount(accountNumber, "Salary", customerName,balance, currency, true));
+                customerHistory.Add($"{DateTime.Now} Customer: {customerName} created Account opened: {accountNumber} Balance: {balance} {currency} Username: {username} Password: {password}");
                 if (!completed)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -148,7 +168,7 @@ namespace TeamOv
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Customer {username} created");
+                    Console.WriteLine($"Customer {username} created and account {accountNumber}");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine("|enter to get back to menu|");
@@ -198,6 +218,28 @@ namespace TeamOv
                 Console.WriteLine("|enter to get back to menu|");
                 Console.ResetColor();
             } 
+        }
+        public static void PrintAllAccounts()
+        {
+            Console.ForegroundColor = Color.Aqua;
+            foreach (var accounts in BankAccount.bankAccounts)
+            {
+                Console.WriteLine(accounts);
+            }
+            Console.ResetColor();
+        }
+        private static void PrintBankHistory()
+        {
+            Console.ForegroundColor = Color.Aqua;
+            foreach (var history in customerHistory)
+            {
+                Console.WriteLine(history);
+            }
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("|enter to get back to menu|");
+            Console.ResetColor();
         }
     }
 }
