@@ -57,11 +57,21 @@ namespace TeamOv
                     {
                         LoanDenied();
                         Transactionservice.loanTransacktionList.Add($"{DateTime.Now} {loggedInCustomer}");
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to go back to menu|");
+                        Console.ResetColor();
+                        break;
                     }
                     else
                     {
                         LoanAllowed();
                         LoanInterestRate(amount, givingLoanRate, loggedInCustomer);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to go back to menu|");
+                        Console.ResetColor();
+                        break;
                     }
                 }
             }
@@ -114,9 +124,9 @@ namespace TeamOv
 
                 // Simulate some work
                 AnsiConsole.MarkupLine("[Green]Are you married?[/]");
-                Thread.Sleep(2000); 
+                Thread.Sleep(2000);
                 AnsiConsole.MarkupLine("[Lightgreen]It'll probably be fine. [/]");
-                Thread.Sleep(2000); 
+                Thread.Sleep(2000);
                 AnsiConsole.MarkupLine("[Yellow]Your lone is allowed![/]");
                 Thread.Sleep(2000);
             });

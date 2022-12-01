@@ -238,13 +238,16 @@ namespace TeamOv
                                 $"{DateTime.Now.AddMinutes(15)} {ToAccount.AccountNumber} Transfer received {amount.ToString("N" + 2)} {ToAccount.Currency}");
                             Console.ResetColor();
                         }
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Do you want to make another transfer? (Yes/No)");
+                        Console.ResetColor();
+                        input = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine("|enter to go back to menu|");
+                        break;
                     }
                 }
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Do you want to make another transfer? Yes/No");
-                Console.ResetColor();
-                input = Console.ReadLine();
             }
         }
         public void ThirdPartTransfer(string loggedInCustomer)
@@ -313,6 +316,9 @@ namespace TeamOv
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Do you want to try again? (Yes/No)");
                     input = Console.ReadLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("|enter to go back to menu|");
+                    break;
                 }
 
             }
