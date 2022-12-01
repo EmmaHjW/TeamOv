@@ -29,10 +29,10 @@ This is how the program is divided:
     Method for managing the loan application.  
     Methods for printing loans approved or not.
 -   **Saving account class**  
-    Inherits from Bank account class.  
+    **Inherits from Bank account class.  
     Method for calculate interest.
 -   **Admin class  
-    **Inherits from user class.**  
+    **Inherits from user class.  
     **Manages admin list.
 -   **Customer class  
     **Inherits from user class.
